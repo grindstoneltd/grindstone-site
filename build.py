@@ -23,7 +23,7 @@ CSS = (ROOT / "src/styles.css").read_text(encoding="utf-8")
 EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8")
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900'
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900'
          '&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">')
 
 EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusable="false"><use href="#ems-mark"/></svg>'
@@ -55,10 +55,8 @@ PAGES = [
     <div class="hero">
       <div class="wheel" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow">Grindstone Ltd</p>
-        <h1>Grindstone</h1>
-        <p class="strap">Sharper tools for <em>contract manufacturing.</em></p>
-        <p class="lead lead-big"><strong>Thirty years across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
+        <h1>Sharper tools for <em>contract manufacturing.</em></h1>
+        <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
       </div>
     </div>
     <div class="wrap products">
@@ -77,9 +75,9 @@ PAGES = [
           <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a><a class="ext" href="{DRUM}">drumbeat.plus</a></div>
         </article>
         <article class="card">
-          <span class="kind">Get it right</span>
+          <span class="kind">Consultancy</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
-          <p>An experienced engineer on the shop floor for NPI, first article, PPAP and root cause, at your site or your supplier's.</p>
+          <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
         </article>
       </div>
@@ -152,9 +150,9 @@ PAGES = [
     },
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
-        "title": "Grindstone Consultancy: on-site NPI and quality engineering for EMS | Grindstone Ltd",
-        "description": "Hands-on engineering support at your site or your supplier's: NPI, DFM/DFA, APQP and PPAP, "
-                       "first article inspection, PFMEA, run at rate and 8D root cause.",
+        "title": "Grindstone Consultancy: hands-on electronics manufacturing consultancy | Grindstone Ltd",
+        "description": "On-site consultancy for OEMs and contract electronics manufacturers: NPI, DFM/DFA, APQP and PPAP, "
+                       "first article inspection, PFMEA, run at rate, supplier selection and 8D root cause.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
                    "serviceType": "On-site operations, quality and engineering support for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
@@ -162,19 +160,21 @@ PAGES = [
     <div class="wrap page">
       <a class="back" href="{home}">Home</a>
       <header class="big">
-        <span class="kind">Get it right</span>
+        <span class="kind">Consultancy</span>
         <h1 aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</h1>
-        <p class="intro">An experienced pair of hands on your shop floor.</p>
-        <p class="body"><i>Gemba</i> is the lean word for the place where the work actually happens. That's where we work:
-          at your site or your supplier's, alongside your team, until the problem is fixed and the fix holds.</p>
+        <p class="intro">Hands-on consultancy for electronics manufacturing.</p>
+        <p class="body">We work on site with OEMs and contract manufacturers to get new products into production,
+          win customer approval, and fix quality and supplier problems for good. You get thirty years of sales and
+          operations experience, working alongside your team.</p>
       </header>
 
+      <h2 class="sub-h">Who we work with</h2>
       <ul class="points">
-        <li><strong>For EMS providers</strong><span>Extra engineering muscle for a busy NPI, a demanding customer approval or a quality problem that won't go away.</span></li>
-        <li><strong>For OEMs and buyers</strong><span>Independent eyes on your supplier, whether you're down the road or overseas.</span></li>
+        <li><strong>Contract manufacturers</strong><span>Extra experience for a busy NPI, a demanding customer approval, or a quality problem that keeps coming back.</span></li>
+        <li><strong>OEMs and buyers</strong><span>Someone independent on site with your supplier, whether they're down the road or you're overseas.</span></li>
       </ul>
 
-      <h2 class="sub-h">What we do</h2>
+      <h2 class="sub-h">What we can help with</h2>
       <div class="stages">
         <div class="stage">
           <span class="kind">Into production</span>
@@ -197,7 +197,7 @@ PAGES = [
         <div class="stage">
           <span class="kind">Suppliers and capacity</span>
           <ul>
-            <li>Supplier selection<span>Find and qualify the right EMS partner.</span></li>
+            <li>Supplier selection<span>Find and qualify the right manufacturing partner.</span></li>
             <li>Run at rate<span>Prove the line can build at the volume quoted.</span></li>
             <li>Project delivery<span>From kick-off to steady production.</span></li>
           </ul>
@@ -206,18 +206,17 @@ PAGES = [
 
       <div class="experience">
         <p class="big-figure">30 <span>years</span></p>
-        <p>Running operations, quality and engineering in electronics manufacturing, including senior roles at global OEMs
-          and Tier 1 suppliers. Low-volume, high-mix through to high-volume, in regulated and safety-critical industries.</p>
+        <p>Sales and operations across OEMs, Tier 1 suppliers and contract manufacturers, including senior roles at global
+          companies. Low-volume, high-mix through to high-volume, in regulated and safety-critical industries.</p>
       </div>
 
-      <h2 class="sub-h">How we work</h2>
+      <h2 class="sub-h">How a job works</h2>
       <ol class="cycle">
-        <li><strong>Plan</strong><span>Agree the problem and how we'll measure success.</span></li>
-        <li><strong>Do</strong><span>Fix it on the shop floor, with your team.</span></li>
-        <li><strong>Check</strong><span>Measure the result against the plan.</span></li>
-        <li><strong>Act</strong><span>Make the fix the standard, then agree what's next.</span></li>
+        <li><strong>Talk it through</strong><span>Tell us the problem. We'll say straight away whether we can help.</span></li>
+        <li><strong>Agree the scope</strong><span>A fixed scope and price, from a single visit to support right through to production.</span></li>
+        <li><strong>On site</strong><span>We work at your site or your supplier's, alongside the people doing the work.</span></li>
+        <li><strong>Handover</strong><span>A written report, and the fix in place and owned by your team.</span></li>
       </ol>
-      <p class="body note">Every job is scoped and priced with you, from a single first article inspection to support from NPI right through to production.</p>
 
       <div class="contact">
         <strong>Tell us what you need</strong>

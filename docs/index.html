@@ -14,7 +14,7 @@
 <meta property="og:locale" content="en_GB">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">
 <style>
   /* Layout: one narrow column of stone; a ground-wheel disc behind the hero; three product cards; each card opens its own page. */
   :root {
@@ -32,7 +32,7 @@
     --ems-lime: #b6df1c;
     --beat: #419400;
     --plus: #d4a017;
-    --font-display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+    --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
     --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
     --font-ems: "Inter", "Helvetica Neue", Arial, sans-serif;
     --font-drum: "Unbounded", "Arial Black", Arial, sans-serif;
@@ -60,7 +60,7 @@
   /* header */
   .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
   .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .8rem; flex-wrap: wrap; }
-  .mark { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; letter-spacing: .02em; text-transform: uppercase; text-decoration: none; line-height: 1; }
+  .mark { font-family: var(--font-display); font-weight: 800; font-stretch: 125%; font-size: 1.3rem; letter-spacing: .04em; text-transform: uppercase; text-decoration: none; line-height: 1; }
   .mark span { color: var(--spark); }
   nav { display: flex; gap: .25rem 1.1rem; flex-wrap: wrap; font-size: .95rem; }
   nav a { text-decoration: none; color: var(--muted); padding-block: .2rem; border-bottom: 2px solid transparent; }
@@ -79,14 +79,15 @@
   @media (prefers-reduced-motion: no-preference) { .wheel { animation: turn 60s linear infinite; } @keyframes turn { to { transform: translateY(-50%) rotate(360deg); } } }
   @media (max-width: 40rem) { .wheel { opacity: .35; right: -12rem; } }
   .eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-  .hero h1 { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: clamp(3.6rem, 13vw, 8.5rem); line-height: .86; letter-spacing: .01em; margin-top: .6rem; position: relative; }
+  .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 7.5vw, 5.4rem); line-height: 1.02; letter-spacing: -.02em; max-width: 14ch; position: relative; }
+  .hero h1 em { font-style: normal; color: var(--spark); }
   .strap { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.3rem); line-height: 1.1; margin-top: 1rem; max-width: 22ch; position: relative; }
   .strap em { font-style: normal; color: var(--spark); }
   .lead { color: var(--muted); max-width: 52ch; margin-top: 1.2rem; position: relative; }
 
   /* cards */
   .products { padding-block: 1rem clamp(3rem, 7vw, 5rem); }
-  .products h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 1.05rem; letter-spacing: .12em; color: var(--muted); margin-bottom: 1rem; }
+  .products h2 { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; font-size: .85rem; letter-spacing: .14em; color: var(--muted); margin-bottom: 1rem; }
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr)); gap: 1rem; }
   .card { display: flex; flex-direction: column; gap: .9rem; min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem; text-decoration: none; transition: border-color .15s, transform .15s; }
   .card:hover { border-color: var(--fg); }
@@ -115,7 +116,7 @@
   .back::before { content: "\2190 "; }
   .back:hover { color: var(--fg); }
   .page header { display: grid; gap: .7rem; margin-top: 1.4rem; max-width: 46rem; }
-  .page .intro { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.2rem); line-height: 1.12; margin-top: .4rem; }
+  .page .intro { font-family: var(--font-display); font-weight: 700; letter-spacing: -.01em; font-size: clamp(1.5rem, 3.6vw, 2.2rem); line-height: 1.12; margin-top: .4rem; }
   .page .body { color: var(--muted); max-width: 60ch; }
   .points { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
   .points li { background: var(--surface); padding: 1.2rem 1.3rem; display: grid; gap: .3rem; min-width: 0; }
@@ -124,7 +125,7 @@
   .cta { display: inline-flex; align-items: center; gap: .5rem; margin-top: 2rem; background: var(--fg); color: var(--bg); text-decoration: none; font-weight: 600; padding: .8rem 1.3rem; border-radius: 8px; }
   .cta::after { content: "\2197"; }
   .cta:hover { background: var(--spark); color: var(--spark-ink); }
-  .sub-h { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; font-size: 1rem; color: var(--muted); margin-top: 2.8rem; }
+  .sub-h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; color: var(--muted); margin-top: 2.8rem; }
 
   /* drumbeat+ plans */
   .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
@@ -138,7 +139,7 @@
   .cycle { list-style: none; counter-reset: step; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
   .cycle li { counter-increment: step; display: grid; gap: .25rem; min-width: 0; }
   .cycle li::before { content: counter(step); font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--spark); }
-  .cycle strong { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; text-transform: uppercase; letter-spacing: .03em; }
+  .cycle strong { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; }
   .cycle span { color: var(--muted); font-size: .97rem; }
   .contact { margin-top: 2.4rem; padding: 1.3rem 1.4rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
   .contact strong { font-weight: 600; }
@@ -155,7 +156,7 @@
   .stage li::before { content: ""; position: absolute; left: 0; top: .7em; width: .45rem; height: 2px; background: var(--spark); }
   .experience { margin-top: 2.8rem; display: grid; grid-template-columns: auto 1fr; gap: 1rem 2rem; align-items: center; padding-block: 1.6rem; border-block: 1px solid var(--line); }
   .experience p:last-child { color: var(--muted); max-width: 58ch; min-width: 0; }
-  .big-figure { font-family: var(--font-display); font-weight: 900; font-size: clamp(3.4rem, 9vw, 5rem); line-height: .9; color: var(--fg); }
+  .big-figure { font-family: var(--font-display); font-weight: 900; letter-spacing: -.03em; font-size: clamp(3.4rem, 9vw, 5rem); line-height: .9; color: var(--fg); }
   .big-figure span { display: block; font-size: .32em; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--spark); }
   @media (max-width: 34rem) { .experience { grid-template-columns: 1fr; } }
   .note { margin-top: 1.6rem; }
@@ -169,15 +170,15 @@
   .card { text-decoration: none; }
   .card h3 { margin: 0; font-weight: inherit; }
   .card h3 a { text-decoration: none; }
-  .card h3 a:hover { text-decoration: underline; text-decoration-color: var(--spark); text-underline-offset: 4px; }
+  .card h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
   .card-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .4rem 1rem; }
   .card-foot .more { text-decoration: none; }
   .ext { font-size: .9rem; color: var(--muted); text-decoration: none; }
   .ext::after { content: " \2197"; }
   .ext:hover { color: var(--fg); text-decoration: underline; text-underline-offset: 3px; }
   /* links inside running text */
-  .lead a, .body a, .points a, .card p a, footer a { color: var(--fg); text-decoration: underline; text-decoration-color: var(--spark); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-  .lead a:hover, .body a:hover, .points a:hover, .card p a:hover, footer a:hover { color: var(--spark); }
+  .lead a, .body a, .points a, .card p a, .crosslink a, footer a { color: var(--fg); text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--fg) 45%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  .lead a:hover, .body a:hover, .points a:hover, .card p a:hover, .crosslink a:hover, footer a:hover { text-decoration-color: var(--fg); }
   /* trade mark and status */
   .tm { font-family: var(--font-body); font-weight: 600; font-size: .38em; vertical-align: super; margin-left: .08em; letter-spacing: 0; color: var(--muted); }
   .soon { display: inline-block; font-family: var(--font-body); font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--spark-ink); background: var(--spark); border-radius: 99px; padding: .15rem .6rem; vertical-align: middle; }
@@ -194,10 +195,10 @@
 
   /* Grindstone Consultancy: typeset lockup (parent wordmark over a tracked service line) */
   .wm-consult { display: inline-grid; justify-items: start; line-height: 1; color: var(--fg); }
-  .wm-consult .cm-name { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.9rem; letter-spacing: .02em; }
+  .wm-consult .cm-name { font-family: var(--font-display); font-weight: 800; font-stretch: 125%; text-transform: uppercase; font-size: 1.45rem; letter-spacing: .04em; }
   .wm-consult .cm-name span { color: var(--spark); }
   .wm-consult .cm-sub { font-family: var(--font-body); font-weight: 600; text-transform: uppercase; font-size: .62rem; letter-spacing: .52em; margin-top: .35em; padding-top: .35em; border-top: 2px solid var(--spark); width: 100%; }
-  .big .wm-consult .cm-name { font-size: clamp(3rem, 9vw, 5rem); }
+  .big .wm-consult .cm-name { font-size: clamp(2.1rem, 6.4vw, 3.6rem); }
   .big .wm-consult .cm-sub { font-size: clamp(.8rem, 1.9vw, 1.05rem); }
 
 </style>
@@ -230,10 +231,8 @@
     <div class="hero">
       <div class="wheel" aria-hidden="true"></div>
       <div class="wrap">
-        <p class="eyebrow">Grindstone Ltd</p>
-        <h1>Grindstone</h1>
-        <p class="strap">Sharper tools for <em>contract manufacturing.</em></p>
-        <p class="lead lead-big"><strong>Thirty years across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
+        <h1>Sharper tools for <em>contract manufacturing.</em></h1>
+        <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
       </div>
     </div>
     <div class="wrap products">
@@ -252,9 +251,9 @@
           <div class="card-foot"><a class="more" href="/drumbeat/">More about drumbeat+</a><a class="ext" href="https://drumbeat.plus/">drumbeat.plus</a></div>
         </article>
         <article class="card">
-          <span class="kind">Get it right</span>
+          <span class="kind">Consultancy</span>
           <h3><a href="/consultancy/" aria-label="Grindstone Consultancy"><span class="wm-consult"><span class="cm-name">Grind<span>stone</span></span><span class="cm-sub">Consultancy</span></span></a></h3>
-          <p>An experienced engineer on the shop floor for NPI, first article, PPAP and root cause, at your site or your supplier's.</p>
+          <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="/consultancy/">More about Grindstone Consultancy</a></div>
         </article>
       </div>
