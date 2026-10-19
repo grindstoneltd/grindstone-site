@@ -234,13 +234,12 @@ PAGES = [
 FOOTER = """
 <footer>
   <div class="wrap">
-    <p class="legal">Grindstone Ltd. Registered in England and Wales, company number 17440074.
-      Registered office: 8 Aldermans Hill, Hockley, Essex, SS5 4RW.</p>
     <nav aria-label="Our sites">
       <a href="{EMS}">EMS Directory</a>
       <a href="{DRUM}">drumbeat+</a>
       <a href="{gemba_page}">Grindstone Consultancy</a>
     </nav>
+    <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
   </div>
 </footer>"""
 
