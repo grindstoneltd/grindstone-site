@@ -147,7 +147,7 @@ PAGES = [
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">crm</span></span><span>Win the work.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">ops</span></span><span>Run the work.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">opx</span></span><span>Improve how it runs.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Everything, including regulated work.<span class="later">Later</span></span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Everything, plus regulated work: AS9100, ISO 13485 and IATF 16949.<span class="later">Later</span></span></li>
       </ul>
       <a class="cta muted" href="{DRUM}">drumbeat.plus &middot; coming soon</a>
     </div>""",
