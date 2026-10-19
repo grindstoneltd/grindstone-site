@@ -1,0 +1,4 @@
+# local single-file preview (published as a Claude artifact, not part of the live site)
+/index.html
+.DS_Store
+__pycache__/
