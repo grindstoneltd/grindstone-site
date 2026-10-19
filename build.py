@@ -17,6 +17,9 @@ SITE = "https://grindstone.ltd"
 EMS = "https://www.emsdirectory.co.uk/"          # canonical address of EMS Directory (apex 301s here)
 DRUM = "https://drumbeat.plus/"
 CONTACT = "colin@grindstone.ltd"
+LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
+# LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
+LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
 
 CSS = (ROOT / "src/styles.css").read_text(encoding="utf-8")
@@ -35,7 +38,7 @@ STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" 
 CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>' + STONE + '</span></span>'
               '<span class="cm-sub">Consultancy</span></span>')
 
-ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/"}
+ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sameAs": [LINKEDIN]}
 
 # ---------------------------------------------------------------- pages
 # Links inside page bodies use {home} {ems_page} {drum_page} {gemba_page}, filled in per output.
@@ -238,6 +241,7 @@ FOOTER = """
       <a href="{EMS}">EMS Directory</a>
       <a href="{DRUM}">drumbeat+</a>
       <a href="{gemba_page}">Grindstone Consultancy</a>
+      <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
   </div>
@@ -255,6 +259,7 @@ def header(links, current):
     <a class="mark" href="{links['home']}">Grind<span>{STONE}</span></a>
     <nav aria-label="Main">
 {items}
+      <a class="li li-head" href="{LINKEDIN}" aria-label="Grindstone Ltd on LinkedIn">{LI_ICON}</a>
     </nav>
   </div>
 </div>"""
@@ -263,7 +268,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM))
+            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN))
 
 
 def jsonld(obj):

@@ -197,3 +197,10 @@
     .card h3 { align-self: center; }
     .card-foot { align-self: start; }
   }
+
+  /* LinkedIn */
+  .li { display: inline-flex; align-items: center; gap: .4em; }
+  .li-icon { width: 1.05em; height: 1.05em; fill: currentColor; flex: none; }
+  .li:hover .li-icon { fill: #0a66c2; }
+  nav .li-head { border-bottom: 0; color: var(--muted); }
+  nav .li-head .li-icon { width: 1.2em; height: 1.2em; }
