@@ -24,7 +24,7 @@ EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8")
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900'
-         '&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">')
+         '&family=Michroma&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">')
 
 EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusable="false"><use href="#ems-mark"/></svg>'
           '<span>EMS <b>Directory</b></span></span>')
