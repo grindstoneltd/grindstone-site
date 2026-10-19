@@ -27,6 +27,7 @@
     --spark-ink: #ffffff;
     --wheel-a: #c9ced0;
     --wheel-b: #dde1e2;
+    --o-wheel: #3d464c;
     /* product brands */
     --ems-green: #419400;
     --ems-lime: #b6df1c;
@@ -41,13 +42,13 @@
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
-      --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024;
+      --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
       --ems-green: #6cc11f; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
-    --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024;
+    --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
     --ems-green: #6cc11f; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
   }
 
@@ -69,16 +70,18 @@
   nav a[aria-current="page"] { color: var(--fg); border-bottom-color: var(--spark); }
 
   /* hero */
-  .hero { position: relative; overflow: hidden; }
+  .home { position: relative; overflow: hidden; }
+  .hero { position: relative; }
+  .hero .wrap, .products { position: relative; z-index: 1; }
   .hero .wrap { position: relative; padding-block: clamp(3rem, 9vw, 6.5rem) clamp(2.5rem, 6vw, 4rem); }
-  .wheel { position: absolute; right: -9rem; top: 50%; width: 30rem; max-width: 100%; aspect-ratio: 1; transform: translateY(-50%); border-radius: 50%; pointer-events: none;
+  .wheel { position: absolute; z-index: 0; right: -18rem; top: -6rem; width: 62rem; max-width: none; aspect-ratio: 1; border-radius: 50%; pointer-events: none;
     background:
       radial-gradient(circle, var(--bg) 0 9%, transparent 9.5%),
       radial-gradient(circle, transparent 0 9.5%, var(--line) 10% 11%, transparent 11.5%),
       repeating-radial-gradient(circle, var(--wheel-a) 0 2px, var(--wheel-b) 2px 9px);
     opacity: .9; }
-  @media (prefers-reduced-motion: no-preference) { .wheel { animation: turn 60s linear infinite; } @keyframes turn { to { transform: translateY(-50%) rotate(360deg); } } }
-  @media (max-width: 40rem) { .wheel { opacity: .35; right: -12rem; } }
+  @media (prefers-reduced-motion: no-preference) { .wheel { animation: turn 90s linear infinite; } @keyframes turn { to { transform: rotate(360deg); } } }
+  @media (max-width: 40rem) { .wheel { opacity: .4; width: 40rem; right: -22rem; top: -4rem; } }
   .eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
   .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 7.5vw, 5.4rem); line-height: 1.02; letter-spacing: -.02em; max-width: 14ch; position: relative; }
   .hero h1 em { font-style: normal; color: var(--spark); }
@@ -203,9 +206,10 @@
   .big .wm-consult .cm-sub { font-size: clamp(.8rem, 1.9vw, 1.05rem); }
 
   /* the O in "stone" drawn as the grindstone wheel */
-  .o-wheel { display: inline-block; position: relative; width: .74em; height: .74em; margin: 0 .07em 0 .05em; vertical-align: 0; }
+  .o-wheel { display: inline-block; position: relative; width: .782em; height: .782em; margin: 0 .1325em; vertical-align: -.016em; color: var(--o-wheel); }
   .o-wheel svg { display: block; width: 100%; height: 100%; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  .mark .o-wheel, .wm-consult .o-wheel { color: var(--o-wheel); }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "legalName": "Grindstone Ltd", "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"}, "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley", "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"}, "brand": [{"@type": "Brand", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/"}, {"@type": "Brand", "name": "drumbeat+", "url": "https://drumbeat.plus/"}]}</script>
@@ -223,7 +227,7 @@
 
 <div class="top">
   <div class="wrap">
-    <a class="mark" href="/">Grind<span>st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne</span></a>
+    <a class="mark" href="/">Grind<span>st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne</span></a>
     <nav aria-label="Main">
       <a href="/" data-nav="home" aria-current="page">Home</a>
       <a href="/ems-directory/" data-nav="ems-directory">EMS Directory</a>
@@ -234,8 +238,9 @@
 </div>
 <main>
 
+    <div class="home">
+    <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
-      <div class="wheel" aria-hidden="true"></div>
       <div class="wrap">
         <h1>Sharper tools for <em>contract manufacturing.</em></h1>
         <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
@@ -258,11 +263,12 @@
         </article>
         <article class="card">
           <span class="kind">Consultancy</span>
-          <h3><a href="/consultancy/" aria-label="Grindstone Consultancy"><span class="wm-consult"><span class="cm-name">Grind<span>st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne</span></span><span class="cm-sub">Consultancy</span></span></a></h3>
+          <h3><a href="/consultancy/" aria-label="Grindstone Consultancy"><span class="wm-consult"><span class="cm-name">Grind<span>st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne</span></span><span class="cm-sub">Consultancy</span></span></a></h3>
           <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="/consultancy/">More about Grindstone Consultancy</a></div>
         </article>
       </div>
+    </div>
     </div>
 </main>
 

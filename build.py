@@ -31,7 +31,7 @@ EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusab
 DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span></span>'
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
-STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
+STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
 CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>' + STONE + '</span></span>'
               '<span class="cm-sub">Consultancy</span></span>')
 
@@ -54,8 +54,9 @@ PAGES = [
                    "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS},
                              {"@type": "Brand", "name": "drumbeat+", "url": DRUM}]},
         "body": """
+    <div class="home">
+    <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
-      <div class="wheel" aria-hidden="true"></div>
       <div class="wrap">
         <h1>Sharper tools for <em>contract manufacturing.</em></h1>
         <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
@@ -83,6 +84,7 @@ PAGES = [
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
         </article>
       </div>
+    </div>
     </div>""",
     },
     {
