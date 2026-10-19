@@ -30,7 +30,9 @@ EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusab
           '<span>EMS <b>Directory</b></span></span>')
 DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span></span>'
 TM = '<span class="tm">&trade;</span>'
-CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>stone</span></span>'
+# 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
+STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="10"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
+CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>' + STONE + '</span></span>'
               '<span class="cm-sub">Consultancy</span></span>')
 
 ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/"}
@@ -249,7 +251,7 @@ def header(links, current):
     return f"""
 <div class="top">
   <div class="wrap">
-    <a class="mark" href="{links['home']}">Grind<span>stone</span></a>
+    <a class="mark" href="{links['home']}">Grind<span>{STONE}</span></a>
     <nav aria-label="Main">
 {items}
     </nav>
