@@ -82,7 +82,7 @@ PAGES = [
           <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
         </article>
         <article class="card">
-          <span class="kind">Fix a problem</span>
+          <span class="kind">Gemba support</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
           <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
