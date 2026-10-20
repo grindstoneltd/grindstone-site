@@ -296,6 +296,10 @@
     .stage, .stage-wide { grid-template-columns: 1fr; gap: .8rem; }
     .stage ul, .stage-wide ul { grid-template-columns: 1fr; }
   }
+  /* the 30 years: its own tinted panel so it reads as the proof point */
+  .experience { border: 0; border-left: 4px solid var(--spark); border-radius: 0 12px 12px 0; background: color-mix(in srgb, var(--spark) 9%, var(--surface)); padding: 1.8rem 2rem; gap: 1rem 2.4rem; margin-top: 3rem; }
+  .experience .big-figure { font-size: clamp(4rem, 11vw, 6.2rem); }
+  .experience p:last-child { color: var(--fg); font-size: 1.12rem; line-height: 1.55; max-width: 52ch; }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/", "description": "Directory of UK contract electronics manufacturers (EMS providers).", "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"]}}</script>
