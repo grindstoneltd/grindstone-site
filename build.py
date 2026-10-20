@@ -85,7 +85,7 @@ PAGES = [
         <article class="card">
           <span class="kind">Gemba support</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
-          <p>Hands-on consultancy across sales and operations: winning the right work, new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
+          <p>Hands-on consultancy across sales, operations and practical AI: winning the right work, new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
         </article>
       </div>
@@ -178,10 +178,10 @@ PAGES = [
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
         "title": "Grindstone Consultancy: hands-on electronics manufacturing consultancy | Grindstone Ltd",
-        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, RFQ and quoting, "
+        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, practical AI, RFQ and quoting, "
                        "NPI, DFM/DFA, APQP and PPAP, first article inspection, PFMEA, supplier selection and 8D root cause.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
-                   "serviceType": "Sales, marketing, operations, quality and engineering consultancy for electronics manufacturing",
+                   "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
         "body": """
     <div class="wrap page">
@@ -192,7 +192,7 @@ PAGES = [
         <p class="intro">Hands-on consultancy for electronics manufacturing.</p>
         <p class="body">We work with OEMs and contract manufacturers to get new products into production,
           win customer approval, and get to the root of quality and supplier problems. For contract manufacturers, we also
-          help win more of the right work. You get thirty years of sales and operations experience, working alongside your team.</p>
+          help win more of the right work, and we help both put AI to practical use. You get thirty years of sales and operations experience, working alongside your team.</p>
       </header>
 
       <h2 class="sub-h">Who we work with</h2>
@@ -240,6 +240,16 @@ PAGES = [
             <li>Supplier selection<span>Find and qualify the right manufacturing partner.</span></li>
             <li>Run at rate<span>Prove the line can build at the volume quoted.</span></li>
             <li>Project delivery<span>From kick-off to steady production.</span></li>
+          </ul>
+        </div>
+        <div class="stage stage-wide">
+          <span class="kind">Practical AI</span>
+          <ul>
+            <li>RFQ and BOM handling<span>Read customer BOMs and drawings, clean up part data and quote faster.</span></li>
+            <li>Sales and admin automation<span>Draft RFQ replies, chasers, meeting notes and CRM updates.</span></li>
+            <li>Documents and quality<span>Draft work instructions, 8D reports, procedures and audit prep in less time.</span></li>
+            <li>Data and reporting<span>Get answers out of your ERP exports, without new software.</span></li>
+            <li>Getting started safely<span>Which tools to use, what's safe to share, and guidance for your team.</span></li>
           </ul>
         </div>
       </div>
