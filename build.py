@@ -64,7 +64,7 @@ PAGES = [
     <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
       <div class="wrap">
-        <h1>Giving you the <em>edge</em>.</h1>
+        <h1>Get the <em>edge</em> right.</h1>
         <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on thirty years in sales and operations across OEMs, Tier 1s and EMS companies.</p>
       </div>
     </div>
