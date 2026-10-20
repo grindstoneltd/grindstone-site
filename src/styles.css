@@ -114,11 +114,10 @@
   .sub-h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; color: var(--muted); margin-top: 2.8rem; }
 
   /* drumbeat+ plans */
-  /* one row per plan: name on the left, tagline beside it on one line */
-  .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; max-width: 46rem; }
-  .plans li { border-top: 1px solid var(--line); padding-block: .75rem; display: grid; grid-template-columns: 13rem 1fr; gap: .2rem 1rem; align-items: baseline; min-width: 0; }
-  .plans li:last-child { border-bottom: 1px solid var(--line); }
-  @media (max-width: 34rem) { .plans li { grid-template-columns: 1fr; } }
+  /* plans as a 2 x 2 grid of small cards, wide enough for each tagline on one line */
+  .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .plans li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; display: grid; gap: .35rem; min-width: 0; }
+  @media (max-width: 44rem) { .plans { grid-template-columns: 1fr; } }
   .plans span.wm-drum { font-size: 1.05rem; color: var(--fg); }  /* "drum" in dark ink, per the drumbeat+ brand */
   .plans .wm-drum .pl { color: var(--plus); }
   .plans span { color: var(--muted); font-size: .97rem; }
