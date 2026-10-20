@@ -76,7 +76,7 @@ PAGES = [
         <article class="card">
           <span class="kind">Run the work &middot; <span class="soon">Coming soon</span></span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
-          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>. It takes every job from lead to delivery, so nothing slips between departments, and runs beside the ERP you already have.</p>
+          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>. It takes every job from lead to delivery, keeps it moving between departments, and runs beside the ERP you already have.</p>
           <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
         </article>
         <article class="card">
