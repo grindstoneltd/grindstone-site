@@ -135,9 +135,12 @@
   .sub-h { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .85rem; color: var(--muted); margin-top: 2.8rem; }
 
   /* drumbeat+ plans */
-  .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
-  .plans li { border-top: 3px solid var(--line); padding-top: .8rem; display: grid; gap: .2rem; min-width: 0; }
-  .plans .wm-drum { font-size: 1.05rem; }
+  /* one row per plan: name on the left, tagline beside it on one line */
+  .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; max-width: 46rem; }
+  .plans li { border-top: 1px solid var(--line); padding-block: .75rem; display: grid; grid-template-columns: 13rem 1fr; gap: .2rem 1rem; align-items: baseline; min-width: 0; }
+  .plans li:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 34rem) { .plans li { grid-template-columns: 1fr; } }
+  .plans span.wm-drum { font-size: 1.05rem; color: var(--fg); }  /* "drum" in dark ink, per the drumbeat+ brand */
   .plans .wm-drum .pl { color: var(--plus); }
   .plans span { color: var(--muted); font-size: .97rem; }
   .later { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .05rem .5rem; margin-left: .3rem; vertical-align: middle; }
@@ -234,6 +237,9 @@
   .li-page { margin-top: 1.4rem; font-weight: 600; color: var(--fg); text-decoration: none; }
   .cta-row .li-page { margin-top: 0; }
   .li-page:hover span { text-decoration: underline; text-underline-offset: 3px; }
+
+  .cta-row.cta-first { margin-top: .6rem; }
+  .demo-note { color: var(--muted); }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy", "serviceType": "On-site operations, quality and engineering support for electronics manufacturing", "provider": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"]}, "areaServed": {"@type": "Country", "name": "United Kingdom"}}</script>

@@ -18,6 +18,7 @@ EMS = "https://www.emsdirectory.co.uk/"          # canonical address of EMS Dire
 DRUM = "https://drumbeat.plus/"
 CONTACT = "enquiries@grindstone.ltd"
 LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
+DEMO = "mailto:" + CONTACT + "?subject=drumbeat%2B%20demo%20request"
 LI_EMS = "https://www.linkedin.com/company/emsdirectory/"
 LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
@@ -127,7 +128,7 @@ PAGES = [
         "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
         "title": "drumbeat+ sales and operations software for EMS companies | Grindstone Ltd",
         "description": "drumbeat+ takes every job in a contract electronics manufacturer from lead to delivery, "
-                       "beside the ERP you already have. Coming soon.",
+                       "beside the ERP you already have.",
         "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                    "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.",
@@ -142,6 +143,7 @@ PAGES = [
         <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
           It takes each job from first enquiry through quoting, orders, materials, production, quality and despatch,
           and gives every team the right task at the right time.</p>
+        <div class="cta-row cta-first"><a class="cta" href="{DEMO}">Request a demo</a></div>
       </header>
       <ul class="points">
         <li><strong>Built for EMS</strong><span>Follows a job the way an electronics manufacturer actually runs one.</span></li>
@@ -154,11 +156,11 @@ PAGES = [
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">crm</span></span><span>Win the work.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">opx</span></span><span>Operational excellence.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.<span class="later">Coming soon</span></span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.</span></li>
       </ul>
-      <div class="contact">
-        <strong>Coming soon. Email us to see it first</strong>
-        <span class="addr">""" + CONTACT + """</span>
+      <div class="cta-row">
+        <a class="cta" href="{DEMO}">Request a demo</a>
+        <span class="demo-note">or email <span class="addr">""" + CONTACT + """</span></span>
       </div>
       <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
     </div>""",
@@ -278,7 +280,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM))
+            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{DEMO}", DEMO))
 
 
 def jsonld(obj):
