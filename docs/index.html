@@ -306,7 +306,6 @@
   .pagewrap { position: relative; overflow: hidden; }
   .pagewrap > :not(.wm-bg) { position: relative; z-index: 1; }
   .wm-bg { position: absolute; z-index: 0; pointer-events: none; }
-  .pagewrap > .wheel { top: -4rem; right: -22rem; }
   .mark-ems { top: 4rem; right: 3rem; width: 34rem; aspect-ratio: 500 / 574; opacity: .07; color: var(--fg); }
   .mark-ems svg { display: block; width: 100%; height: 100%; }
   .mark-drum { top: -2rem; right: 6rem; font-family: var(--font-drum); font-weight: 900; font-size: 42rem; line-height: 1; color: var(--plus); opacity: .09; }
@@ -314,6 +313,8 @@
     .mark-ems { width: 22rem; right: -5rem; opacity: .05; }
     .mark-drum { font-size: 26rem; right: -6rem; top: -2rem; opacity: .07; }
   }
+
+  .nowrap { white-space: nowrap; }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "legalName": "Grindstone Ltd", "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"}, "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley", "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"}, "brand": [{"@type": "Brand", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/", "sameAs": ["https://www.linkedin.com/company/emsdirectory/"]}, {"@type": "Brand", "name": "drumbeat+", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"]}]}</script>
@@ -346,7 +347,7 @@
     <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
       <div class="wrap">
-        <h1>Cutting-edge services for <em>contract manufacturing.</em></h1>
+        <h1><span class="nowrap">Cutting-edge</span> services for <em>contract manufacturing.</em></h1>
         <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on thirty years in sales and operations across OEMs, Tier 1s and EMS companies.</p>
       </div>
     </div>
