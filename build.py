@@ -238,7 +238,7 @@ PAGES = [
           companies. Low-volume, high-mix through to high-volume, in regulated and safety-critical industries.</p>
       </div>
 
-      <h2 class="sub-h">How a job works</h2>
+      <h2 class="sub-h">How we work</h2>
       <ol class="cycle">
         <li><strong>Talk</strong><span>Tell us the problem. We'll say straight away if we can help.</span></li>
         <li><strong>Scope</strong><span>We agree what's needed and fix the price up front.</span></li>
