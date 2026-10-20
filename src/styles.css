@@ -190,7 +190,8 @@
   .o-wheel { display: inline-block; position: relative; width: .782em; height: .782em; margin: 0 .1325em; vertical-align: -.016em; color: var(--o-wheel); }
   .o-wheel svg { display: block; width: 100%; height: 100%; }
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
-  .mark .o-wheel, .wm-consult .o-wheel { color: var(--o-wheel); }
+  /* the wheel O is dark grey in every Grindstone logo (must out-rank the orange "stone" rules) */
+  .mark span.o-wheel, .wm-consult .cm-name span.o-wheel { color: var(--o-wheel); }
   /* cards share one grid, so label, logo, text and the "More about" line sit level across all three */
   @supports (grid-template-rows: subgrid) {
     .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: .9rem; align-content: start; }
