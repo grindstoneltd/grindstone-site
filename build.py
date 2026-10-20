@@ -281,7 +281,7 @@ PAGES = [
 # Large faint brand watermark behind each sub page (the home page has its own wheel in the hero)
 MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
-    "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">drum<span class="b">beat</span><span class="p">+</span></div>',
+    "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">+</div>',
     "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
 }
 
