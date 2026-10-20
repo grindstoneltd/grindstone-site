@@ -18,7 +18,9 @@ EMS = "https://www.emsdirectory.co.uk/"          # canonical address of EMS Dire
 DRUM = "https://drumbeat.plus/"
 CONTACT = "enquiries@grindstone.ltd"
 LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
-DEMO = "mailto:" + CONTACT + "?subject=drumbeat%2B%20demo%20request"
+from urllib.parse import quote
+DEMO_BODY = "Hi,\r\n\r\nI'd like a demo of drumbeat+.\r\n\r\nName:\r\nCompany:\r\nPhone:\r\nBest time to call:\r\n"
+DEMO = "mailto:" + CONTACT + "?subject=" + quote("drumbeat+ demo request") + "&amp;body=" + quote(DEMO_BODY)
 LI_EMS = "https://www.linkedin.com/company/emsdirectory/"
 LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
