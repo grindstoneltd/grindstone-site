@@ -85,7 +85,7 @@ PAGES = [
         <article class="card">
           <span class="kind">Gemba support</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
-          <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
+          <p>Hands-on consultancy across sales and operations: winning the right work, new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
         </article>
       </div>
@@ -166,10 +166,10 @@ PAGES = [
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
         "title": "Grindstone Consultancy: hands-on electronics manufacturing consultancy | Grindstone Ltd",
-        "description": "On-site consultancy for OEMs and contract electronics manufacturers: NPI, DFM/DFA, APQP and PPAP, "
-                       "first article inspection, PFMEA, run at rate, supplier selection and 8D root cause.",
+        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, RFQ and quoting, "
+                       "NPI, DFM/DFA, APQP and PPAP, first article inspection, PFMEA, supplier selection and 8D root cause.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
-                   "serviceType": "On-site operations, quality and engineering support for electronics manufacturing",
+                   "serviceType": "Sales, marketing, operations, quality and engineering consultancy for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
         "body": """
     <div class="wrap page">
@@ -178,19 +178,32 @@ PAGES = [
         <span class="kind">Consultancy</span>
         <h1 aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</h1>
         <p class="intro">Hands-on consultancy for electronics manufacturing.</p>
-        <p class="body">We work on site with OEMs and contract manufacturers to get new products into production,
-          win customer approval, and get to the root of quality and supplier problems. You get thirty years of sales and
-          operations experience, working alongside your team.</p>
+        <p class="body">We work with OEMs and contract manufacturers to get new products into production,
+          win customer approval, and get to the root of quality and supplier problems. For contract manufacturers, we also
+          help win more of the right work. You get thirty years of sales and operations experience, working alongside your team.</p>
       </header>
 
       <h2 class="sub-h">Who we work with</h2>
       <ul class="points">
-        <li><strong>Contract manufacturers</strong><span>Extra experience for a busy NPI, a demanding customer approval, or a quality problem that keeps coming back.</span></li>
+        <li><strong>Contract manufacturers</strong><span>Extra experience for winning new customers, a busy NPI, a demanding customer approval, or a quality problem that keeps coming back.</span></li>
         <li><strong>OEMs and buyers</strong><span>Someone independent on site with your supplier, whether they're down the road or you're overseas.</span></li>
       </ul>
 
       <h2 class="sub-h">What we can help with</h2>
       <div class="stages">
+        <div class="stage stage-wide">
+          <span class="kind">Sales and marketing</span>
+          <ul>
+            <li>Sales strategy<span>Pick the right markets and build a pipeline of customers who fit.</span></li>
+            <li>RFQ and quoting<span>Faster, more consistent quotes that win more of the right work.</span></li>
+            <li>Key account management<span>Grow and keep your most important customers.</span></li>
+            <li>Pricing and margin<span>Quoting models that protect your margin.</span></li>
+            <li>Sales process and CRM<span>Track every lead and quote, so none go cold.</span></li>
+            <li>Positioning and messaging<span>Know what makes you different, and say it clearly.</span></li>
+            <li>Website and sales collateral<span>Capability decks, case studies and website copy.</span></li>
+            <li>Trade shows and outreach<span>Plan events, follow up properly and run campaigns.</span></li>
+          </ul>
+        </div>
         <div class="stage">
           <span class="kind">Into production</span>
           <ul>
@@ -229,7 +242,7 @@ PAGES = [
       <ol class="cycle">
         <li><strong>Talk it through</strong><span>Tell us the problem. We'll say straight away whether we can help.</span></li>
         <li><strong>Agree the scope</strong><span>A fixed scope and price, from a single visit to support right through to production.</span></li>
-        <li><strong>On site</strong><span>We work at your site or your supplier's, alongside the people doing the work.</span></li>
+        <li><strong>Hands on</strong><span>We work alongside your team, and on site at your premises or your supplier's wherever it matters.</span></li>
         <li><strong>Handover</strong><span>A written report, and the fix in place and owned by your team.</span></li>
       </ol>
 

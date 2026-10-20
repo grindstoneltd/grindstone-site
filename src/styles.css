@@ -137,7 +137,10 @@
   .gemba { margin-top: 2.2rem; max-width: 46rem; border-left: 3px solid var(--spark); padding: .2rem 0 .2rem 1.2rem; display: grid; gap: .3rem; }
   .gemba i { text-transform: none; letter-spacing: 0; }
   .gemba p { font-size: 1.12rem; }
-  .stages { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 1rem; }
+  .stages { margin-top: 1rem; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+  .stage-wide { grid-column: 1 / -1; }
+  .stage-wide ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
+  @media (max-width: 52rem) { .stages { grid-template-columns: 1fr; } .stage-wide ul { grid-template-columns: 1fr; } }
   .stage { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.2rem 1.3rem; display: grid; gap: .6rem; align-content: start; min-width: 0; }
   .stage ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .35rem; }
   .stage li { padding-left: 1rem; position: relative; }
