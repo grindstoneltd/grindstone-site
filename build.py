@@ -55,18 +55,17 @@ PAGES = [
                    "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley",
                                "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"},
                    "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS},
-                             {"@type": "Brand", "name": "drumbeat+", "url": DRUM}]},
+                             {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/"}]},
         "body": """
     <div class="home">
     <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
       <div class="wrap">
         <h1>Sharper tools for <em>contract manufacturing.</em></h1>
-        <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Three tools we wish we'd had.</p>
+        <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Two tools we wish we'd had, and the help we'd have hired.</p>
       </div>
     </div>
     <div class="wrap products">
-      <h2>What we do</h2>
       <div class="cards">
         <article class="card">
           <span class="kind">Find a supplier</span>
@@ -77,11 +76,11 @@ PAGES = [
         <article class="card">
           <span class="kind">Run the work &middot; <span class="soon">Coming soon</span></span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
-          <p><a href="{DRUM}">Sales and operations software for EMS companies</a>. It takes every job from lead to delivery, so nothing slips between departments, and runs beside the ERP you already have.</p>
-          <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a><a class="ext" href="{DRUM}">drumbeat.plus</a></div>
+          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>. It takes every job from lead to delivery, so nothing slips between departments, and runs beside the ERP you already have.</p>
+          <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
         </article>
         <article class="card">
-          <span class="kind">Consultancy</span>
+          <span class="kind">Fix a problem</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
           <p>Hands-on consultancy at your site or your supplier's: new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
@@ -104,7 +103,7 @@ PAGES = [
       <header class="big">
         <span class="kind">Find a supplier &middot; emsdirectory.co.uk</span>
         <h1>""" + EMS_WM + """</h1>
-        <p class="intro">Find the right UK EMS partner, faster.</p>
+        <p class="intro">Find the UK EMS partner that fits the job.</p>
         <p class="body"><a href="{EMS}">EMS Directory</a> lists 370+ UK contract electronics manufacturers, from prototype
           specialists to high-volume box build. Every listing uses the same layout, so you can compare suppliers like for like
           on the things that decide a project.</p>
@@ -124,7 +123,7 @@ PAGES = [
         "title": "drumbeat+ sales and operations software for EMS companies | Grindstone Ltd",
         "description": "drumbeat+ takes every job in a contract electronics manufacturer from lead to delivery, "
                        "beside the ERP you already have. Coming soon.",
-        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": DRUM,
+        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/",
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                    "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.",
                    "publisher": ORG},
@@ -132,16 +131,16 @@ PAGES = [
     <div class="wrap page">
       <a class="back" href="{home}">Home</a>
       <header class="big">
-        <span class="kind">Run the work &middot; drumbeat.plus &middot; <span class="soon">Coming soon</span></span>
+        <span class="kind">Run the work &middot; <span class="soon">Coming soon</span></span>
         <h1>""" + DRUM_WM + TM + """</h1>
-        <p class="intro">Every job, from lead to delivery.</p>
-        <p class="body"><a href="{DRUM}">drumbeat+&trade;</a> is sales and operations software for contract electronics manufacturers.
+        <p class="intro">Your ERP keeps the books. drumbeat+ keeps the beat.</p>
+        <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
           It takes each job from first enquiry through quoting, orders, materials, production, quality and despatch,
           and gives every team the right task at the right time.</p>
       </header>
       <ul class="points">
         <li><strong>Built for EMS</strong><span>Follows a job the way an electronics manufacturer actually runs one.</span></li>
-        <li><strong>Beside your ERP</strong><span>Your ERP keeps the books. drumbeat+ keeps the beat.</span></li>
+        <li><strong>Beside your ERP</strong><span>Works alongside the ERP you already have, rather than replacing it.</span></li>
         <li><strong>Right task, right time</strong><span>Everyone sees what needs doing today, so jobs keep moving without chasing.</span></li>
         <li><strong>Your customers can see it</strong><span>A live link shows each customer where their orders are.</span></li>
       </ul>
@@ -152,7 +151,10 @@ PAGES = [
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">opx</span></span><span>Improve how it runs.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Everything, plus regulated work: AS9100, ISO 13485 and IATF 16949.<span class="later">Later</span></span></li>
       </ul>
-      <a class="cta muted" href="{DRUM}">drumbeat.plus &middot; coming soon</a>
+      <div class="contact">
+        <strong>Coming soon. Email us to see it first</strong>
+        <span class="addr">""" + CONTACT + """</span>
+      </div>
     </div>""",
     },
     {
@@ -171,7 +173,7 @@ PAGES = [
         <h1 aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</h1>
         <p class="intro">Hands-on consultancy for electronics manufacturing.</p>
         <p class="body">We work on site with OEMs and contract manufacturers to get new products into production,
-          win customer approval, and fix quality and supplier problems for good. You get thirty years of sales and
+          win customer approval, and get to the root of quality and supplier problems. You get thirty years of sales and
           operations experience, working alongside your team.</p>
       </header>
 
@@ -188,7 +190,7 @@ PAGES = [
           <ul>
             <li>New product introduction<span>From design release to stable production.</span></li>
             <li>DFM / DFA reviews<span>Catch build problems before the first build.</span></li>
-            <li>Process validation<span>Prove the process makes good product, every time.</span></li>
+            <li>Process validation<span>Show the process is capable and repeatable.</span></li>
             <li>ECN / ECO implementation<span>Engineering changes cut in cleanly.</span></li>
           </ul>
         </div>
@@ -239,8 +241,9 @@ FOOTER = """
   <div class="wrap">
     <nav aria-label="Our sites">
       <a href="{EMS}">EMS Directory</a>
-      <a href="{DRUM}">drumbeat+</a>
+      <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Grindstone Consultancy</a>
+      <span class="foot-mail">""" + CONTACT + """</span>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
