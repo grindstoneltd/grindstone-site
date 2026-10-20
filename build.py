@@ -171,8 +171,8 @@ PAGES = [
       </ul>
       <div class="cta-row">
         <a class="cta" href="{DEMO}">Request a demo</a>
+        <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
       </div>
-      <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
     </div>""",
     },
     {
