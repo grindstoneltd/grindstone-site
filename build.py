@@ -49,7 +49,7 @@ ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sa
 PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
-        "title": "Grindstone Ltd | Cutting-edge tools for contract manufacturing",
+        "title": "Grindstone Ltd | Cutting-edge sourcing, software and support for contract manufacturing",
         "description": "Grindstone builds tools for contract electronics manufacturing: EMS Directory for finding a UK supplier, "
                        "drumbeat+ sales and operations software, and Grindstone Consultancy on the shop floor.",
         "jsonld": {"@context": "https://schema.org", **ORG,
@@ -64,7 +64,7 @@ PAGES = [
     <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
       <div class="wrap">
-        <h1>Cutting-edge tools for <em>contract manufacturing.</em></h1>
+        <h1>Cutting-edge sourcing, software and support for <em>contract manufacturing.</em></h1>
         <p class="lead lead-big"><strong>Thirty years in sales and operations, across OEM, Tier 1 and contract manufacturing.</strong> Two tools we wish we'd had, and the help we'd have hired.</p>
       </div>
     </div>
