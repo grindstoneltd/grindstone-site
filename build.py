@@ -150,6 +150,18 @@ PAGES = [
         <li><strong>Right task, right time</strong><span>Everyone sees what needs doing today, so jobs keep moving without chasing.</span></li>
         <li><strong>Your customers can see it</strong><span>A live link shows each customer where their orders are.</span></li>
       </ul>
+    </div>
+    <section class="beatband" aria-label="From enquiry to delivery">
+      <div class="wrap">
+        <p class="bb-eyebrow">From enquiry to delivery</p>
+        <h2 class="bb-h">Every stage, on one beat.</h2>
+        <div class="track">
+          <div class="seg crm"><span class="seglab">crm</span><ol><li style="--i:0">Enquiry</li><li style="--i:1">RFQ and reviews</li><li style="--i:2">Quote</li></ol></div>
+          <div class="seg ops"><span class="seglab">ops</span><ol><li style="--i:3">Order</li><li style="--i:4">Materials</li><li style="--i:5">Production</li><li style="--i:6">Quality</li><li style="--i:7">Delivery</li></ol></div>
+        </div>
+      </div>
+    </section>
+    <div class="wrap page page-cont">
       <h2 class="sub-h">Four plans, one platform</h2>
       <ul class="plans">
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">crm</span></span><span>Win the work.</span></li>
