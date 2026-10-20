@@ -51,9 +51,8 @@ ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sa
 PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
-        "title": "Grindstone Ltd | Cutting-edge services for contract manufacturing",
-        "description": "Grindstone builds tools for contract electronics manufacturing: EMS Directory for finding a UK supplier, "
-                       "drumbeat+ sales and operations software, and Grindstone Consultancy on the shop floor.",
+        "title": "Grindstone | Cutting-edge services for contract manufacturing",
+        "description": "Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
@@ -71,6 +70,7 @@ PAGES = [
       </div>
     </div>
     <div class="wrap products">
+      <h2 class="sr">What Grindstone does</h2>
       <div class="cards">
         <article class="card">
           <span class="kind">Find a supplier</span>
@@ -96,7 +96,7 @@ PAGES = [
     },
     {
         "id": "ems-directory", "path": "/ems-directory/", "nav": "EMS Directory",
-        "title": "EMS Directory: compare UK contract electronics manufacturers | Grindstone Ltd",
+        "title": "EMS Directory: compare UK contract manufacturers | Grindstone",
         "description": "Compare 370+ UK contract electronics manufacturers on certification, process, test capability and "
                        "industry, then send one RFQ to your shortlist.",
         "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "EMS Directory", "url": EMS,
@@ -128,7 +128,7 @@ PAGES = [
     },
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
-        "title": "drumbeat+ sales and operations software for EMS companies | Grindstone Ltd",
+        "title": "drumbeat+ sales and operations software for EMS | Grindstone",
         "description": "drumbeat+ takes every job in a contract electronics manufacturer from lead to delivery, "
                        "beside the ERP you already have.",
         "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
@@ -179,9 +179,8 @@ PAGES = [
     },
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
-        "title": "Grindstone Consultancy: hands-on electronics manufacturing consultancy | Grindstone Ltd",
-        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, practical AI, RFQ and quoting, "
-                       "NPI, DFM/DFA, APQP and PPAP, first article inspection, PFMEA, supplier selection and 8D root cause.",
+        "title": "Electronics manufacturing consultancy | Grindstone",
+        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, NPI, quality approvals, supplier selection and practical AI.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
                    "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
@@ -356,6 +355,14 @@ def build_dist():
 <meta property="og:description" content="{p['description']}">
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="en_GB">
+<meta property="og:image" content="{SITE}/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Grindstone: cutting-edge services for contract manufacturing">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{p['title']}">
+<meta name="twitter:description" content="{p['description']}">
+<meta name="twitter:image" content="{SITE}/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
