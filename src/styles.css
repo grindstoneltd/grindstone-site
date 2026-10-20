@@ -206,3 +206,9 @@
   nav .li-head .li-icon { width: 1.2em; height: 1.2em; }
 
   .foot-mail { user-select: all; color: var(--fg); }
+
+  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2rem; }
+  .cta-row .cta { margin-top: 0; }
+  .li-page { margin-top: 1.4rem; font-weight: 600; color: var(--fg); text-decoration: none; }
+  .cta-row .li-page { margin-top: 0; }
+  .li-page:hover span { text-decoration: underline; text-underline-offset: 3px; }

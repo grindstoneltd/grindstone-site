@@ -18,6 +18,8 @@ EMS = "https://www.emsdirectory.co.uk/"          # canonical address of EMS Dire
 DRUM = "https://drumbeat.plus/"
 CONTACT = "colin@grindstone.ltd"
 LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
+LI_EMS = "https://www.linkedin.com/company/emsdirectory/"
+LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
 LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
@@ -54,8 +56,8 @@ PAGES = [
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
                    "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley",
                                "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"},
-                   "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS},
-                             {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/"}]},
+                   "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS, "sameAs": [LI_EMS]},
+                             {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
         "body": """
     <div class="home">
     <div class="wheel" aria-hidden="true"></div>
@@ -115,7 +117,10 @@ PAGES = [
         <li><strong>Checked, not just collected</strong><span>Listings are checked against company websites and Companies House. See <a href="https://www.emsdirectory.co.uk/pages/what-verified-means/">what &ldquo;verified&rdquo; means</a>.</span></li>
       </ul>
       <p class="crosslink">First time? Read <a href="https://www.emsdirectory.co.uk/pages/how-to-use-ems-directory/">how to use EMS Directory</a>.</p>
-      <a class="cta" href="{EMS}">Find a supplier on EMS Directory</a>
+      <div class="cta-row">
+        <a class="cta" href="{EMS}">Find a supplier on EMS Directory</a>
+        <a class="li li-page" href="{LI_EMS}">""" + LI_ICON + """<span>Follow EMS Directory on LinkedIn</span></a>
+      </div>
     </div>""",
     },
     {
@@ -123,7 +128,7 @@ PAGES = [
         "title": "drumbeat+ sales and operations software for EMS companies | Grindstone Ltd",
         "description": "drumbeat+ takes every job in a contract electronics manufacturer from lead to delivery, "
                        "beside the ERP you already have. Coming soon.",
-        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/",
+        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                    "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.",
                    "publisher": ORG},
@@ -155,6 +160,7 @@ PAGES = [
         <strong>Coming soon. Email us to see it first</strong>
         <span class="addr">""" + CONTACT + """</span>
       </div>
+      <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
     </div>""",
     },
     {
@@ -231,6 +237,7 @@ PAGES = [
         <strong>Tell us what you need</strong>
         <span class="addr">""" + CONTACT + """</span>
       </div>
+      <a class="li li-page" href="{LINKEDIN}">""" + LI_ICON + """<span>Follow Grindstone on LinkedIn</span></a>
       <p class="crosslink">Still looking for a supplier? Compare 370+ <a href="{EMS}">UK contract electronics manufacturers</a> on EMS Directory.</p>
     </div>""",
     },
@@ -271,7 +278,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN))
+            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM))
 
 
 def jsonld(obj):
