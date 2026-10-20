@@ -306,6 +306,9 @@ def build_dist():
 <meta property="og:description" content="{p['description']}">
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="en_GB">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 {FONTS}
 <style>
 {CSS}
@@ -329,6 +332,10 @@ def build_dist():
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
         encoding="utf-8")
+    # favicon: the grindstone wheel from the logo
+    import shutil
+    for icon in (ROOT / "src/icons").iterdir():
+        shutil.copy(icon, out / icon.name)
     (out / "CNAME").write_text("grindstone.ltd\n", encoding="utf-8")   # GitHub Pages custom domain
     (out / ".nojekyll").write_text("", encoding="utf-8")                   # serve files as they are
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
