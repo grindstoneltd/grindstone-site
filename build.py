@@ -426,9 +426,16 @@ def build_preview():
 <script>
   (function () {{
     var pages = {ids};
+    // The preview frame can reload with a stale hash, so remember the last page shown in this tab and reopen it
+    var KEY = 'gs-preview-page', first = true;
     function show() {{
       var id = (location.hash || '#home').slice(1);
+      if (first) {{
+        first = false;
+        try {{ var saved = sessionStorage.getItem(KEY); if (saved && pages.indexOf(saved) >= 0) id = saved; }} catch (e) {{}}
+      }}
       if (pages.indexOf(id) < 0) id = 'home';
+      try {{ sessionStorage.setItem(KEY, id); }} catch (e) {{}}
       document.querySelectorAll('[data-page]').forEach(function (s) {{ s.hidden = s.getAttribute('data-page') !== id; }});
       document.querySelectorAll('[data-nav]').forEach(function (a) {{
         if (a.getAttribute('data-nav') === id) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
