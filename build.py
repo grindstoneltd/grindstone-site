@@ -269,7 +269,6 @@ def header(links, current):
     <a class="mark" href="{links['home']}">Grind<span>{STONE}</span></a>
     <nav aria-label="Main">
 {items}
-      <a class="li li-head" href="{LINKEDIN}" aria-label="Grindstone Ltd on LinkedIn">{LI_ICON}</a>
     </nav>
   </div>
 </div>"""
