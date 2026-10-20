@@ -154,7 +154,7 @@ PAGES = [
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">crm</span></span><span>Win the work.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">opx</span></span><span>Operational excellence.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Everything, plus regulated work: AS9100, ISO 13485 and IATF 16949.<span class="later">Coming soon</span></span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.<span class="later">Coming soon</span></span></li>
       </ul>
       <div class="contact">
         <strong>Coming soon. Email us to see it first</strong>
