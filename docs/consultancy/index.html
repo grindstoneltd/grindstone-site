@@ -278,6 +278,14 @@
   .stage > .kind { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; letter-spacing: 0; text-transform: none; color: var(--fg); }
   .stage li { font-weight: 600; }
   .stage li span { font-weight: 400; }
+  /* refinement: thin rule with a short orange accent, no dashes, more air between services */
+  .stage { position: relative; border-top: 1px solid var(--line); padding-top: 1.1rem; gap: 1rem; }
+  .stage::before { content: ""; position: absolute; left: 0; top: -2px; width: 2.6rem; height: 3px; background: var(--spark); border-radius: 2px; }
+  .stage > .kind { font-size: 1.15rem; }
+  .stage ul { gap: .85rem; }
+  .stage li { padding-left: 0; line-height: 1.35; }
+  .stage li::before { display: none; }
+  .stage li span { margin-top: .15rem; }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy", "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing", "provider": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"]}, "areaServed": {"@type": "Country", "name": "United Kingdom"}}</script>
