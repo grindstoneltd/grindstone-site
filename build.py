@@ -143,7 +143,6 @@ PAGES = [
         <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
           It takes each job from first enquiry through quoting, orders, materials, production, quality and despatch,
           and gives every team the right task at the right time.</p>
-        <div class="cta-row cta-first"><a class="cta" href="{DEMO}">Request a demo</a></div>
       </header>
       <ul class="points">
         <li><strong>Built for EMS</strong><span>Follows a job the way an electronics manufacturer actually runs one.</span></li>
@@ -160,7 +159,6 @@ PAGES = [
       </ul>
       <div class="cta-row">
         <a class="cta" href="{DEMO}">Request a demo</a>
-        <span class="demo-note">or email <span class="addr">""" + CONTACT + """</span></span>
       </div>
       <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
     </div>""",
