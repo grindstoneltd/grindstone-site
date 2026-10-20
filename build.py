@@ -263,12 +263,12 @@ PAGES = [
 
       <h2 class="sub-h">How we work</h2>
       <p class="cycle-intro">We follow DMAIC, the Six Sigma method used across manufacturing.</p>
-      <ol class="cycle cycle-5">
-        <li><strong>Define</strong><span>The problem, the scope and a fixed price.</span></li>
-        <li><strong>Measure</strong><span>How things run today, from your data and the shop floor.</span></li>
-        <li><strong>Analyse</strong><span>Find the real cause.</span></li>
-        <li><strong>Improve</strong><span>Put the fix in, with your team.</span></li>
-        <li><strong>Control</strong><span>Make sure it stays fixed, with a written report your team keeps.</span></li>
+      <ol class="dmaic">
+        <li style="--i:0"><span class="node">D</span><strong>Define</strong><span class="txt">The problem, the scope and a fixed price.</span></li>
+        <li style="--i:1"><span class="node">M</span><strong>Measure</strong><span class="txt">How things run today, from your data and the shop floor.</span></li>
+        <li style="--i:2"><span class="node">A</span><strong>Analyse</strong><span class="txt">Find the real cause.</span></li>
+        <li style="--i:3"><span class="node">I</span><strong>Improve</strong><span class="txt">Put the fix in, with your team.</span></li>
+        <li style="--i:4"><span class="node">C</span><strong>Control</strong><span class="txt">Make sure it stays fixed, with a written report your team keeps.</span></li>
       </ol>
 
       <div class="contact">
