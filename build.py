@@ -134,7 +134,7 @@ PAGES = [
                    "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.",
                    "publisher": ORG},
         "body": """
-    <div class="wrap page">
+    <div class="wrap page page-top">
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Sales and operations</span>

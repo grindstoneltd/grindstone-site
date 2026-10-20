@@ -246,7 +246,7 @@
 
   /* drumbeat+ stage track (ported from the drumbeat+ site): dark band, nodes on one line, a beat rippling stage to stage */
   .beatband { --db-lime: #b3c93a; --db-green: #419400; --db-mustard: #d4a017; color: var(--fg); }
-  .beatband .wrap { padding-block: 2.4rem 0; }
+  .beatband .wrap { padding-block: 2.6rem 0; }
   .bb-eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
   .bb-h { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.4vw, 2.1rem); line-height: 1.1; color: var(--fg); margin-top: .4rem; }
   .track { display: grid; grid-template-columns: 3fr 5fr; gap: 1.4rem; margin-top: 1.8rem; }
@@ -269,7 +269,9 @@
     .seg.ops ol::before { background: linear-gradient(180deg, var(--db-green), var(--db-mustard)); }
     .seg li { padding: 0 0 1.1rem 2rem; }
   }
-  .page-cont { padding-top: 2.2rem; }
+  .page-top { padding-bottom: 0; }
+  .page-cont { padding-top: 0; }
+  .page-cont > .points:first-child { margin-top: 2.6rem; }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/", "description": "Directory of UK contract electronics manufacturers (EMS providers).", "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"]}}</script>
