@@ -340,6 +340,8 @@
   .pagewrap { position: relative; overflow: hidden; }
   .pagewrap > :not(.wm-bg) { position: relative; z-index: 1; }
   .wm-bg { position: absolute; z-index: 0; pointer-events: none; }
+  /* watermarks (and the home wheel) stay put while the page scrolls; z-index -1 keeps them behind the footer text too */
+  .wm-bg, .home > .wheel, .hero > .wheel { position: fixed; z-index: -1; }
   .mark-ems { top: 4rem; right: 3rem; width: 34rem; aspect-ratio: 500 / 574; opacity: .07; color: var(--fg); }
   .mark-ems svg { display: block; width: 100%; height: 100%; }
   .mark-drum { top: -2rem; right: 6rem; font-family: var(--font-drum); font-weight: 900; font-size: 42rem; line-height: 1; color: var(--plus); opacity: .09; }
