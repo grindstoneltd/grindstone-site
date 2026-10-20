@@ -153,12 +153,14 @@
   .plans span { color: var(--muted); font-size: .97rem; }
   .later { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: .05rem .5rem; margin-left: .3rem; vertical-align: middle; }
 
-  /* PDCA cycle (Eyes on the Ground) */
+  /* How we work steps (DMAIC on Consultancy) */
   .cycle { list-style: none; counter-reset: step; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
-  .cycle li { counter-increment: step; display: grid; gap: .25rem; min-width: 0; }
+  .cycle li { counter-increment: step; display: grid; gap: .25rem; align-content: start; min-width: 0; }
   .cycle li::before { content: counter(step); font-family: var(--font-display); font-weight: 900; font-size: 2.4rem; line-height: 1; color: var(--spark); }
   .cycle strong { font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; }
   .cycle span { color: var(--muted); font-size: .97rem; }
+  .cycle-intro { margin: .4rem 0 0; color: var(--muted); }
+  @media (min-width: 56rem) { .cycle-5 { grid-template-columns: repeat(5, 1fr); } }
   .contact { margin-top: 2.4rem; padding: 1.3rem 1.4rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
   .contact strong { font-weight: 600; }
   .contact .addr { user-select: all; font-weight: 600; color: var(--spark); }

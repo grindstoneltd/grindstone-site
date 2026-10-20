@@ -262,11 +262,13 @@ PAGES = [
       </div>
 
       <h2 class="sub-h">How we work</h2>
-      <ol class="cycle">
-        <li><strong>Talk</strong><span>Tell us the problem. We'll say straight away if we can help.</span></li>
-        <li><strong>Scope</strong><span>We agree what's needed and fix the price up front.</span></li>
-        <li><strong>Work</strong><span>We work alongside your team, on site where it counts.</span></li>
-        <li><strong>Hand over</strong><span>You get a written report, and a fix your team owns.</span></li>
+      <p class="cycle-intro">We follow DMAIC, the Six Sigma method used across manufacturing.</p>
+      <ol class="cycle cycle-5">
+        <li><strong>Define</strong><span>The problem, the scope and a fixed price.</span></li>
+        <li><strong>Measure</strong><span>How things run today, from your data and the shop floor.</span></li>
+        <li><strong>Analyse</strong><span>Find the real cause.</span></li>
+        <li><strong>Improve</strong><span>Put the fix in, with your team.</span></li>
+        <li><strong>Control</strong><span>Make sure it stays fixed, with a written report your team keeps.</span></li>
       </ol>
 
       <div class="contact">
