@@ -278,6 +278,20 @@ PAGES = [
     },
 ]
 
+# Large faint brand watermark behind each sub page (the home page has its own wheel in the hero)
+MARKS = {
+    "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
+    "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">drum<span class="b">beat</span><span class="p">+</span></div>',
+    "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
+}
+
+
+def page_body(p, links):
+    body = fill(p["body"], links)
+    mark = MARKS.get(p["id"])
+    return f'<div class="pagewrap">{mark}{body}\n</div>' if mark else body
+
+
 FOOTER = """
 <footer>
   <div class="wrap">
@@ -353,7 +367,7 @@ def build_dist():
 {EMS_SYMBOL}
 {header(links, p['id'])}
 <main>
-{fill(p['body'], links)}
+{page_body(p, links)}
 </main>
 {fill(FOOTER, links)}
 </body>
@@ -380,7 +394,7 @@ def build_dist():
 def build_preview():
     links = {p["id"]: "#" + p["id"] for p in PAGES}
     sections = "\n".join(
-        f'  <section data-page="{p["id"]}"' + ("" if p["id"] == "home" else " hidden") + f'>{fill(p["body"], links)}\n  </section>'
+        f'  <section data-page="{p["id"]}"' + ("" if p["id"] == "home" else " hidden") + f'>{page_body(p, links)}\n  </section>'
         for p in PAGES)
     ids = json.dumps([p["id"] for p in PAGES])
     html = f"""<title>Grindstone Ltd</title>

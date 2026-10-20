@@ -302,6 +302,21 @@
   .experience p:last-child { color: var(--fg); font-size: 1.12rem; line-height: 1.55; max-width: 52ch; }
   .experience p:last-child { max-width: none; }
 
+  /* sub page watermarks: faint, large, off-centre to the right, behind the content */
+  .pagewrap { position: relative; overflow: hidden; }
+  .pagewrap > :not(.wm-bg) { position: relative; z-index: 1; }
+  .wm-bg { position: absolute; z-index: 0; pointer-events: none; }
+  .pagewrap > .wheel { top: -4rem; right: -22rem; }
+  .mark-ems { top: 3rem; right: -9rem; width: 40rem; aspect-ratio: 500 / 574; opacity: .07; color: var(--fg); }
+  .mark-ems svg { display: block; width: 100%; height: 100%; }
+  .mark-drum { top: 2rem; right: -6rem; font-family: var(--font-drum); font-weight: 900; font-size: 15rem; line-height: 1; letter-spacing: -.03em; white-space: nowrap; color: var(--fg); opacity: .05; }
+  .mark-drum .b { color: var(--beat); }
+  .mark-drum .p { color: var(--plus); }
+  @media (max-width: 40rem) {
+    .mark-ems { width: 26rem; right: -10rem; opacity: .05; }
+    .mark-drum { font-size: 8rem; right: -8rem; opacity: .04; }
+  }
+
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "legalName": "Grindstone Ltd", "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"}, "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley", "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"}, "brand": [{"@type": "Brand", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/", "sameAs": ["https://www.linkedin.com/company/emsdirectory/"]}, {"@type": "Brand", "name": "drumbeat+", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"]}]}</script>
 </head>

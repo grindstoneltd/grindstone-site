@@ -302,6 +302,21 @@
   .experience p:last-child { color: var(--fg); font-size: 1.12rem; line-height: 1.55; max-width: 52ch; }
   .experience p:last-child { max-width: none; }
 
+  /* sub page watermarks: faint, large, off-centre to the right, behind the content */
+  .pagewrap { position: relative; overflow: hidden; }
+  .pagewrap > :not(.wm-bg) { position: relative; z-index: 1; }
+  .wm-bg { position: absolute; z-index: 0; pointer-events: none; }
+  .pagewrap > .wheel { top: -4rem; right: -22rem; }
+  .mark-ems { top: 3rem; right: -9rem; width: 40rem; aspect-ratio: 500 / 574; opacity: .07; color: var(--fg); }
+  .mark-ems svg { display: block; width: 100%; height: 100%; }
+  .mark-drum { top: 2rem; right: -6rem; font-family: var(--font-drum); font-weight: 900; font-size: 15rem; line-height: 1; letter-spacing: -.03em; white-space: nowrap; color: var(--fg); opacity: .05; }
+  .mark-drum .b { color: var(--beat); }
+  .mark-drum .p { color: var(--plus); }
+  @media (max-width: 40rem) {
+    .mark-ems { width: 26rem; right: -10rem; opacity: .05; }
+    .mark-drum { font-size: 8rem; right: -8rem; opacity: .04; }
+  }
+
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"], "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.", "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"]}}</script>
 </head>
@@ -328,7 +343,7 @@
   </div>
 </div>
 <main>
-
+<div class="pagewrap"><div class="wm-bg mark-drum" aria-hidden="true">drum<span class="b">beat</span><span class="p">+</span></div>
     <div class="wrap page page-top">
       <a class="back" href="/">Home</a>
       <header class="big">
@@ -369,6 +384,7 @@
         <a class="li li-page" href="https://www.linkedin.com/company/drumbeatplus/"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>Follow drumbeat+ on LinkedIn</span></a>
       </div>
     </div>
+</div>
 </main>
 
 <footer>
