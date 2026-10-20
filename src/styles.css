@@ -265,3 +265,13 @@
   .stage li { padding-left: 0; line-height: 1.35; }
   .stage li::before { display: none; }
   .stage li span { margin-top: .15rem; }
+  /* every service group the same shape: one row each, name on the left, services in two columns on the right */
+  .stages { grid-template-columns: 1fr; gap: 0; margin-top: 1.2rem; }
+  .stage, .stage-wide { grid-column: auto; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 1rem 2rem; align-items: start; padding-block: 1.4rem; }
+  .stage > .kind { padding-top: .05rem; }
+  .stage ul, .stage-wide ul { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; row-gap: .9rem; }
+  .stage:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 52rem) {
+    .stage, .stage-wide { grid-template-columns: 1fr; gap: .8rem; }
+    .stage ul, .stage-wide ul { grid-template-columns: 1fr; }
+  }
