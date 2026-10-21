@@ -262,8 +262,8 @@ PAGES = [
         <p class="big-figure">30 <span>years</span></p>
         <div class="bio">
           <h2 class="bio-name">Colin Astbury</h2>
-          <p>Colin began his career as an aircraft weapons engineer in the Royal Navy's Fleet Air Arm, working on Sea Harriers and
-            serving in the Gulf and the former Yugoslavia. He then spent 18 years at TT Electronics plc, progressing through test
+          <p>Colin began his career in 1992 as an aircraft engineer in the Royal Navy's Fleet Air Arm, working on Sea Harriers, and
+            served as a weapons engineer in the Gulf and the former Yugoslavia. He then spent 18 years at TT Electronics plc, progressing through test
             engineering, quality, production and project management to lead sales for the UK, Ireland and Northern Europe.</p>
           <p>He went on to manage EMEA accounts for Joyson Safety Systems, a global Tier 1 automotive supplier, before returning to
             operations as operations manager at DVR Ltd (now Note Basildon) and Leonardo.</p>
