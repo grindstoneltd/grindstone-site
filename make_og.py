@@ -52,7 +52,7 @@ def cards():
     yield "blog", card(MARK + '<span class="eyebrow">Blog</span>',
                        f'Nose to the <span class="wm-inline">Grind<span>{b.STONE}</span></span>.', "/blog/")
     for p in b.POSTS:
-        yield "post-" + p["slug"], card(MARK + '<span class="eyebrow">Blog</span>', b.html_escape(p["title"]),
+        yield "post-" + p["slug"], card(MARK + '<span class="eyebrow">Blog</span>', b.brand_heading(b.html_escape(p["title"])),
                                         f"/blog/{p['slug']}/", long=len(p["title"]) > 48)
 
 

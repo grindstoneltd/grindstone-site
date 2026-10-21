@@ -338,7 +338,7 @@ def md_to_html(md):
 
 def shown_date(p):
     """Summaries carry the date their EMS Directory article first appeared; our own articles their own date."""
-    return p.get("original_date", p["date"])
+    return p.get("original_date") or p.get("event_date") or p["date"]
 
 
 def load_posts():
@@ -359,8 +359,8 @@ POSTS = load_posts()
 BLOG_DESC = "Articles for contract manufacturers and the OEMs who buy from them: choosing suppliers, NPI, quality and sourcing."
 blog_items = "\n".join(
     f"""        <li><a href="{{link:post-{p['slug']}}}"><span class="post-meta">{nice_date(shown_date(p))}"""
-    + (" &middot; EMS Directory article, summarised" if p.get("kind") == "Summary" else "")
-    + f"""</span><strong>{html_escape(p['title'])}</strong><span>{html_escape(p['description'])}</span></a></li>"""
+    + (" &middot; EMS Directory article, summarised" if p.get("kind") == "Summary" else " &middot; Company news" if p.get("kind") == "News" else "")
+    + f"""</span><strong>{brand_heading(html_escape(p['title']))}</strong><span>{html_escape(p['description'])}</span></a></li>"""
     for p in POSTS)
 PAGES.append({
     "id": "blog", "path": "/blog/", "nav": "Blog",
@@ -396,8 +396,8 @@ for p in POSTS:
       <a class="back" href="{{link:blog}}">Blog</a>
       <article class="post">
         <header class="big">
-          <span class="kind">{('Summary of an EMS Directory article first published ' + nice_date(p['original_date'])) if p.get('original_date') else nice_date(p['date'])}</span>
-          <h1 class="intro">{html_escape(p['title'])}</h1>
+          <span class="kind">{('Summary of an EMS Directory article first published ' + nice_date(p['original_date'])) if p.get('original_date') else ('Company news &middot; ' + nice_date(p['event_date'])) if p.get('event_date') else nice_date(p['date'])}</span>
+          <h1 class="intro">{brand_heading(html_escape(p['title']))}</h1>
         </header>
         <div class="prose">
 {p['html']}
