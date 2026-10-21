@@ -305,7 +305,10 @@ PAGES = [
 def md_inline(t):
     t = html_escape(t)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
-    t = t.replace("drumbeat+", DRUM_WM)   # product name in its brand style, even in running text
+    # drumbeat+ in running text: its wordmark, linked to its page (left unlinked when it is already inside a link)
+    parts = re.split(r"(\[[^\]]+\]\([^)\s]+\))", t)
+    t = "".join(p.replace("drumbeat+", DRUM_WM) if p.startswith("[")
+                else p.replace("drumbeat+", f'<a class="wm-link" href="{{drum_page}}">{DRUM_WM}</a>') for p in parts)
     return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
 
 
