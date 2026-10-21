@@ -1,10 +1,10 @@
 ---
 title: Introducing Grindstone
-seo_title: Introducing Grindstone Ltd
+seo_title: Introducing Grindstone Ltd, founded 4 September 2026
 date: 2026-10-21
 event_date: 2026-09-04
 kind: News
-description: Grindstone Ltd was founded on 4 September 2026 to bring together EMS Directory, drumbeat+ and Grindstone Consultancy: sourcing, software and support for contract manufacturing.
+description: Grindstone Ltd, founded on 4 September 2026, brings together EMS Directory, drumbeat+ and Grindstone Consultancy for contract manufacturers.
 ---
 
 Grindstone Ltd was incorporated on 4 September 2026. It brings three things under one roof, each built for the same people: contract manufacturers and the OEMs who buy from them.
