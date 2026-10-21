@@ -7,10 +7,6 @@ kind: News
 description: Grindstone Ltd, founded on 4 September 2026, brings together EMS Directory, drumbeat+ and Grindstone Consultancy for contract manufacturers.
 ---
 
-Grindstone Ltd was incorporated on 4 September 2026. It brings three things under one roof, each built for the same people: contract manufacturers and the OEMs who buy from them.
-
-## Why Grindstone
-
 A grindstone is the tool that keeps every other tool sharp. That's the job we've set ourselves: to give contract manufacturers and their customers sharper ways to find each other, run the work and fix the problems that slow it down. The name is also a reminder of how we work: practical, hands-on, and nose to the grindstone until the job is done.
 
 ## What Grindstone does
