@@ -87,7 +87,7 @@ PAGES = [
           <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
         </article>
         <article class="card">
-          <span class="kind">Gemba support</span>
+          <span class="kind">Consultancy</span>
           <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
           <p>Hands-on consultancy across sales, operations and practical AI: winning the right work, new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
           <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
@@ -115,6 +115,7 @@ PAGES = [
           specialists to high-volume box build. Every listing uses the same layout, so you can compare suppliers like for like
           on the things that decide a project.</p>
       </header>
+      <h2 class="sub-h">Why use EMS Directory</h2>
       <ul class="points">
         <li><strong>370+ UK EMS providers</strong><span>From PCB assembly to full box build, all in one place.</span></li>
         <li><strong>Compare like for like</strong><span>Filter by certification, process, test capability and industry.</span></li>
@@ -181,7 +182,7 @@ PAGES = [
     },
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
-        "title": "EMS and electronics manufacturing consultancy, UK | Grindstone",
+        "title": "Contract manufacturing consultancy, UK | Grindstone",
         "description": "UK contract manufacturing consultancy: winning work, NPI, PPAP and quality approvals, supplier selection and practical AI. Fixed price, remote or on site.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
                    "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
