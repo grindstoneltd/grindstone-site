@@ -67,7 +67,7 @@ PAGES = [
     <div class="hero">
       <div class="wrap">
         <h1><span class="nowrap">Cutting-edge</span> services for <em>contract manufacturing.</em></h1>
-        <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on thirty years in sales and operations across OEMs, Tier 1s and EMS companies.</p>
+        <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on over thirty years in engineering, sales and operations across OEMs, Tier 1s and EMS companies.</p>
       </div>
     </div>
     <div class="wrap products">
@@ -192,7 +192,7 @@ PAGES = [
         <span class="kind">Consultancy</span>
         <div class="brandmark" role="img" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</div>
         <h1 class="intro">Contract manufacturing consultancy, remotely or on your shop floor.</h1>
-        <p class="body">Thirty years in electronics manufacturing: building and leading teams, running production and quality, and
+        <p class="body">Over thirty years in engineering and manufacturing: building and leading teams, running production and quality, and
           representing companies to OEMs around the world. We help contract manufacturers win the right work, get new products
           through customer approval and fix quality problems for good. We help OEMs get the best from their suppliers. And we help
           both put AI to practical use. Every job has a fixed price, agreed before we start.</p>
@@ -259,7 +259,7 @@ PAGES = [
       </div>
 
       <div class="experience">
-        <p class="big-figure">30 <span>years</span></p>
+        <p class="big-figure">30+ <span>years</span></p>
         <div class="bio">
           <h2 class="bio-name">Colin Astbury</h2>
           <p>Colin began his career in 1992 as an aircraft engineer in the Royal Navy's Fleet Air Arm, working on Sea Harriers, and
