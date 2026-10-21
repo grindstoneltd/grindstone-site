@@ -7,7 +7,7 @@ kind: News
 description: Grindstone Ltd, founded on 4 September 2026, brings together EMS Directory, drumbeat+ and Grindstone Consultancy for contract manufacturers.
 ---
 
-A grindstone is the tool that keeps every other tool sharp. That's the job we've set ourselves: to give contract manufacturers and their customers sharper ways to find each other, run the work and fix the problems that slow it down. The name is also a reminder of how we work: practical, hands-on, and nose to the grindstone until the job is done.
+A grindstone is the tool that keeps every other tool sharp. That's the job we've set ourselves: to give contract manufacturers and their customers sharper ways to find each other, keep jobs moving and fix the problems that slow them down. The name is also a reminder of how we work: practical, hands-on, and nose to the grindstone until the job is done.
 
 ## What Grindstone does
 
