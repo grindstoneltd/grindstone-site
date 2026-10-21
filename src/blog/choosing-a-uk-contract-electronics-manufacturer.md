@@ -2,8 +2,8 @@
 title: How to Choose a UK Contract Electronics Manufacturer
 date: 2026-10-21
 kind: Summary
-order: 1
 description: A checklist for choosing a UK contract electronics manufacturer: IPC-A-610, AS9100, ISO 13485 and what to ask beyond the certificate.
+original_date: 2026-10-05
 original: https://www.emsdirectory.co.uk/blog/how-to-choose-a-uk-contract-electronics-manufacturer-a-certification-and-capability-checklist/
 ---
 

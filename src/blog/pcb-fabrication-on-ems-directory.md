@@ -2,8 +2,8 @@
 title: EMS Directory Adds a PCB Fabrication Category
 date: 2026-10-21
 kind: Summary
-order: 2
 description: EMS Directory now lists UK PCB fabrication companies, bare-board manufacturers, in their own category, separate from PCB assembly.
+original_date: 2026-09-25
 original: https://www.emsdirectory.co.uk/blog/new-on-ems-directory-a-dedicated-pcb-fabrication-category/
 ---
 

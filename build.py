@@ -336,6 +336,11 @@ def md_to_html(md):
     return "\n".join(out)
 
 
+def shown_date(p):
+    """Summaries carry the date their EMS Directory article first appeared; our own articles their own date."""
+    return p.get("original_date", p["date"])
+
+
 def load_posts():
     posts = []
     for f in sorted((ROOT / "src/blog").glob("*.md")):
@@ -343,7 +348,7 @@ def load_posts():
         meta = dict(l.split(": ", 1) for l in head.strip().splitlines())
         meta["slug"], meta["html"] = f.stem, md_to_html(body)
         posts.append(meta)
-    return sorted(posts, key=lambda p: (p["date"], -int(p.get("order", 0))), reverse=True)
+    return sorted(posts, key=lambda p: (shown_date(p), p["title"]), reverse=True)
 
 
 def nice_date(iso):
@@ -353,8 +358,8 @@ def nice_date(iso):
 POSTS = load_posts()
 BLOG_DESC = "Articles for contract manufacturers and the OEMs who buy from them: choosing suppliers, NPI, quality and sourcing."
 blog_items = "\n".join(
-    f"""        <li><a href="{{link:post-{p['slug']}}}"><span class="post-meta">{nice_date(p['date'])}"""
-    + (" &middot; Summary of an EMS Directory article" if p.get("kind") == "Summary" else "")
+    f"""        <li><a href="{{link:post-{p['slug']}}}"><span class="post-meta">{nice_date(shown_date(p))}"""
+    + (" &middot; EMS Directory article, summarised" if p.get("kind") == "Summary" else "")
     + f"""</span><strong>{html_escape(p['title'])}</strong><span>{html_escape(p['description'])}</span></a></li>"""
     for p in POSTS)
 PAGES.append({
@@ -391,7 +396,7 @@ for p in POSTS:
       <a class="back" href="{{link:blog}}">Blog</a>
       <article class="post">
         <header class="big">
-          <span class="kind">{nice_date(p['date'])}{' &middot; Summary of an EMS Directory article' if p.get('kind') == 'Summary' else ''}</span>
+          <span class="kind">{('Summary of an EMS Directory article first published ' + nice_date(p['original_date'])) if p.get('original_date') else nice_date(p['date'])}</span>
           <h1 class="intro">{html_escape(p['title'])}</h1>
         </header>
         <div class="prose">

@@ -3,8 +3,8 @@ title: Turnkey, Consigned or Hybrid: Choosing a Component Sourcing Model
 seo_title: Turnkey vs Consigned vs Hybrid Component Sourcing
 date: 2026-10-21
 kind: Summary
-order: 3
 description: The three component sourcing models in contract electronics manufacturing, turnkey, consigned and hybrid, and how to choose the right one for your project.
+original_date: 2026-09-22
 original: https://www.emsdirectory.co.uk/blog/turnkey-vs-consigned-vs-hybrid-choosing-the-right-component-sourcing-model/
 ---
 

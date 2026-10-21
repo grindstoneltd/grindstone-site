@@ -2,8 +2,8 @@
 title: CEM vs EMS: What UK Suppliers Actually Offer
 date: 2026-10-21
 kind: Summary
-order: 4
 description: A data-driven look at the CEM vs EMS distinction, based on the services offered by UK contract electronics manufacturers listed on EMS Directory.
+original_date: 2026-09-22
 original: https://www.emsdirectory.co.uk/blog/cem-vs-ems-what-uk-suppliers-actually-offer/
 ---
 

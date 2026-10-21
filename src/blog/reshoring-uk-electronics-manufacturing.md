@@ -3,8 +3,8 @@ title: The Reshoring Wave: Why UK Businesses Are Bringing Electronics Manufactur
 seo_title: Why UK Firms Are Reshoring Electronics Manufacturing
 date: 2026-10-21
 kind: Summary
-order: 5
 description: Why more UK businesses are bringing electronics manufacturing back onshore, the trade-offs involved, and what to check before making the move.
+original_date: 2026-09-10
 original: https://www.emsdirectory.co.uk/blog/the-reshoring-wave-why-more-uk-businesses-are-bringing-electronics-manufacturing-back-onshore/
 ---
 
