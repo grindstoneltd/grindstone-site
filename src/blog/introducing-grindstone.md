@@ -12,7 +12,7 @@ A grindstone is the tool that keeps every other tool sharp. That's the job we've
 ## What Grindstone does
 
 - **EMS Directory.** [EMS Directory](https://www.emsdirectory.co.uk/) lists 370+ UK contract electronics manufacturers in one format, so buyers can compare them on capability and certification and send one RFQ to their whole shortlist.
-- **drumbeat+.** Sales and operations software for EMS companies. It takes every job from enquiry to delivery and runs beside the ERP you already have.
+- **drumbeat+.** Sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.
 - **Grindstone Consultancy.** Hands-on help with winning the right work, new product introduction, customer approvals, quality problems and practical AI, remotely or on your shop floor. [See what we can help with]({gemba_page}).
 
 ## Who is behind it

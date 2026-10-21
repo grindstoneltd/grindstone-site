@@ -85,7 +85,7 @@ PAGES = [
         <article class="card">
           <span class="kind">Sales and operations</span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
-          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>. It takes every job from lead to delivery, keeps it moving between departments, and runs beside the ERP you already have.</p>
+          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>: quotes, orders and production in one place, beside the ERP you already have.</p>
           <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
         </article>
         <article class="card">
@@ -134,11 +134,11 @@ PAGES = [
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
         "title": "drumbeat+ sales and operations software for EMS | Grindstone",
-        "description": "drumbeat+ takes every job in a contract electronics manufacturer from lead to delivery, "
+        "description": "drumbeat+ is sales and operations software for EMS companies: quotes, orders and production in one place, "
                        "beside the ERP you already have.",
         "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
-                   "description": "Sales and operations software for contract electronics manufacturers, from lead to delivery.",
+                   "description": "Sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.",
                    "publisher": ORG},
         "body": """
     <div class="wrap page page-top">
