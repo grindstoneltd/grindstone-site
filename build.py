@@ -148,8 +148,7 @@ PAGES = [
         <div class="brandmark" role="img" aria-label="drumbeat+">""" + DRUM_WM + TM + """</div>
         <h1 class="intro">Your ERP keeps the books. """ + DRUM_WM + """ keeps the beat.</h1>
         <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
-          From first enquiry to despatch, through quoting, orders, materials, production and quality,
-          every job is tracked in one place and every team sees what needs doing next.</p>
+          Every job in one place, from first enquiry to despatch, so every team knows what to do next.</p>
       </header>
     </div>
     <section class="beatband" aria-label="From enquiry to delivery">
