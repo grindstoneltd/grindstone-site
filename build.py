@@ -44,7 +44,8 @@ STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" 
 CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>' + STONE + '</span></span>'
               '<span class="cm-sub">Consultancy</span></span>')
 
-ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sameAs": [LINKEDIN]}
+ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sameAs": [LINKEDIN],
+       "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": [LI_COLIN]}}
 
 # ---------------------------------------------------------------- pages
 # Links inside page bodies use {home} {ems_page} {drum_page} {gemba_page}, filled in per output.
