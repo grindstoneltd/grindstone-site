@@ -4,7 +4,7 @@ seo_title: AI and Industry 4.0 for Contract Manufacturers
 date: 2026-10-21
 kind: Article
 order: 0
-description: A practical guide to AI and Industry 4.0 for UK contract manufacturers: what it means on a real shop floor, where AI already pays its way, and how to start safely.
+description: A practical guide to AI and Industry 4.0 for UK contract manufacturers: what it means on the shop floor, where AI pays its way, and how to start safely.
 ---
 
 Industry 4.0 has been talked about for more than a decade, and AI has joined the conversation at speed. For most contract manufacturers the question isn't whether these ideas matter. It's where to start without buying a platform you don't need or putting customer data at risk.
