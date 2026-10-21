@@ -23,6 +23,7 @@ DEMO_BODY = "Hi,\r\n\r\nI'd like a demo of drumbeat+.\r\n\r\nName:\r\nCompany:\r
 DEMO = "mailto:" + CONTACT + "?subject=" + quote("drumbeat+ demo request") + "&amp;body=" + quote(DEMO_BODY)
 LI_EMS = "https://www.linkedin.com/company/emsdirectory/"
 LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
+LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
 LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
@@ -180,7 +181,7 @@ PAGES = [
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
         "title": "EMS and electronics manufacturing consultancy, UK | Grindstone",
-        "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, NPI, quality approvals, supplier selection and practical AI.",
+        "description": "UK contract manufacturing consultancy: winning work, NPI, PPAP and quality approvals, supplier selection and practical AI. Fixed price, remote or on site.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
                    "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
@@ -190,10 +191,11 @@ PAGES = [
       <header class="big">
         <span class="kind">Consultancy</span>
         <div class="brandmark" role="img" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</div>
-        <h1 class="intro">Hands-on consultancy for electronics manufacturing.</h1>
-        <p class="body">We work with OEMs and contract manufacturers to get new products into production,
-          win customer approval, and get to the root of quality and supplier problems. For contract manufacturers, we also
-          help win more of the right work, and we help both put AI to practical use. You get thirty years of sales and operations experience, working alongside your team.</p>
+        <h1 class="intro">Contract manufacturing consultancy, remotely or on your shop floor.</h1>
+        <p class="body">Thirty years in electronics manufacturing: building and leading teams, running production and quality, and
+          representing companies to OEMs around the world. We help contract manufacturers win the right work, get new products
+          through customer approval and fix quality problems for good. We help OEMs get the best from their suppliers. And we help
+          both put AI to practical use. Every job has a fixed price, agreed before we start.</p>
       </header>
 
       <h2 class="sub-h">Who we work with</h2>
@@ -258,12 +260,21 @@ PAGES = [
 
       <div class="experience">
         <p class="big-figure">30 <span>years</span></p>
-        <p>Sales and operations across OEMs, Tier 1 suppliers and contract manufacturers, including senior roles at global
-          companies. Low-volume, high-mix through to high-volume, in regulated and safety-critical industries.</p>
+        <div class="bio">
+          <h2 class="bio-name">Colin Astbury</h2>
+          <p>Colin began his career as an aircraft weapons engineer in the Royal Navy's Fleet Air Arm, working on Sea Harriers and
+            serving in the Gulf and the former Yugoslavia. He then spent 18 years at TT Electronics plc, progressing through test
+            engineering, quality, production and project management to lead sales for the UK, Ireland and Northern Europe.</p>
+          <p>He went on to manage EMEA accounts for Joyson Safety Systems, a global Tier 1 automotive supplier, before returning to
+            operations as operations manager at DVR Ltd (now Note Basildon) and Leonardo.</p>
+          <p>His experience covers quality, NPI, production and commercial leadership, on both sides of the customer and supplier
+            relationship, across automotive, industrial, aerospace and defence, medical and rail.</p>
+          <a class="li li-page" href="{LI_COLIN}">""" + LI_ICON + """<span>Connect with Colin on LinkedIn</span></a>
+        </div>
       </div>
 
       <h2 class="sub-h">How we work</h2>
-      <p class="cycle-intro">We follow DMAIC, the Six Sigma method used across manufacturing.</p>
+      <p class="cycle-intro">Every job follows DMAIC, the Six Sigma improvement method.</p>
       <ol class="dmaic">
         <li style="--i:0"><span class="node">D</span><strong>Define</strong><span class="txt">The problem, the scope and a fixed price.</span></li>
         <li style="--i:1"><span class="node">M</span><strong>Measure</strong><span class="txt">How things run today, from your data and the shop floor.</span></li>
@@ -273,7 +284,7 @@ PAGES = [
       </ol>
 
       <div class="contact">
-        <strong>Tell us what you need</strong>
+        <strong>Tell us the problem. We'll say straight away if we can help.</strong>
         <span class="addr">""" + CONTACT + """</span>
       </div>
       <a class="li li-page" href="{LINKEDIN}">""" + LI_ICON + """<span>Follow Grindstone on LinkedIn</span></a>
@@ -330,7 +341,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{DEMO}", DEMO))
+            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO))
 
 
 def jsonld(obj):

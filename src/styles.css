@@ -309,6 +309,12 @@
   .experience .big-figure { font-size: clamp(4rem, 11vw, 6.2rem); }
   .experience p:last-child { color: var(--fg); font-size: 1.12rem; line-height: 1.55; max-width: 52ch; }
   .experience p:last-child { max-width: none; }
+  /* named bio inside the 30 years panel */
+  .experience { align-items: start; }
+  .bio { display: grid; gap: .7rem; min-width: 0; }
+  .bio-name { font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; line-height: 1.2; }
+  .bio p { color: var(--fg); font-size: 1.05rem; line-height: 1.6; max-width: 70ch; }
+  .bio .li-page { margin-top: .2rem; }
 
   /* sub page watermarks: faint, large, off-centre to the right, behind the content */
   .pagewrap { position: relative; overflow: hidden; }
