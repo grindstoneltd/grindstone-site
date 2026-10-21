@@ -107,8 +107,8 @@ PAGES = [
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Find a supplier &middot; emsdirectory.co.uk</span>
-        <h1>""" + EMS_WM + """</h1>
-        <p class="intro">Find the UK EMS partner that fits the job.</p>
+        <div class="brandmark" role="img" aria-label="EMS Directory">""" + EMS_WM + """</div>
+        <h1 class="intro">Find the UK EMS partner that fits the job.</h1>
         <p class="body"><a href="{EMS}">EMS Directory</a> lists 370+ UK contract electronics manufacturers, from prototype
           specialists to high-volume box build. Every listing uses the same layout, so you can compare suppliers like for like
           on the things that decide a project.</p>
@@ -140,8 +140,8 @@ PAGES = [
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Sales and operations</span>
-        <h1>""" + DRUM_WM + TM + """</h1>
-        <p class="intro">Your ERP keeps the books. drumbeat+ keeps the beat.</p>
+        <div class="brandmark" role="img" aria-label="drumbeat+">""" + DRUM_WM + TM + """</div>
+        <h1 class="intro">Your ERP keeps the books. drumbeat+ keeps the beat.</h1>
         <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
           It takes each job from first enquiry through quoting, orders, materials, production, quality and despatch,
           and gives every team the right task at the right time.</p>
@@ -179,7 +179,7 @@ PAGES = [
     },
     {
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
-        "title": "Electronics manufacturing consultancy | Grindstone",
+        "title": "EMS and electronics manufacturing consultancy, UK | Grindstone",
         "description": "Hands-on consultancy for OEMs and contract electronics manufacturers: sales and marketing, NPI, quality approvals, supplier selection and practical AI.",
         "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
                    "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
@@ -189,8 +189,8 @@ PAGES = [
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Consultancy</span>
-        <h1 aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</h1>
-        <p class="intro">Hands-on consultancy for electronics manufacturing.</p>
+        <div class="brandmark" role="img" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</div>
+        <h1 class="intro">Hands-on consultancy for electronics manufacturing.</h1>
         <p class="body">We work with OEMs and contract manufacturers to get new products into production,
           win customer approval, and get to the root of quality and supplier problems. For contract manufacturers, we also
           help win more of the right work, and we help both put AI to practical use. You get thirty years of sales and operations experience, working alongside your team.</p>

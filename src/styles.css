@@ -40,6 +40,9 @@
   a { color: inherit; }
   a:focus-visible, button:focus-visible { outline: 3px solid var(--spark); outline-offset: 3px; border-radius: 4px; }
   h1, h2, h3 { text-wrap: balance; margin: 0; }
+  /* sub page logo sits where the old logo H1 was; same size the H1 gave it, so nothing moves */
+  .brandmark { font-size: 2em; font-weight: 700; line-height: inherit; }
+  .page h1.intro { text-wrap: wrap; }
   p { margin: 0; }
 
   /* header */
