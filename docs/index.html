@@ -7,19 +7,20 @@
 <meta name="description" content="Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.">
 <link rel="canonical" href="https://grindstone.ltd/">
 <meta property="og:type" content="website">
+<link rel="alternate" type="application/rss+xml" title="Grindstone blog" href="https://grindstone.ltd/blog/feed.xml">
 <meta property="og:site_name" content="Grindstone Ltd">
 <meta property="og:title" content="Grindstone | Cutting-edge services for contract manufacturing">
 <meta property="og:description" content="Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.">
 <meta property="og:url" content="https://grindstone.ltd/">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image" content="https://grindstone.ltd/og-image.png">
+<meta property="og:image" content="https://grindstone.ltd/og/home.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Grindstone: cutting-edge services for contract manufacturing">
+<meta property="og:image:alt" content="Grindstone | Cutting-edge services for contract manufacturing">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Grindstone | Cutting-edge services for contract manufacturing">
 <meta name="twitter:description" content="Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.">
-<meta name="twitter:image" content="https://grindstone.ltd/og-image.png">
+<meta name="twitter:image" content="https://grindstone.ltd/og/home.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -151,6 +152,8 @@
   .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .plans li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; display: grid; gap: .35rem; min-width: 0; }
   @media (max-width: 44rem) { .plans { grid-template-columns: 1fr; } }
+  /* drumbeat+ named inside a headline: brand style, sized to sit with the words around it */
+  .big h1 .wm-drum, .card h1 .wm-drum { font-size: .88em; white-space: nowrap; }
   .plans span.wm-drum { font-size: 1.05rem; color: var(--fg); }  /* "drum" in dark ink, per the drumbeat+ brand */
   .plans .wm-drum .pl { color: var(--plus); }
   .plans span { color: var(--muted); font-size: .97rem; }
@@ -256,6 +259,10 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
   /* the wheel O is dark grey in every Grindstone logo (must out-rank the orange "stone" rules) */
   .mark span.o-wheel, .wm-consult .cm-name span.o-wheel { color: var(--o-wheel); }
+  /* the Grindstone wordmark set inside a headline: logo font, orange "stone", grey wheel O, sized a touch under the headline */
+  .wm-inline { font-family: var(--font-logo); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; font-size: .86em; white-space: nowrap; }
+  .wm-inline > span { color: var(--spark); }
+  .wm-inline span.o-wheel { color: var(--o-wheel); }
   /* cards share one grid, so label, logo, text and the "More about" line sit level across all three */
   @supports (grid-template-rows: subgrid) {
     .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: .9rem; align-content: start; }
@@ -361,6 +368,20 @@
 
   .nowrap { white-space: nowrap; }
 
+  /* blog: list of posts as open rows under hairlines; post body as readable prose */
+  .post-list { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+  .post-list a { display: grid; gap: .3rem; padding: 1.3rem 0; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; }
+  .post-list strong { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; line-height: 1.25; text-wrap: balance; }
+  .post-list a:hover strong { color: var(--spark); }
+  .post-list span:last-child { color: var(--muted); max-width: 70ch; }
+  .post-meta { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .post .intro { max-width: 30ch; }
+  .prose { margin-top: 1.6rem; display: grid; gap: 1rem; max-width: 68ch; font-size: 1.07rem; line-height: 1.7; }
+  .prose p, .prose ul { margin: 0; }
+  .prose h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; margin-top: .8rem; }
+  .prose a { color: var(--fg); text-decoration-color: var(--spark); text-underline-offset: 3px; }
+  .post-source { margin-top: 2rem; }
+
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}, "legalName": "Grindstone Ltd", "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"}, "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley", "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"}, "brand": [{"@type": "Brand", "name": "EMS Directory", "url": "https://www.emsdirectory.co.uk/", "sameAs": ["https://www.linkedin.com/company/emsdirectory/"]}, {"@type": "Brand", "name": "drumbeat+", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"]}]}</script>
 </head>
@@ -383,6 +404,7 @@
       <a href="/ems-directory/" data-nav="ems-directory">EMS Directory</a>
       <a href="/drumbeat/" data-nav="drumbeat">drumbeat+</a>
       <a href="/consultancy/" data-nav="consultancy">Consultancy</a>
+      <a href="/blog/" data-nav="blog">Blog</a>
     </nav>
   </div>
 </div>
@@ -428,6 +450,7 @@
       <a href="https://www.emsdirectory.co.uk/">EMS Directory</a>
       <a href="/drumbeat/">drumbeat+</a>
       <a href="/consultancy/">Grindstone Consultancy</a>
+      <a href="/blog/">Blog</a>
       <span class="foot-mail">enquiries@grindstone.ltd</span>
       <a class="li" href="https://www.linkedin.com/company/grindstoneltd/"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a>
     </nav>

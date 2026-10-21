@@ -10,6 +10,8 @@ Edit the page content below, then run the script; never edit docs/ or index.html
 """
 import datetime
 import json
+import re
+from html import escape as html_escape
 import pathlib
 
 ROOT = pathlib.Path(__file__).parent
@@ -144,7 +146,7 @@ PAGES = [
       <header class="big">
         <span class="kind">Sales and operations</span>
         <div class="brandmark" role="img" aria-label="drumbeat+">""" + DRUM_WM + TM + """</div>
-        <h1 class="intro">Your ERP keeps the books. drumbeat+ keeps the beat.</h1>
+        <h1 class="intro">Your ERP keeps the books. """ + DRUM_WM + """ keeps the beat.</h1>
         <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
           It takes each job from first enquiry through quoting, orders, materials, production, quality and despatch,
           and gives every team the right task at the right time.</p>
@@ -295,6 +297,98 @@ PAGES = [
     },
 ]
 
+# ---------------------------------------------------------------- blog
+# Posts are markdown files in src/blog/ with a small front matter block (title, date, kind, order, description,
+# original). kind "Summary" = a short Grindstone take on an EMS Directory article, linking to the full piece there,
+# so the two sites never carry duplicate copies. Unpublished pieces wait in src/blog-drafts/ and are not built.
+
+def md_inline(t):
+    t = html_escape(t)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
+
+
+def md_to_html(md):
+    out, para, items = [], [], []
+    def flush():
+        if para: out.append("<p>" + md_inline(" ".join(para)) + "</p>"); para.clear()
+        if items: out.append("<ul>" + "".join(f"<li>{md_inline(i)}</li>" for i in items) + "</ul>"); items.clear()
+    for line in md.splitlines():
+        line = line.rstrip()
+        if not line: flush(); continue
+        if line.startswith("## "): flush(); out.append(f"<h2>{md_inline(line[3:])}</h2>"); continue
+        if line.startswith("- "): para and flush(); items.append(line[2:]); continue
+        para.append(line)
+    flush()
+    return "\n".join(out)
+
+
+def load_posts():
+    posts = []
+    for f in sorted((ROOT / "src/blog").glob("*.md")):
+        head, body = f.read_text(encoding="utf-8").split("---\n", 2)[1:]
+        meta = dict(l.split(": ", 1) for l in head.strip().splitlines())
+        meta["slug"], meta["html"] = f.stem, md_to_html(body)
+        posts.append(meta)
+    return sorted(posts, key=lambda p: (p["date"], -int(p.get("order", 0))), reverse=True)
+
+
+def nice_date(iso):
+    return datetime.date.fromisoformat(iso).strftime("%-d %b %Y")
+
+
+POSTS = load_posts()
+BLOG_DESC = "Articles for contract manufacturers and the OEMs who buy from them: choosing suppliers, NPI, quality and sourcing."
+blog_items = "\n".join(
+    f"""        <li><a href="{{link:post-{p['slug']}}}"><span class="post-meta">{nice_date(p['date'])}"""
+    + (" &middot; Summary of an EMS Directory article" if p.get("kind") == "Summary" else "")
+    + f"""</span><strong>{html_escape(p['title'])}</strong><span>{html_escape(p['description'])}</span></a></li>"""
+    for p in POSTS)
+PAGES.append({
+    "id": "blog", "path": "/blog/", "nav": "Blog",
+    "title": "Nose to the Grindstone: a contract manufacturing blog", "description": BLOG_DESC,
+    "jsonld": {"@context": "https://schema.org", "@type": "Blog", "name": "Grindstone blog", "url": SITE + "/blog/", "publisher": ORG},
+    "body": f"""
+    <div class="wrap page">
+      <a class="back" href="{{home}}">Home</a>
+      <header class="big">
+        <span class="kind">Blog</span>
+        <h1 class="intro">Nose to the <span class="wm-inline">Grind<span>{STONE}</span></span>.</h1>
+        <p class="body">{BLOG_DESC}</p>
+      </header>
+      <ul class="post-list">
+{blog_items}
+      </ul>
+    </div>""",
+})
+for p in POSTS:
+    src = ""
+    if p.get("original"):
+        src = f"""
+        <p class="post-source"><a class="cta" href="{p['original']}">Read the full article on EMS Directory</a></p>"""
+    PAGES.append({
+        "id": "post-" + p["slug"], "path": f"/blog/{p['slug']}/", "nav": None, "og_type": "article",
+        "title": (lambda t: t + " | Grindstone" if len(t) <= 47 else t)(p.get("seo_title", p["title"])), "description": p["description"],
+        "published": p["date"],
+        "jsonld": {"@context": "https://schema.org", "@type": "BlogPosting", "headline": p["title"],
+                   "description": p["description"], "datePublished": p["date"], "url": f"{SITE}/blog/{p['slug']}/",
+                   "author": ORG, "publisher": ORG, **({"isBasedOn": p["original"]} if p.get("original") else {})},
+        "body": f"""
+    <div class="wrap page">
+      <a class="back" href="{{link:blog}}">Blog</a>
+      <article class="post">
+        <header class="big">
+          <span class="kind">{nice_date(p['date'])}{' &middot; Summary of an EMS Directory article' if p.get('kind') == 'Summary' else ''}</span>
+          <h1 class="intro">{html_escape(p['title'])}</h1>
+        </header>
+        <div class="prose">
+{p['html']}
+        </div>{src}
+      </article>
+    </div>""",
+    })
+
+
 # Large faint brand watermark behind each sub page (the home page has its own wheel in the hero)
 MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
@@ -304,8 +398,8 @@ MARKS = {
 
 
 def page_body(p, links):
-    body = fill(p["body"], links)
-    mark = MARKS.get(p["id"])
+    body = fill_links(fill(p["body"], links), links)
+    mark = MARKS.get(p["id"]) or (MARKS["consultancy"] if p["id"] == "blog" or p["id"].startswith("post-") else None)
     return f'<div class="pagewrap">{mark}{body}\n</div>' if mark else body
 
 
@@ -316,6 +410,7 @@ FOOTER = """
       <a href="{EMS}">EMS Directory</a>
       <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Grindstone Consultancy</a>
+      <a href="{link:blog}">Blog</a>
       <span class="foot-mail">""" + CONTACT + """</span>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>
     </nav>
@@ -328,7 +423,7 @@ def header(links, current):
     items = "\n".join(
         f'      <a href="{links[p["id"]]}" data-nav="{p["id"]}"'
         + (' aria-current="page"' if p["id"] == current else "") + f'>{p["nav"]}</a>'
-        for p in PAGES)
+        for p in PAGES if p.get("nav"))
     return f"""
 <div class="top">
   <div class="wrap">
@@ -346,6 +441,10 @@ def fill(text, links):
             .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO))
 
 
+def fill_links(text, links):
+    return re.sub(r"\{link:([\w-]+)\}", lambda m: links[m.group(1)], text)
+
+
 def jsonld(obj):
     return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=True) + "</script>"
 
@@ -357,6 +456,8 @@ def build_dist():
     out = ROOT / "docs"
     for p in PAGES:
         url = SITE + p["path"]
+        og_img = f"{SITE}/og/{p['id']}.png" if (ROOT / "src/og" / f"{p['id']}.png").exists() else f"{SITE}/og-image.png"
+        art = f'\n<meta property="article:published_time" content="{p["published"]}">' if p.get("published") else ""
         html = f"""<!doctype html>
 <html lang="en-GB">
 <head>
@@ -365,20 +466,21 @@ def build_dist():
 <title>{p['title']}</title>
 <meta name="description" content="{p['description']}">
 <link rel="canonical" href="{url}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="{p.get('og_type', 'website')}">
+<link rel="alternate" type="application/rss+xml" title="Grindstone blog" href="{SITE}/blog/feed.xml">
 <meta property="og:site_name" content="Grindstone Ltd">
 <meta property="og:title" content="{p['title']}">
 <meta property="og:description" content="{p['description']}">
 <meta property="og:url" content="{url}">
 <meta property="og:locale" content="en_GB">
-<meta property="og:image" content="{SITE}/og-image.png">
+<meta property="og:image" content="{og_img}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Grindstone: cutting-edge services for contract manufacturing">
+<meta property="og:image:alt" content="{html_escape(p.get('og_alt', p['title']))}">{art}
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{p['title']}">
 <meta name="twitter:description" content="{p['description']}">
-<meta name="twitter:image" content="{SITE}/og-image.png">
+<meta name="twitter:image" content="{og_img}">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -394,7 +496,7 @@ def build_dist():
 <main>
 {page_body(p, links)}
 </main>
-{fill(FOOTER, links)}
+{fill_links(fill(FOOTER, links), links)}
 </body>
 </html>
 """
@@ -405,10 +507,20 @@ def build_dist():
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
         encoding="utf-8")
+    items = "".join(
+        f"<item><title>{html_escape(p['title'])}</title><link>{SITE}/blog/{p['slug']}/</link><guid>{SITE}/blog/{p['slug']}/</guid>"
+        f"<pubDate>{datetime.date.fromisoformat(p['date']).strftime('%a, %d %b %Y')} 09:00:00 +0000</pubDate>"
+        f"<description>{html_escape(p['description'])}</description></item>" for p in POSTS)
+    (out / "blog" / "feed.xml").write_text(
+        f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Grindstone blog</title><link>{SITE}/blog/</link>'
+        f'<description>{html_escape(BLOG_DESC)}</description><language>en-gb</language>{items}</channel></rss>\n', encoding="utf-8")
     # favicon: the grindstone wheel from the logo
     import shutil
     for icon in (ROOT / "src/icons").iterdir():
         shutil.copy(icon, out / icon.name)
+    (out / "og").mkdir(exist_ok=True)
+    for img in (ROOT / "src/og").glob("*.png"):
+        shutil.copy(img, out / "og" / img.name)
     (out / "CNAME").write_text("grindstone.ltd\n", encoding="utf-8")   # GitHub Pages custom domain
     (out / ".nojekyll").write_text("", encoding="utf-8")                   # serve files as they are
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8")
@@ -435,7 +547,7 @@ def build_preview():
 <main>
 {sections}
 </main>
-{fill(FOOTER, links)}
+{fill_links(fill(FOOTER, links), links)}
 
 <script>
   (function () {{

@@ -122,6 +122,8 @@
   .plans { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
   .plans li { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.3rem; display: grid; gap: .35rem; min-width: 0; }
   @media (max-width: 44rem) { .plans { grid-template-columns: 1fr; } }
+  /* drumbeat+ named inside a headline: brand style, sized to sit with the words around it */
+  .big h1 .wm-drum, .card h1 .wm-drum { font-size: .88em; white-space: nowrap; }
   .plans span.wm-drum { font-size: 1.05rem; color: var(--fg); }  /* "drum" in dark ink, per the drumbeat+ brand */
   .plans .wm-drum .pl { color: var(--plus); }
   .plans span { color: var(--muted); font-size: .97rem; }
@@ -227,6 +229,10 @@
   .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
   /* the wheel O is dark grey in every Grindstone logo (must out-rank the orange "stone" rules) */
   .mark span.o-wheel, .wm-consult .cm-name span.o-wheel { color: var(--o-wheel); }
+  /* the Grindstone wordmark set inside a headline: logo font, orange "stone", grey wheel O, sized a touch under the headline */
+  .wm-inline { font-family: var(--font-logo); font-weight: 400; text-transform: uppercase; letter-spacing: .03em; font-size: .86em; white-space: nowrap; }
+  .wm-inline > span { color: var(--spark); }
+  .wm-inline span.o-wheel { color: var(--o-wheel); }
   /* cards share one grid, so label, logo, text and the "More about" line sit level across all three */
   @supports (grid-template-rows: subgrid) {
     .card { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: .9rem; align-content: start; }
@@ -331,3 +337,17 @@
   }
 
   .nowrap { white-space: nowrap; }
+
+  /* blog: list of posts as open rows under hairlines; post body as readable prose */
+  .post-list { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; border-top: 1px solid var(--line); }
+  .post-list a { display: grid; gap: .3rem; padding: 1.3rem 0; border-bottom: 1px solid var(--line); color: var(--fg); text-decoration: none; }
+  .post-list strong { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; line-height: 1.25; text-wrap: balance; }
+  .post-list a:hover strong { color: var(--spark); }
+  .post-list span:last-child { color: var(--muted); max-width: 70ch; }
+  .post-meta { font-size: .78rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .post .intro { max-width: 30ch; }
+  .prose { margin-top: 1.6rem; display: grid; gap: 1rem; max-width: 68ch; font-size: 1.07rem; line-height: 1.7; }
+  .prose p, .prose ul { margin: 0; }
+  .prose h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; margin-top: .8rem; }
+  .prose a { color: var(--fg); text-decoration-color: var(--spark); text-underline-offset: 3px; }
+  .post-source { margin-top: 2rem; }
