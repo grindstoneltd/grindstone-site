@@ -305,19 +305,29 @@ PAGES = [
 def md_inline(t):
     t = html_escape(t)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
+    t = t.replace("drumbeat+", DRUM_WM)   # product name in its brand style, even in running text
     return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
 
 
+def brand_heading(h):
+    """Company name in a heading goes in the Grindstone wordmark style."""
+    return h.replace("Grindstone", f'<span class="wm-inline">Grind<span>{STONE}</span></span>')
+
+
 def md_to_html(md):
-    out, para, items = [], [], []
+    out, para, items, kind = [], [], [], ["ul"]
     def flush():
         if para: out.append("<p>" + md_inline(" ".join(para)) + "</p>"); para.clear()
-        if items: out.append("<ul>" + "".join(f"<li>{md_inline(i)}</li>" for i in items) + "</ul>"); items.clear()
+        if items: out.append(f"<{kind[0]}>" + "".join(f"<li>{md_inline(i)}</li>" for i in items) + f"</{kind[0]}>"); items.clear()
     for line in md.splitlines():
         line = line.rstrip()
         if not line: flush(); continue
-        if line.startswith("## "): flush(); out.append(f"<h2>{md_inline(line[3:])}</h2>"); continue
-        if line.startswith("- "): para and flush(); items.append(line[2:]); continue
+        if line.startswith("## "): flush(); out.append(f"<h2>{brand_heading(md_inline(line[3:]))}</h2>"); continue
+        m = re.match(r"(- |\d+\. )(.*)", line)
+        if m:
+            k = "ul" if m.group(1) == "- " else "ol"
+            if para or (items and kind[0] != k): flush()
+            kind[0] = k; items.append(m.group(2)); continue
         para.append(line)
     flush()
     return "\n".join(out)
