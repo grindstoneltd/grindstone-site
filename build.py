@@ -10,6 +10,8 @@ Edit the page content below, then run the script; never edit docs/ or index.html
 """
 import datetime
 import json
+import shutil
+import os
 import re
 from html import escape as html_escape
 import pathlib
@@ -357,11 +359,16 @@ def shown_date(p):
 
 def load_posts():
     posts = []
-    for f in sorted((ROOT / "src/blog").glob("*.md")):
+    # PREVIEW_DRAFT=<slug> builds one draft from src/blog-drafts/ for a local look; never use it for a build that gets pushed
+    preview = os.environ.get("PREVIEW_DRAFT")
+    files = sorted((ROOT / "src/blog").glob("*.md")) + ([ROOT / "src/blog-drafts" / f"{preview}.md"] if preview else [])
+    for f in files:
         head, body = f.read_text(encoding="utf-8").split("---\n", 2)[1:]
         meta = dict(l.split(": ", 1) for l in head.strip().splitlines())
         meta["slug"], meta["html"] = f.stem, md_to_html(body)
-        if meta["date"] > TODAY:      # scheduled: a future-dated post stays off the site until a build on or after its date
+        if meta["date"] == "DRAFT":
+            meta["date"] = TODAY
+        elif meta["date"] > TODAY:      # scheduled: a future-dated post stays off the site until a build on or after its date
             continue
         posts.append(meta)
     return sorted(posts, key=lambda p: (shown_date(p), p["title"]), reverse=True)
@@ -552,11 +559,15 @@ def build_dist():
         f"<item><title>{html_escape(p['title'])}</title><link>{SITE}/blog/{p['slug']}/</link><guid>{SITE}/blog/{p['slug']}/</guid>"
         f"<pubDate>{datetime.date.fromisoformat(p['date']).strftime('%a, %d %b %Y')} 09:00:00 +0000</pubDate>"
         f"<description>{html_escape(p['description'])}</description></item>" for p in POSTS)
+    # remove pages for posts that are no longer built (drafts, future-dated, renamed), so nothing stale gets pushed
+    live = {p["slug"] for p in POSTS}
+    for d in (out / "blog").iterdir():
+        if d.is_dir() and d.name not in live:
+            shutil.rmtree(d)
     (out / "blog" / "feed.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Grindstone blog</title><link>{SITE}/blog/</link>'
         f'<description>{html_escape(BLOG_DESC)}</description><language>en-gb</language>{items}</channel></rss>\n', encoding="utf-8")
     # favicon: the grindstone wheel from the logo
-    import shutil
     for icon in (ROOT / "src/icons").iterdir():
         shutil.copy(icon, out / icon.name)
     (out / "downloads").mkdir(exist_ok=True)
