@@ -361,6 +361,8 @@ def load_posts():
         head, body = f.read_text(encoding="utf-8").split("---\n", 2)[1:]
         meta = dict(l.split(": ", 1) for l in head.strip().splitlines())
         meta["slug"], meta["html"] = f.stem, md_to_html(body)
+        if meta["date"] > TODAY:      # scheduled: a future-dated post stays off the site until a build on or after its date
+            continue
         posts.append(meta)
     return sorted(posts, key=lambda p: (shown_date(p), p["title"]), reverse=True)
 
