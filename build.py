@@ -338,6 +338,8 @@ def md_to_html(md):
         line = line.rstrip()
         if not line: flush(); continue
         if line.startswith("## "): flush(); out.append(f"<h2>{brand_heading(md_inline(line[3:]))}</h2>"); continue
+        im = re.match(r"!\[([^\]]*)\]\(([^)\s]+)\)$", line)
+        if im: flush(); out.append(f'<figure class="post-img"><img src="{im.group(2)}" alt="{html_escape(im.group(1))}" loading="lazy" width="1080" height="1350"></figure>'); continue
         m = re.match(r"(- |\d+\. )(.*)", line)
         if m:
             k = "ul" if m.group(1) == "- " else "ol"
@@ -558,6 +560,9 @@ def build_dist():
     (out / "downloads").mkdir(exist_ok=True)
     for pdf in (ROOT / "src/downloads").glob("*.pdf"):
         shutil.copy(pdf, out / "downloads" / pdf.name)
+    (out / "blog-images").mkdir(exist_ok=True)
+    for img in (ROOT / "src/blog-images").glob("*"):
+        shutil.copy(img, out / "blog-images" / img.name)
     (out / "og").mkdir(exist_ok=True)
     for img in (ROOT / "src/og").glob("*.png"):
         shutil.copy(img, out / "og" / img.name)
