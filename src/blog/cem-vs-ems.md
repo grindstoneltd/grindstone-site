@@ -11,4 +11,4 @@ Ask ten people in UK electronics sourcing to define CEM and EMS and you'll get t
 
 It covers the textbook difference, what the data shows about which services suppliers really offer, whether company size predicts which kind of supplier a company is, and what that means when you're writing an RFQ.
 
-**Why it matters:** the label on a supplier's website tells you less than the services behind it. Asking for the specific services you need, rather than for "an EMS provider", gets you quotes you can compare. If you're putting together an RFQ or a supplier shortlist, [Grindstone Consultancy]({gemba_page}) can help.
+**Why it matters:** the label on a supplier's website tells you less than the services behind it. Asking for the specific services you need, rather than for "an EMS provider", gets you quotes you can compare. If you're putting together an RFQ or a supplier shortlist, [Grindstone]({gemba_page}) can help.

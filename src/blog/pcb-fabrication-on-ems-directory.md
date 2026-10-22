@@ -13,4 +13,4 @@ EMS Directory now has a dedicated PCB Fabrication category, with 36 UK companies
 
 This EMS Directory update explains what changed, how the companies were checked, and what to compare between fabricators: layer count, board material and surface finish.
 
-**Why it matters:** when the bare board and the assembly come from different suppliers, quality problems can fall between them. Getting both choices right, and making sure the two suppliers work to the same requirements, is part of the supplier selection work [Grindstone Consultancy]({gemba_page}) does.
+**Why it matters:** when the bare board and the assembly come from different suppliers, quality problems can fall between them. Getting both choices right, and making sure the two suppliers work to the same requirements, is part of the supplier selection work [Grindstone]({gemba_page}) does.

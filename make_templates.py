@@ -143,7 +143,7 @@ def eight_d():
          "Keep evidence (photos, data, test results) with the report. Most customers will ask for it."],
         S, "8D Problem Solving Report | Grindstone",
         "Stuck on a root cause, or need an 8D your customer will accept?",
-        "Grindstone Consultancy runs 8D investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
+        "Grindstone runs 8D investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
 
 
 LABEL = '<label style="display:block;font-size:6.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#59646b;margin-bottom:.8mm">{}</label>'
@@ -184,7 +184,7 @@ def five_whys():
          "For complex problems with many possible causes, start with a fishbone diagram, then use 5 Whys on the likeliest causes."],
         S, "5 Whys Root Cause Analysis | Grindstone",
         "Going round in circles on a recurring problem?",
-        "Grindstone Consultancy leads root cause investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
+        "Grindstone leads root cause investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
 
 
 # ---------------------------------------------------------------- Fishbone
@@ -231,7 +231,7 @@ def fishbone():
          "Then pick the likeliest causes and test them, using the table on page 2."],
         [diagram, likely], "Fishbone (Ishikawa) Diagram | Grindstone",
         "Too many possible causes and no clear answer?",
-        "Grindstone Consultancy runs root cause workshops with your team, on site or remotely, at a fixed price agreed before we start.",
+        "Grindstone runs root cause workshops with your team, on site or remotely, at a fixed price agreed before we start.",
         FISH_CSS)
 
 
@@ -270,7 +270,7 @@ def pfmea():
          "Re-score after each action, and keep the PFMEA in step with your control plan and work instructions. Add rows or pages as needed."],
         [scales, guide], "Process FMEA | Grindstone",
         "Need a PFMEA your customer will sign off?",
-        "Grindstone Consultancy builds and reviews PFMEAs and control plans with your team, for APQP and PPAP, at a fixed price agreed before we start.",
+        "Grindstone builds and reviews PFMEAs and control plans with your team, for APQP and PPAP, at a fixed price agreed before we start.",
         PFMEA_CSS)
 
 
@@ -310,13 +310,13 @@ def make_fillable(pdf_in, pdf_out):
     n = len(doc)
     for i, page in enumerate(doc):
         y = page.rect.height - 22
-        page.insert_text((37, y), "Free template from Grindstone Consultancy  ·  grindstone.ltd/consultancy  ·  enquiries@grindstone.ltd",
+        page.insert_text((37, y), "Free template from Grindstone Ltd  ·  grindstone.ltd/consultancy  ·  enquiries@grindstone.ltd",
                          fontsize=6.8, fontname="helv", color=(0.35, 0.39, 0.42))
         right = f"© Grindstone Ltd. Free to use and share.   Page {i + 1} of {n}"
         page.insert_text((page.rect.width - 37 - fitz.get_text_length(right, "helv", 6.8), y), right,
                          fontsize=6.8, fontname="helv", color=(0.35, 0.39, 0.42))
     doc.set_metadata({"title": doc.metadata.get("title") or "", "author": "Grindstone Ltd", "subject": "Free problem-solving template",
-                      "creator": "Grindstone Consultancy, grindstone.ltd"})
+                      "creator": "Grindstone Ltd, grindstone.ltd"})
     doc.save(pdf_out, garbage=3, deflate=True)
     return count
 

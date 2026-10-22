@@ -13,4 +13,4 @@ It starts with the baseline certifications every buyer should expect, then the s
 
 It finishes with a quick-reference checklist you can take into a supplier visit.
 
-**Why it matters:** choosing the wrong partner is one of the most expensive mistakes in an electronics programme, and it usually shows up late, at first article or during ramp-up. Supplier selection and qualification is one of the things [Grindstone Consultancy]({gemba_page}) helps with.
+**Why it matters:** choosing the wrong partner is one of the most expensive mistakes in an electronics programme, and it usually shows up late, at first article or during ramp-up. Supplier selection and qualification is one of the things [Grindstone]({gemba_page}) helps with.

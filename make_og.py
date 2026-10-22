@@ -24,8 +24,6 @@ CARD_CSS = """
   .card .brand .mark { font-size: 40px; color: var(--fg); }
   .card .brand .wm-ems { font-size: 54px; }
   .card .brand .wm-drum { font-size: 66px; }
-  .card .brand .wm-consult .cm-name { font-size: 46px; }
-  .card .brand .wm-consult .cm-sub { font-size: 17px; }
   .card .eyebrow { font-size: 22px; letter-spacing: .14em; margin-left: 1.2em; vertical-align: .3em; }
   .card h1 { font-family: var(--font-display); font-weight: 800; font-size: 70px; line-height: 1.04; letter-spacing: -.02em; color: var(--fg); margin: 0; text-wrap: balance; }
   .card h1.long { font-size: 56px; }
@@ -48,7 +46,7 @@ def cards():
     yield "home", card(MARK, '<span class="nowrap">Cutting-edge</span> services for <em>contract manufacturing.</em>', "/")
     yield "ems-directory", card(b.EMS_WM, "Find the UK EMS partner that fits the job.", "/ems-directory/")
     yield "drumbeat", card(b.DRUM_WM + b.TM, "Your ERP keeps the books. " + b.DRUM_WM + " keeps the beat.", "/drumbeat/")
-    yield "consultancy", card(b.CONSULT_WM, "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
+    yield "consultancy", card(MARK + '<span class="eyebrow">Consultancy</span>', "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
     yield "blog", card(MARK + '<span class="eyebrow">Blog</span>',
                        f'Nose to the <span class="wm-inline">Grind<span>{b.STONE}</span></span>.', "/blog/")
     for p in b.POSTS:

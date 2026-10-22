@@ -29,6 +29,6 @@ An NPI process worth its name also has to account for component sourcing. A desi
 
 ## How Grindstone helps
 
-Grindstone Consultancy works on both sides of an NPI: with OEMs preparing a design and choosing a manufacturing partner, and with contract manufacturers running the introduction. That covers DFM and DFA reviews, APQP and PPAP, process validation and supplier selection, at a fixed price agreed before we start. [See what we can help with]({gemba_page}).
+Grindstone works on both sides of an NPI: with OEMs preparing a design and choosing a manufacturing partner, and with contract manufacturers running the introduction. That covers DFM and DFA reviews, APQP and PPAP, process validation and supplier selection, at a fixed price agreed before we start. [See what we can help with]({gemba_page}).
 
 If you're still choosing a partner, [EMS Directory](https://www.emsdirectory.co.uk/) lists 370+ UK contract electronics manufacturers in the same format, so you can compare their certifications and capabilities side by side.

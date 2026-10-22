@@ -43,8 +43,8 @@ DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
-CONSULT_WM = ('<span class="wm-consult"><span class="cm-name">Grind<span>' + STONE + '</span></span>'
-              '<span class="cm-sub">Consultancy</span></span>')
+# The company wordmark, used where a product mark would go (Grindstone Ltd is the brand; consultancy is a service, not a brand)
+GS_WM = '<span class="mark gs-wm">Grind<span>' + STONE + '</span></span>'
 
 ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sameAs": [LINKEDIN],
        "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": [LI_COLIN]}}
@@ -90,9 +90,9 @@ PAGES = [
         </article>
         <article class="card">
           <span class="kind">Consultancy</span>
-          <h3><a href="{gemba_page}" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</a></h3>
+          <h3><a href="{gemba_page}" aria-label="Grindstone">""" + GS_WM + """</a></h3>
           <p>Hands-on consultancy across sales, operations and practical AI: winning the right work, new product introduction, customer approvals, and quality or supplier problems that need fixing.</p>
-          <div class="card-foot"><a class="more" href="{gemba_page}">More about Grindstone Consultancy</a></div>
+          <div class="card-foot"><a class="more" href="{gemba_page}">More about our consultancy</a></div>
         </article>
       </div>
     </div>
@@ -185,7 +185,7 @@ PAGES = [
         "id": "consultancy", "path": "/consultancy/", "nav": "Consultancy",
         "title": "Contract manufacturing consultancy, UK | Grindstone",
         "description": "UK contract manufacturing consultancy: winning work, NPI, PPAP and quality approvals, supplier selection and practical AI. Fixed price, remote or on site.",
-        "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Grindstone Consultancy",
+        "jsonld": {"@context": "https://schema.org", "@type": "Service", "name": "Contract manufacturing consultancy",
                    "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing",
                    "provider": ORG, "areaServed": {"@type": "Country", "name": "United Kingdom"}},
         "body": """
@@ -193,7 +193,7 @@ PAGES = [
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Consultancy</span>
-        <div class="brandmark" role="img" aria-label="Grindstone Consultancy">""" + CONSULT_WM + """</div>
+        <div class="brandmark" role="img" aria-label="Grindstone">""" + GS_WM + """</div>
         <h1 class="intro">Contract manufacturing consultancy, remotely or on your shop floor.</h1>
         <p class="body">Over thirty years in engineering and manufacturing: building and leading teams, running production and quality, and
           representing companies to OEMs around the world. We help contract manufacturers win the right work, get new products
@@ -435,7 +435,7 @@ FOOTER = """
     <nav aria-label="Our sites">
       <a href="{EMS}">EMS Directory</a>
       <a href="{drum_page}">drumbeat+</a>
-      <a href="{gemba_page}">Grindstone Consultancy</a>
+      <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
       <span class="foot-mail">""" + CONTACT + """</span>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>

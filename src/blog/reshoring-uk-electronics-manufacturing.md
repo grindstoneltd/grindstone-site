@@ -12,4 +12,4 @@ More UK businesses are reviewing overseas electronics manufacturing and bringing
 
 This EMS Directory article looks at what is driving the move, the benefits and the trade-offs, the growing part sustainability plays in the decision, and what to check before you transfer a product.
 
-**Why it matters:** moving a product between manufacturers is a new product introduction in all but name. It needs the same planning, first article checks and process validation as a brand-new design. Transfers like this are work [Grindstone Consultancy]({gemba_page}) does, from supplier selection through to running at rate.
+**Why it matters:** moving a product between manufacturers is a new product introduction in all but name. It needs the same planning, first article checks and process validation as a brand-new design. Transfers like this are work [Grindstone]({gemba_page}) does, from supplier selection through to running at rate.
