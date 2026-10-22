@@ -293,10 +293,55 @@ def pfmea():
         PFMEA_CSS)
 
 
+# ---------------------------------------------------------------- Kaizen
+
+def kaizen():
+    two = lambda a, an, b2, bn, h: ('<div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm">'
+                                    + labelled(a, an, h) + labelled(b2, bn, h) + "</div>")
+    S = [
+        step("1", "Choose the area and the problem", "Go to the gemba: the place where the work happens", """
+<p>Pick one process or area, and one problem the team can see every day.</p>
+<ul><li>Describe how the work runs today, as you saw it on the floor.</li><li>Say who it affects: the operator, the next process or the customer.</li></ul>""",
+             two("What we saw (current state)", "current", "Why it matters", "why", 26)),
+        step("2", "Measure where you are", "If you can't measure it, you can't show it improved", """
+<p>Pick one or two measures and record them before you change anything.</p>
+<ul><li>Typical measures: cycle time, first-pass yield, defects, changeover time, walking distance, WIP, on-time delivery.</li><li>Set a target the team agrees is stretching but realistic.</li></ul>""",
+             table("measure", ["Measure", "Unit", "Before", "Target", "After"], ["2fr", ".8fr", ".9fr", ".9fr", ".9fr"], 3)),
+        step("3", "Spot the waste", "Use the eight wastes as a checklist", """
+<p>Walk the process and look for each of the eight wastes (TIMWOODS):</p>
+<ul><li><b>T</b>ransport, <b>I</b>nventory, <b>M</b>otion, <b>W</b>aiting</li><li><b>O</b>verproduction, <b>O</b>ver-processing, <b>D</b>efects, <b>S</b>kills not used</li></ul>
+<p class="tip">For a problem with an unclear cause, use the 5 Whys template first.</p>""",
+             box("waste", 30)),
+        step("4", "Ideas and actions", "Small, quick changes the team can make now", """
+<ul><li>Collect ideas from everyone who does the work. Favour simple, cheap changes over big projects.</li><li>Try them, keep what works, and record which waste each one removes.</li><li>Give every action an owner and a date.</li></ul>""",
+             table("act", ["Idea or action", "Waste removed", "Owner", "Due", "Done"], ["2.2fr", "1fr", ".9fr", ".7fr", ".5fr"], 6)),
+        step("5", "Before and after", "Show the change", """
+<p>Describe the process before and after, or print the page and sketch it. Photos of before and after are worth attaching.</p>""",
+             two("Before", "before", "After", "after", 34)),
+        step("6", "Results and standard work", "Make the improvement stick", """
+<ul><li>Record the measures again (step 2) and the benefit: time, cost, quality or safety.</li><li>Update the standard work, work instructions and training, so the new way becomes the normal way.</li><li>Check again after 30 days that it's still working.</li></ul>""",
+             labelled("Results and benefit", "results", 18)
+             + labelled("Standard work, instructions and training updated", "standard", 14)
+             + table("signoff", ["Team", "Signed off by", "Date", "30-day check"], ["2fr", "1.2fr", ".8fr", "1fr"], 1)),
+    ]
+    return page(
+        "Kaizen Improvement Sheet",
+        "Run a small, focused improvement with the people who do the work: see the waste, try a fix, measure the result and make it the new standard.",
+        ["Kaizen number", "Area or process", "Date", "Team leader", "Team", "Sponsor"],
+        ["Type straight into the boxes on screen, or print it and use it on the shop floor.",
+         "Work through steps 1 to 6 with the team, at the place where the work is done.",
+         "Measure before you change anything, so you can prove the improvement afterwards.",
+         "Keep it small: one area, one problem, changes the team can make in days, not months."],
+        S, "Kaizen Improvement Sheet | Grindstone",
+        "Want a kaizen event that delivers lasting results?",
+        "Grindstone plans and runs kaizen events with your team, on site, and makes sure the gains stick, at a fixed price agreed before we start.")
+
+
 TEMPLATES = {"grindstone-8d-problem-solving-template": eight_d,
              "grindstone-5-whys-template": five_whys,
              "grindstone-fishbone-diagram-template": fishbone,
-             "grindstone-pfmea-template": pfmea}
+             "grindstone-pfmea-template": pfmea,
+             "grindstone-kaizen-template": kaizen}
 
 
 def make_fillable(pdf_in, pdf_out):

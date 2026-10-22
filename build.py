@@ -300,6 +300,7 @@ PAGES = [
         <li><strong>5 Whys</strong><span>Ask why across Man, Machine, Method and Material to reach the root cause.</span><a class="dl" href="/downloads/grindstone-5-whys-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
+        <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>
       </ul>
     </div>""",
     },
