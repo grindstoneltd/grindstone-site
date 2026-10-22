@@ -53,6 +53,13 @@ h1 { font-family: "Archivo", sans-serif; font-weight: 800; font-size: 22pt; line
 .tbl .row { display: grid; gap: 1.2mm; }
 .tbl .row .box { height: 6.5mm; }
 .fm { font-size: 1pt; color: #fbfbfb; position: absolute; left: 1mm; top: 1mm; line-height: 1; }
+.step.one { display: block; }
+.step.one .guide { margin: 2mm 0 3mm; }
+.m4 { display: grid; grid-template-columns: 17mm repeat(4, 1fr); gap: 1.2mm 2mm; align-items: center; }
+.m4 b { font-family: "Archivo", sans-serif; font-size: 10pt; display: grid; }
+.m4 b em { font-style: normal; font-family: "Instrument Sans", sans-serif; font-weight: 500; font-size: 6.8pt; color: #59646b; }
+.m4 .wl { font-size: 7pt; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #59646b; }
+.m4 .wl:nth-last-of-type(1) { color: #d9661a; }
 .help { break-inside: avoid; margin-top: 4mm; background: #1b2125; color: #eceeee; border-radius: 1.5mm; padding: 4mm 5mm; display: grid; gap: 1mm; }
 .help strong { font-family: "Archivo", sans-serif; font-size: 11pt; color: #fff; }
 .help b { color: #f08a3a; font-weight: 600; }
@@ -156,16 +163,20 @@ def labelled(text, name, h):
 # ---------------------------------------------------------------- 5 Whys
 
 def five_whys():
-    whys = "".join(labelled(f"Why {i}? Because…", f"why{i}", 13) for i in range(1, 6))
+    ms = [("Man", "people, skills, training"), ("Machine", "equipment, tooling, software"),
+          ("Method", "procedures, instructions"), ("Material", "components, PCBs, consumables")]
+    grid = ('<div class="m4"><span></span>' + "".join(f"<b>{m}<em>{h}</em></b>" for m, h in ms)
+            + "".join(f'<span class="wl">Why {i}</span>' + "".join(box(f"why{i}_{m[0].lower()}{m[1:3]}", 10.5) for m, _ in ms)
+                      for i in range(1, 6))
+            + '<span class="wl">Root cause?</span>' + "".join(box(f"root_{m[0].lower()}{m[1:3]}", 9) for m, _ in ms) + "</div>")
     S = [
         step("1", "State the problem", "One sentence, in facts", """
 <p>Write what is wrong, where and how often, as a fact you could check.</p>
 <ul><li>Good: "12 of 400 assemblies failed functional test on lot 4417, all at connector J3."</li><li>Weak: "Quality is poor on the new product."</li></ul>""",
              box("problem", 18)),
-        step("2", "Ask why, five times", "Each answer becomes the next question", """
-<ul><li>Start from the problem and ask why it happened. Write the answer as a fact.</li><li>Ask why again about that answer. Keep going until you reach a cause you can act on, usually around five whys.</li><li>Stay with the process. Stop if the answer becomes a person ("the operator forgot"): ask why the process allowed it.</li></ul>
-<p class="tip">If two answers are possible at any step, follow each one as a separate chain.</p>""",
-             whys),
+        """<section class="step one" style="break-inside:auto"><h2><b>2</b>Ask why, five times, across the 4Ms<span>Man, Machine, Method, Material</span></h2>
+<div class="guide"><ul><li>Look at the problem through each of the four Ms in turn. In each column, ask why it happened, and write the answer as a fact.</li><li>Ask why again about that answer, and keep going down the column until you reach a cause you can act on, usually by the fifth why. Leave a column empty if that M plays no part.</li><li>Stay with the process. If an answer becomes a person ("the operator forgot"), ask why the process allowed it.</li><li>Mark the root cause in the bottom row. Often only one or two Ms lead to it.</li></ul></div>
+<div class="write">""" + grid + """</div></section>""",
         step("3", "Check the chain backwards", "Read it from the bottom up", """
 <p>Read from the last why back to the problem, saying "and therefore" between each line. If any link doesn't follow, the chain is broken: go back and check that step.</p>
 <p>Then prove the root cause with data or a trial, where you can.</p>""",
@@ -176,12 +187,12 @@ def five_whys():
     ]
     return page(
         "5 Whys Root Cause Analysis",
-        "A quick way to get from a problem to its root cause by asking why until you reach something you can fix. Ideal for problems with one clear chain of cause and effect.",
+        "A quick way to get from a problem to its root cause: ask why, through each of the 4Ms, until you reach something you can fix.",
         ["Reference", "Part number or process", "Date", "Led by", "Customer (if any)", "Linked 8D or NCR"],
         ["Type straight into the boxes on screen, or print it and write by hand.",
          "Do it with the people who know the process, at the place where the problem happened if you can.",
          "Write facts, not opinions or blame. Every answer should be something you could check.",
-         "For complex problems with many possible causes, start with a fishbone diagram, then use 5 Whys on the likeliest causes."],
+         "For problems with many possible causes, start with a fishbone diagram, then use 5 Whys on the likeliest causes."],
         S, "5 Whys Root Cause Analysis | Grindstone",
         "Going round in circles on a recurring problem?",
         "Grindstone leads root cause investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
@@ -208,7 +219,7 @@ h1 { margin-top: 3.5mm; }
 
 
 def fishbone():
-    cats = [("People", "skills, training, fatigue"), ("Machine", "equipment, tooling, software"), ("Method", "procedures, work instructions"),
+    cats = [("Man", "people, skills, training"), ("Machine", "equipment, tooling, software"), ("Method", "procedures, work instructions"),
             ("Material", "components, PCBs, consumables"), ("Measurement", "test, inspection, calibration"), ("Environment", "temperature, humidity, ESD")]
     pos = [(0, 0), (66, 0), (132, 0), (0, 74), (66, 74), (132, 74)]   # mm: left, top
     cat_html = "".join(
