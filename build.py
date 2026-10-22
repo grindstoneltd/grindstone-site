@@ -286,6 +286,15 @@ PAGES = [
         <li style="--i:4"><span class="node">C</span><strong>Control</strong><span class="txt">Make sure it stays fixed, with a written report your team keeps.</span></li>
       </ol>
 
+      <h2 class="sub-h">Free problem-solving templates</h2>
+      <p class="cycle-intro">Branded, fillable PDFs with step-by-step instructions built in. Type into them on screen or print them out. Free to use and share.</p>
+      <ul class="templates">
+        <li><strong>8D Problem Solving Report</strong><span>Find the root cause, fix it and stop it coming back, from D0 to D8.</span><a class="dl" href="/downloads/grindstone-8d-problem-solving-template.pdf" download>Download PDF<small>3 pages, 310 KB</small></a></li>
+        <li><strong>5 Whys</strong><span>Get from a problem to its root cause by asking why.</span><a class="dl" href="/downloads/grindstone-5-whys-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
+        <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
+        <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>2 pages, 300 KB</small></a></li>
+      </ul>
+
       <div class="contact">
         <strong>Tell us the problem. We'll say straight away if we can help.</strong>
         <span class="addr">""" + CONTACT + """</span>
@@ -535,6 +544,9 @@ def build_dist():
     import shutil
     for icon in (ROOT / "src/icons").iterdir():
         shutil.copy(icon, out / icon.name)
+    (out / "downloads").mkdir(exist_ok=True)
+    for pdf in (ROOT / "src/downloads").glob("*.pdf"):
+        shutil.copy(pdf, out / "downloads" / pdf.name)
     (out / "og").mkdir(exist_ok=True)
     for img in (ROOT / "src/og").glob("*.png"):
         shutil.copy(img, out / "og" / img.name)

@@ -78,12 +78,12 @@ def step(num, title, sub, guide, write):
 <div class="guide">{guide}</div><div class="write">{write}</div></section>"""
 
 
-def page(title, lead, meta, how, steps, file_title, help_title, help_text):
+def page(title, lead, meta, how, steps, file_title, help_title, help_text, extra_css=""):
     meta_html = "".join(f'<div><label>{m}</label>{box("meta_" + str(i), multiline=False, cls="line")}</div>'
                         for i, m in enumerate(meta))
     how_html = "".join(f"<li>{h}</li>" for h in how)
     return f"""<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>{file_title}</title>
-{b.FONTS.replace('display=swap', 'display=block')}<style>{CSS}</style></head><body>
+{b.FONTS.replace('display=swap', 'display=block')}<style>{CSS}{extra_css}</style></head><body>
 <div class="top">{MARK}<span class="tag">Free problem-solving template</span></div>
 <h1>{title}</h1><p class="lead">{lead}</p>
 <div class="meta">{meta_html}</div>
@@ -146,7 +146,138 @@ def eight_d():
         "Grindstone Consultancy runs 8D investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
 
 
-TEMPLATES = {"grindstone-8d-problem-solving-template": eight_d}
+LABEL = '<label style="display:block;font-size:6.8pt;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#59646b;margin-bottom:.8mm">{}</label>'
+
+
+def labelled(text, name, h):
+    return "<div>" + LABEL.format(text) + box(name, h) + "</div>"
+
+
+# ---------------------------------------------------------------- 5 Whys
+
+def five_whys():
+    whys = "".join(labelled(f"Why {i}? Because…", f"why{i}", 13) for i in range(1, 6))
+    S = [
+        step("1", "State the problem", "One sentence, in facts", """
+<p>Write what is wrong, where and how often, as a fact you could check.</p>
+<ul><li>Good: "12 of 400 assemblies failed functional test on lot 4417, all at connector J3."</li><li>Weak: "Quality is poor on the new product."</li></ul>""",
+             box("problem", 18)),
+        step("2", "Ask why, five times", "Each answer becomes the next question", """
+<ul><li>Start from the problem and ask why it happened. Write the answer as a fact.</li><li>Ask why again about that answer. Keep going until you reach a cause you can act on, usually around five whys.</li><li>Stay with the process. Stop if the answer becomes a person ("the operator forgot"): ask why the process allowed it.</li></ul>
+<p class="tip">If two answers are possible at any step, follow each one as a separate chain.</p>""",
+             whys),
+        step("3", "Check the chain backwards", "Read it from the bottom up", """
+<p>Read from the last why back to the problem, saying "and therefore" between each line. If any link doesn't follow, the chain is broken: go back and check that step.</p>
+<p>Then prove the root cause with data or a trial, where you can.</p>""",
+             labelled("How the root cause was checked", "check", 18)),
+        step("4", "Fix it", "One action for the root cause, one for why it wasn't caught", """
+<ul><li>Choose an action that removes the root cause, not one that only deals with the symptom.</li><li>Ask one more question: why didn't our checks catch it? Add an action for that too.</li><li>Give every action an owner and a date.</li></ul>""",
+             table("act", ["Action", "Owner", "Due", "Done"], ["2.4fr", "1fr", ".8fr", ".6fr"], 4)),
+    ]
+    return page(
+        "5 Whys Root Cause Analysis",
+        "A quick way to get from a problem to its root cause by asking why until you reach something you can fix. Ideal for problems with one clear chain of cause and effect.",
+        ["Reference", "Part number or process", "Date", "Led by", "Customer (if any)", "Linked 8D or NCR"],
+        ["Type straight into the boxes on screen, or print it and write by hand.",
+         "Do it with the people who know the process, at the place where the problem happened if you can.",
+         "Write facts, not opinions or blame. Every answer should be something you could check.",
+         "For complex problems with many possible causes, start with a fishbone diagram, then use 5 Whys on the likeliest causes."],
+        S, "5 Whys Root Cause Analysis | Grindstone",
+        "Going round in circles on a recurring problem?",
+        "Grindstone Consultancy leads root cause investigations alongside your team, on site or remotely, at a fixed price agreed before we start.")
+
+
+# ---------------------------------------------------------------- Fishbone
+
+FISH_CSS = """
+@page { size: A4 landscape; margin: 10mm 12mm 14mm; }
+h1 { margin-top: 3.5mm; }
+.lead { margin-bottom: 3mm; }
+.meta { grid-template-columns: repeat(6, 1fr); margin-bottom: 3mm; }
+.how { padding: 2.2mm 4mm; margin-bottom: 3mm; }
+.fish { position: relative; height: 106mm; margin: 0 0 3mm; break-inside: avoid; }
+.fish svg.bones { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fish .cat { position: absolute; width: 62mm; display: grid; gap: 1mm; }
+.fish .cat b { font-family: "Archivo", sans-serif; font-size: 10pt; }
+.fish .cat b span { font-family: "Instrument Sans", sans-serif; font-weight: 500; font-size: 7pt; color: #59646b; margin-left: 1.5mm; }
+.fish .cat .box { height: 27mm; }
+.fish .head { position: absolute; right: 0; top: 38mm; width: 52mm; display: grid; gap: 1mm; }
+.fish .head b { font-family: "Archivo", sans-serif; font-size: 10pt; color: #d9661a; }
+.fish .head .box { height: 28mm; border: 1.6px solid #d9661a; }
+"""
+
+
+def fishbone():
+    cats = [("People", "skills, training, fatigue"), ("Machine", "equipment, tooling, software"), ("Method", "procedures, work instructions"),
+            ("Material", "components, PCBs, consumables"), ("Measurement", "test, inspection, calibration"), ("Environment", "temperature, humidity, ESD")]
+    pos = [(0, 0), (66, 0), (132, 0), (0, 74), (66, 74), (132, 74)]   # mm: left, top
+    cat_html = "".join(
+        f'<div class="cat" style="left:{x}mm;top:{y}mm"><b>{n}<span>{hint}</span></b>{box("cat" + str(i), 27)}</div>'
+        for i, ((n, hint), (x, y)) in enumerate(zip(cats, pos)))
+    bones = ('<svg class="bones" viewBox="0 0 273 106" preserveAspectRatio="none" aria-hidden="true">'
+             '<line x1="4" y1="53" x2="218" y2="53" stroke="#1b2125" stroke-width="1.4"/>'
+             + "".join(f'<line x1="{x + 31}" y1="{33 if y == 0 else 72}" x2="{x + 52}" y2="53" stroke="#59646b" stroke-width=".8"/>' for x, y in pos)
+             + '<polygon points="214,49 221,53 214,57" fill="#1b2125"/></svg>')
+    diagram = f'<div class="fish">{bones}{cat_html}<div class="head"><b>Problem (the effect)</b>{box("effect", 28)}</div></div>'
+    likely = """<section class="step" style="grid-template-columns:62mm 1fr;break-before:page"><h2><b>Next</b>Pick the likeliest causes and test them<span>Don't fix anything until a cause is proven</span></h2>
+<div class="guide"><ul><li>Circle the causes the team thinks most likely, using data where you have it.</li><li>Test each one: change it and see if the problem follows.</li><li>Take proven causes into 5 Whys or your 8D.</li></ul></div><div class="write">""" + \
+        table("test", ["Likely cause", "How we'll test it", "Owner", "Result"], ["1.6fr", "1.8fr", ".8fr", "1.2fr"], 4) + "</div></section>"
+    return page(
+        "Fishbone (Ishikawa) Diagram",
+        "Brainstorm every possible cause of a problem in six groups, so nothing is missed before you start testing.",
+        ["Reference", "Part number or process", "Date", "Led by", "Team", "Linked 8D or NCR"],
+        ["Write the problem in the orange box on the right, as a fact (what, where, how many).",
+         "With the team, list possible causes in each of the six boxes. Every idea goes down at this stage: no arguing yet.",
+         "Then pick the likeliest causes and test them, using the table on page 2."],
+        [diagram, likely], "Fishbone (Ishikawa) Diagram | Grindstone",
+        "Too many possible causes and no clear answer?",
+        "Grindstone Consultancy runs root cause workshops with your team, on site or remotely, at a fixed price agreed before we start.",
+        FISH_CSS)
+
+
+# ---------------------------------------------------------------- PFMEA
+
+PFMEA_CSS = """
+@page { size: A4 landscape; margin: 11mm 11mm 14mm; }
+.scales { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-bottom: 4mm; break-inside: avoid; }
+.scales div { border: .8px solid #d2d7d9; border-radius: 1.5mm; padding: 2mm 3mm; }
+.scales b { font-family: "Archivo", sans-serif; font-size: 9.5pt; display: block; margin-bottom: .8mm; }
+.scales b em { font-style: normal; color: #d9661a; }
+.fmea .hd span { font-size: 6pt; letter-spacing: .04em; }
+.fmea .row .box { height: 9mm; }
+"""
+
+
+def pfmea():
+    scales = """<div class="scales">
+<div><b><em>S</em> Severity, 1 to 10</b>How bad is the effect if it happens? 10 = safety or legal risk without warning. 7–8 = product doesn't work, customer very unhappy. 4–6 = works but degraded. 1 = no noticeable effect.</div>
+<div><b><em>O</em> Occurrence, 1 to 10</b>How likely is the cause, with today's prevention controls? 10 = almost certain. 5–6 = occasional. 1 = prevented by design, for example mistake-proofing.</div>
+<div><b><em>D</em> Detection, 1 to 10</b>How likely are today's checks to catch it before it leaves? 10 = no check at all. 5–6 = manual inspection. 1 = automatic check that can't miss.</div>
+</div>"""
+    cols = ["Process step", "Function / requirement", "Failure mode", "Effect", "S", "Cause", "Prevention controls", "O",
+            "Detection controls", "D", "RPN or AP", "Recommended action", "Owner / due"]
+    widths = ["1.1fr", "1.2fr", "1.2fr", "1.2fr", ".35fr", "1.2fr", "1.2fr", ".35fr", "1.2fr", ".35fr", ".55fr", "1.3fr", ".9fr"]
+    tbl = '<div class="fmea">' + table("pf", cols, widths, 10) + "</div>"
+    guide = """<section class="step" style="grid-template-columns:1fr"><h2><b>Fill</b>One row per failure mode<span>Work through the process in order, step by step</span></h2>
+<div class="write">""" + tbl + "</div></section>"
+    return page(
+        "Process FMEA (PFMEA)",
+        "Find where each process step could fail, how bad that would be, and what stops it, before it happens on the line.",
+        ["FMEA number", "Process or line", "Part number and revision", "Prepared by", "Team", "Date / revision"],
+        ["Take the steps from your process flow, in order. For each step, ask how it could fail to meet its requirement.",
+         "For each failure mode, write the effect on the customer, the cause, and the controls you have today. Then score S, O and D using the scales below.",
+         "Prioritise by RPN (S × O × D), or by Action Priority if your customer follows the AIAG & VDA FMEA Handbook. Always act on high severity first, whatever the total.",
+         "Re-score after each action, and keep the PFMEA in step with your control plan and work instructions. Add rows or pages as needed."],
+        [scales, guide], "Process FMEA | Grindstone",
+        "Need a PFMEA your customer will sign off?",
+        "Grindstone Consultancy builds and reviews PFMEAs and control plans with your team, for APQP and PPAP, at a fixed price agreed before we start.",
+        PFMEA_CSS)
+
+
+TEMPLATES = {"grindstone-8d-problem-solving-template": eight_d,
+             "grindstone-5-whys-template": five_whys,
+             "grindstone-fishbone-diagram-template": fishbone,
+             "grindstone-pfmea-template": pfmea}
 
 
 def make_fillable(pdf_in, pdf_out):
@@ -169,7 +300,7 @@ def make_fillable(pdf_in, pdf_out):
             widget.field_type = fitz.PDF_WIDGET_TYPE_TEXT
             widget.rect = fitz.Rect(r.x0 + 1, r.y0 + 1, r.x1 - 1, r.y1 - 1)
             widget.text_font = "Helv"
-            widget.text_fontsize = 0 if word.startswith("FM_") else 9   # 0 = shrink to fit for long text
+            widget.text_fontsize = 0 if word.startswith("FM_") else 8   # 0 = shrink to fit for long text
             if word.startswith("FM_"):
                 widget.field_flags = fitz.PDF_TX_FIELD_IS_MULTILINE
             widget.border_width = 0
