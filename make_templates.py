@@ -85,6 +85,11 @@ def step(num, title, sub, guide, write):
 <div class="guide">{guide}</div><div class="write">{write}</div></section>"""
 
 
+def help_panel(title, text):
+    return (f'<div class="help"><strong>{title}</strong><span>{text}</span>'
+            '<span><b>enquiries@grindstone.ltd</b> &middot; grindstone.ltd/consultancy</span></div>')
+
+
 def page(title, lead, meta, how, steps, file_title, help_title, help_text, extra_css=""):
     meta_html = "".join(f'<div><label>{m}</label>{box("meta_" + str(i), multiline=False, cls="line")}</div>'
                         for i, m in enumerate(meta))
@@ -96,7 +101,7 @@ def page(title, lead, meta, how, steps, file_title, help_title, help_text, extra
 <div class="meta">{meta_html}</div>
 <div class="how"><strong>How to use this template</strong><ol>{how_html}</ol></div>
 {''.join(steps)}
-<div class="help"><strong>{help_title}</strong><span>{help_text}</span><span><b>enquiries@grindstone.ltd</b> &middot; grindstone.ltd/consultancy</span></div>
+{help_panel(help_title, help_text) if help_title else ''}
 </body></html>"""
 
 
@@ -255,7 +260,8 @@ PFMEA_CSS = """
 .scales b { font-family: "Archivo", sans-serif; font-size: 9.5pt; display: block; margin-bottom: .8mm; }
 .scales b em { font-style: normal; color: #d9661a; }
 .fmea .hd span { font-size: 6pt; letter-spacing: .04em; }
-.fmea .row .box { height: 9mm; }
+.fmea .row .box { height: 8.2mm; }
+.step.sheet { padding-top: 0; border-top: 0; }
 """
 
 
@@ -268,9 +274,12 @@ def pfmea():
     cols = ["Process step", "Function / requirement", "Failure mode", "Effect", "S", "Cause", "Prevention controls", "O",
             "Detection controls", "D", "RPN or AP", "Recommended action", "Owner / due"]
     widths = ["1.1fr", "1.2fr", "1.2fr", "1.2fr", ".35fr", "1.2fr", "1.2fr", ".35fr", "1.2fr", ".35fr", ".55fr", "1.3fr", ".9fr"]
-    tbl = '<div class="fmea">' + table("pf", cols, widths, 10) + "</div>"
-    guide = """<section class="step" style="grid-template-columns:1fr"><h2><b>Fill</b>One row per failure mode<span>Work through the process in order, step by step</span></h2>
-<div class="write">""" + tbl + "</div></section>"
+    sheets = 5          # worksheet pages
+    rows = 15           # rows per worksheet page: 75 failure modes in all
+    guide = "".join(
+        f"""<section class="step sheet" style="grid-template-columns:1fr;break-before:page"><h2><b>{n}</b>PFMEA worksheet<span>Sheet {n} of {sheets} &middot; one row per failure mode, process steps in order</span></h2>
+<div class="write"><div class="fmea">""" + table(f"pf{n}", cols, widths, rows) + "</div></div></section>"
+        for n in range(1, sheets + 1))
     return page(
         "Process FMEA (PFMEA)",
         "Find where each process step could fail, how bad that would be, and what stops it, before it happens on the line.",
@@ -278,10 +287,9 @@ def pfmea():
         ["Take the steps from your process flow, in order. For each step, ask how it could fail to meet its requirement.",
          "For each failure mode, write the effect on the customer, the cause, and the controls you have today. Then score S, O and D using the scales below.",
          "Prioritise by RPN (S × O × D), or by Action Priority if your customer follows the AIAG & VDA FMEA Handbook. Always act on high severity first, whatever the total.",
-         "Re-score after each action, and keep the PFMEA in step with your control plan and work instructions. Add rows or pages as needed."],
-        [scales, guide], "Process FMEA | Grindstone",
-        "Need a PFMEA your customer will sign off?",
-        "Grindstone builds and reviews PFMEAs and control plans with your team, for APQP and PPAP, at a fixed price agreed before we start.",
+         "Re-score after each action, and keep the PFMEA in step with your control plan and work instructions. There are 75 rows over five worksheet pages; for a longer process, save a second copy."],
+        [scales, help_panel("Need a PFMEA your customer will sign off?", "Grindstone builds and reviews PFMEAs and control plans with your team, for APQP and PPAP, at a fixed price agreed before we start."), guide],
+        "Process FMEA | Grindstone", None, None,
         PFMEA_CSS)
 
 

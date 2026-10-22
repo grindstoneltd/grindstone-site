@@ -299,7 +299,7 @@ PAGES = [
         <li><strong>8D Problem Solving Report</strong><span>Find the root cause, fix it and stop it coming back, from D0 to D8.</span><a class="dl" href="/downloads/grindstone-8d-problem-solving-template.pdf" download>Download PDF<small>3 pages, 310 KB</small></a></li>
         <li><strong>5 Whys</strong><span>Ask why across Man, Machine, Method and Material to reach the root cause.</span><a class="dl" href="/downloads/grindstone-5-whys-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
-        <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>2 pages, 300 KB</small></a></li>
+        <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
       </ul>
     </div>""",
     },
