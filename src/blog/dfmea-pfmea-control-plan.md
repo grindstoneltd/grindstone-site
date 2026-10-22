@@ -1,7 +1,7 @@
 ---
 title: From DFMEA to PFMEA to Control Plan: Turning Design Risks into Process Controls
 seo_title: DFMEA to PFMEA to Control Plan, Explained
-date: DRAFT
+date: 2026-10-30
 kind: Article
 description: How DFMEA, PFMEA, the control plan and SPC connect, what each one hands to the next, and how to keep the chain working in electronics manufacturing.
 ---
