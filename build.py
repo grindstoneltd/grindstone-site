@@ -531,6 +531,9 @@ def build_dist():
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding="utf-8")
     urls = "\n".join(f"  <url><loc>{SITE}{p['path']}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
+    # the free templates on the Consultancy page, so Google indexes the PDFs too
+    urls += "".join(f"\n  <url><loc>{SITE}/downloads/{f.name}</loc><lastmod>{TODAY}</lastmod></url>"
+                    for f in sorted((ROOT / "src/downloads").glob("*.pdf")))
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
         encoding="utf-8")
