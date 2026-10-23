@@ -344,7 +344,8 @@ TEMPLATES = {"grindstone-8d-problem-solving-template": eight_d,
              "grindstone-kaizen-template": kaizen}
 
 
-def make_fillable(pdf_in, pdf_out):
+def make_fillable(pdf_in, pdf_out, footer_left="Free template from Grindstone Ltd  ·  grindstone.ltd/consultancy  ·  enquiries@grindstone.ltd",
+                  subject="Free problem-solving template", skip_footer_pages=()):
     doc = fitz.open(pdf_in)
     count = 0
     for page in doc:
@@ -373,13 +374,15 @@ def make_fillable(pdf_in, pdf_out):
         page.apply_redactions(images=fitz.PDF_REDACT_IMAGE_NONE, graphics=fitz.PDF_REDACT_LINE_ART_NONE)
     n = len(doc)
     for i, page in enumerate(doc):
+        if i in skip_footer_pages:
+            continue
         y = page.rect.height - 22
-        page.insert_text((37, y), "Free template from Grindstone Ltd  ·  grindstone.ltd/consultancy  ·  enquiries@grindstone.ltd",
+        page.insert_text((37, y), footer_left,
                          fontsize=6.8, fontname="helv", color=(0.35, 0.39, 0.42))
         right = f"© Grindstone Ltd. Free to use and share.   Page {i + 1} of {n}"
         page.insert_text((page.rect.width - 37 - fitz.get_text_length(right, "helv", 6.8), y), right,
                          fontsize=6.8, fontname="helv", color=(0.35, 0.39, 0.42))
-    doc.set_metadata({"title": doc.metadata.get("title") or "", "author": "Grindstone Ltd", "subject": "Free problem-solving template",
+    doc.set_metadata({"title": doc.metadata.get("title") or "", "author": "Grindstone Ltd", "subject": subject,
                       "creator": "Grindstone Ltd, grindstone.ltd"})
     doc.save(pdf_out, garbage=3, deflate=True)
     return count
