@@ -111,9 +111,9 @@ PAGES = [
     <section class="wrap tool-band" aria-labelledby="tool-band-h">
       <div class="tool-band-in">
         <div>
-          <span class="kind">Free tool &middot; 5 minutes</span>
+          <span class="kind">Free tool &middot; 3 minutes</span>
           <h2 id="tool-band-h">Could AI take the admin off your team's plate?</h2>
-          <p>Find out in five minutes, with your score and an action plan.</p>
+          <p>Find out in three minutes, with your score and an action plan.</p>
         </div>
         <a class="cta" href="{link:ai-readiness}">Get my score</a>
       </div>
@@ -323,7 +323,7 @@ PAGES = [
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
         <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>""" + ("""
-        <li><strong>AI readiness checklist</strong><span>Twelve quick statements to see whether one job is ready to hand to AI, with your score and an action plan.</span><a class="dl" href="/ai-readiness/">Get my score<small>Online, about 3 minutes</small></a></li>""" if SHOW_READINESS else "") + """
+        <li><strong>AI readiness checklist</strong><span>Twelve quick statements to see whether one job is ready to hand to AI, with your score and an action plan.</span><a class="dl" href="/ai-readiness/">Get my score<small>Online, about three minutes</small></a></li>""" if SHOW_READINESS else "") + """
       </ul>
     </div>""",
     },
@@ -376,7 +376,7 @@ def shown_date(p):
 
 
 # Line a post can carry as {readiness}; dropped until the checklist page is live
-READINESS_MD = "Not sure where you stand? [Score your business on our AI readiness checklist](/ai-readiness/). It takes five minutes, and you get an action plan straight away.\n"
+READINESS_MD = "Not sure where you stand? [Score your business on our AI readiness checklist](/ai-readiness/). It takes three minutes, and you get an action plan straight away.\n"
 
 
 def load_posts():
@@ -547,7 +547,7 @@ def rc_form():
 if SHOW_READINESS: PAGES.append({
     "id": "ai-readiness", "path": "/ai-readiness/", "nav": None,
     "title": "AI readiness checklist for contract manufacturers | Grindstone",
-    "description": "Could AI take the admin off your team's plate? Twelve quick statements for contract manufacturers, with your score and an action plan in about five minutes.",
+    "description": "Could AI take the admin off your team's plate? Twelve quick statements for contract manufacturers, with your score and an action plan in about three minutes.",
     "jsonld": {"@context": "https://schema.org", "@type": "WebPage", "name": "AI readiness checklist", "url": SITE + "/ai-readiness/", "publisher": ORG},
     "body": """
     <div class="wrap page rc">
@@ -556,7 +556,7 @@ if SHOW_READINESS: PAGES.append({
         <span class="kind">Free checklist</span>
         <h1 class="intro">Could AI take the admin off your team's plate?</h1>
         <p class="body">Start with one job that eats time every week, such as quoting, chasing suppliers or updating customers. Twelve quick statements show whether that job is ready to hand to an AI tool on a small trial, and what's in the way if it isn't.</p>
-        <p class="body">About five minutes. Your score, and an action plan in order of what to fix first, appear as soon as you finish.</p>
+        <p class="body">About three minutes. Your score, and an action plan in order of what to fix first, appear as soon as you finish.</p>
       </header>
       <form id="rc-form" novalidate onsubmit="return false">
 """ + rc_form() + """      <div class="rc-contact">
