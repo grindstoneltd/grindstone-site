@@ -47,6 +47,8 @@ def cards():
     yield "ems-directory", card(b.EMS_WM, "Find the UK EMS partner that fits the job.", "/ems-directory/")
     yield "drumbeat", card(b.DRUM_WM + b.TM, "Your ERP keeps the books. " + b.DRUM_WM + " keeps the beat.", "/drumbeat/")
     yield "consultancy", card(MARK + '<span class="eyebrow">Consultancy</span>', "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
+    yield "ai-readiness", card(MARK + '<span class="eyebrow">Free checklist</span>',
+                               "Could AI take the admin off your team&rsquo;s <em>plate?</em>", "/ai-readiness/")
     yield "blog", card(MARK + '<span class="eyebrow">Blog</span>',
                        f'Nose to the <span class="wm-inline">Grind<span>{b.STONE}</span></span>.', "/blog/")
     for p in b.POSTS:
