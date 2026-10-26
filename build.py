@@ -667,7 +667,7 @@ if SHOW_READINESS: PAGES.append({
       <a class="back" href="{home}">Home</a>
       <header class="big"><span class="kind">Legal</span><h1 class="intro">Privacy notice</h1></header>
       <div class="prose">
-        <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. Contact us at """ + CONTACT + """.</p>
+        <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. We are registered with the Information Commissioner's Office, registration number C2069709. Contact us at """ + CONTACT + """.</p>
         <h2>What we collect</h2>
         <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
@@ -714,7 +714,7 @@ FOOTER = """
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""
       <a href="/privacy/">Privacy</a>""" if SHOW_READINESS else "") + """
     </nav>
-    <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
+    <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW &middot; ICO registration C2069709</p>
   </div>
 </footer>"""
 
