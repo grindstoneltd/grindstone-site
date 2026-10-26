@@ -67,7 +67,7 @@ ORG = {"@type": "Organization", "name": "Grindstone Ltd", "url": SITE + "/", "sa
 PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
-        "title": "Grindstone | Cutting-edge services for contract manufacturing",
+        "title": "Grindstone | Cutting-edge solutions for contract manufacturing",
         "description": "Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
@@ -81,7 +81,7 @@ PAGES = [
     <div class="wheel" aria-hidden="true"></div>
     <div class="hero">
       <div class="wrap">
-        <h1><span class="nowrap">Cutting-edge</span> services for <em>contract manufacturing.</em></h1>
+        <h1><span class="nowrap">Cutting-edge</span> solutions for <em>contract manufacturing.</em></h1>
         <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on over thirty years in engineering, sales and operations across OEMs, Tier 1s and EMS companies.</p>
       </div>
     </div>

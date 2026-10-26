@@ -43,7 +43,7 @@ def card(brand, headline, path, long=False):
 
 
 def cards():
-    yield "home", card(MARK, '<span class="nowrap">Cutting-edge</span> services for <em>contract manufacturing.</em>', "/")
+    yield "home", card(MARK, '<span class="nowrap">Cutting-edge</span> solutions for <em>contract manufacturing.</em>', "/")
     yield "ems-directory", card(b.EMS_WM, "Find the UK EMS partner that fits the job.", "/ems-directory/")
     yield "drumbeat", card(b.DRUM_WM + b.TM, "Your ERP keeps the books. " + b.DRUM_WM + " keeps the beat.", "/drumbeat/")
     yield "consultancy", card(MARK + '<span class="eyebrow">Consultancy</span>', "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
