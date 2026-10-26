@@ -723,9 +723,9 @@ FOOTER = """
       <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
-      <span class="foot-mail">""" + CONTACT + """</span>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""
       <a href="/privacy/">Privacy</a>""" if SHOW_READINESS else "") + """
+      <span class="foot-mail">""" + CONTACT + """</span>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW &middot; ICO registration C2069709</p>
   </div>
