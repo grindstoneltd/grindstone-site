@@ -535,15 +535,16 @@ def rc_form():
 if SHOW_READINESS: PAGES.append({
     "id": "ai-readiness", "path": "/ai-readiness/", "nav": None,
     "title": "AI readiness checklist for contract manufacturers | Grindstone",
-    "description": "Twelve questions to check whether your business is ready for a first AI agent pilot. Free, takes about five minutes, with your score straight away.",
+    "description": "Could AI take the admin off your team's plate? Twelve quick statements for contract manufacturers, with your score and an action plan in about five minutes.",
     "jsonld": {"@context": "https://schema.org", "@type": "WebPage", "name": "AI readiness checklist", "url": SITE + "/ai-readiness/", "publisher": ORG},
     "body": """
     <div class="wrap page rc">
       <a class="back" href="{gemba_page}">Consultancy</a>
       <header class="big">
         <span class="kind">Free checklist</span>
-        <h1 class="intro">Are you ready for a first AI agent pilot?</h1>
-        <p class="body">Twelve statements about one task you'd like to hand to an AI agent. Score each one honestly, and add the detail where it applies. It takes about five minutes, and you'll see your score and an action plan as soon as you finish.</p>
+        <h1 class="intro">Could AI take the admin off your team's plate?</h1>
+        <p class="body">Start with one job that eats time every week, such as quoting, chasing suppliers or updating customers. Twelve quick statements show whether that job is ready to hand to an AI tool on a small trial, and what's in the way if it isn't.</p>
+        <p class="body">About five minutes. Your score, and an action plan in order of what to fix first, appear as soon as you finish.</p>
       </header>
       <form id="rc-form" novalidate onsubmit="return false">
 """ + rc_form() + """      <div class="rc-contact">
