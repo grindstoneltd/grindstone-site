@@ -556,6 +556,7 @@ if SHOW_READINESS: PAGES.append({
         </div>
         <label class="rc-hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
         <label class="rc-optin"><input type="checkbox" name="call" value="yes"> I'd like a call to talk through my result.</label>
+        <div class="rc-fields" id="rc-phone" hidden><label>Phone number <span class="req">(required for a call)</span><input type="tel" name="phone" autocomplete="tel" maxlength="30"></label></div>
         <label class="rc-optin"><input type="checkbox" name="news" value="yes"> Send me Grindstone's articles and free tools by email. You can unsubscribe at any time.</label>
         <p class="rc-small">We use your details to show and record your result and, if you ticked the box, to send you our articles. See our <a href="{link:privacy}">privacy notice</a>.</p>
         <p class="rc-error" id="rc-error" hidden></p>
@@ -593,6 +594,7 @@ if SHOW_READINESS: PAGES.append({
       var form = document.getElementById("rc-form"), err = document.getElementById("rc-error");
       // Partly or True opens a short box asking for the detail
       form.addEventListener("change", function (ev) {
+        if (ev.target.name === "call") { document.getElementById("rc-phone").hidden = !ev.target.checked; return; }
         if (!/^q\d+$/.test(ev.target.name)) return;
         ev.target.closest(".rc-q").querySelector(".rc-more").hidden = ev.target.value === "0";
       });
@@ -605,6 +607,9 @@ if SHOW_READINESS: PAGES.append({
         var emailBox = form.querySelector("input[name=email]");
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "That doesn't look like a full email address. It needs an @ and a domain, for example name@company.co.uk."; err.hidden = false; emailBox.classList.add("rc-bad"); emailBox.focus(); return; }
         emailBox.classList.remove("rc-bad");
+        var phoneBox = form.querySelector("input[name=phone]"), phone = String(d.get("phone") || "").trim();
+        if (d.get("call") && (phone.match(/\d/g) || []).length < 10) { err.textContent = "Please add a phone number so we can call you, or untick the call box."; err.hidden = false; phoneBox.classList.add("rc-bad"); phoneBox.focus(); return; }
+        phoneBox.classList.remove("rc-bad");
         err.hidden = true;
         var total = q.reduce(function (a, b) { return a + b; }, 0);
         var g = [0, 1, 2, 3].map(function (k) { return q[k * 3] + q[k * 3 + 1] + q[k * 3 + 2]; });
@@ -630,6 +635,7 @@ if SHOW_READINESS: PAGES.append({
         ["email", "name", "company", "role", "website"].forEach(function (k) { body.append(k, String(d.get(k) || "").trim()); });
         body.append("news", d.get("news") ? "yes" : "no");
         body.append("call", d.get("call") ? "yes" : "no");
+        if (d.get("call")) body.append("Phone", phone);
         q.forEach(function (v, i) { body.append("q" + (i + 1), v); });
         // Follow-ups that are showing, plus the business questions: ticks joined with "; "
         form.querySelectorAll(".rc-x").forEach(function (box) {
@@ -662,7 +668,7 @@ if SHOW_READINESS: PAGES.append({
       <div class="prose">
         <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. Contact us at """ + CONTACT + """.</p>
         <h2>What we collect</h2>
-        <ul><li>When you complete the AI readiness checklist: your email address, and your name, company and role if you give them, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
+        <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
         <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics, which does not use cookies or identify you.</li></ul>
         <h2>How we use it, and why</h2>
