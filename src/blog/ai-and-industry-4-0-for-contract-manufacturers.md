@@ -55,6 +55,8 @@ You don't need a factory-wide platform to begin. Pick one process where you alre
 
 It's the same discipline as any improvement project: define, measure, analyse, improve and control.
 
+{readiness}
+
 ## How Grindstone helps
 
 Grindstone helps contract manufacturers and OEMs put AI to practical use: choosing safe tools, setting up RFQ and BOM handling, document drafting and reporting, and writing the policy and training that go with them. Every job has a fixed price, agreed before we start. [See what we can help with]({gemba_page}).

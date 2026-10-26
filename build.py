@@ -31,6 +31,11 @@ LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
 # Cloudflare Web Analytics (cookie-free, so no consent banner). Paste the site token from the Cloudflare dashboard;
 # empty = no tracking script. Live site only, never the Claude preview.
 CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
+# Answers go to a Google Sheet through an Apps Script web app (Grindstone/marketing/readiness-checklist/).
+# Empty READINESS_URL = the form still works and shows the result, but nothing is stored.
+READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1bLvCflY-6dSighM5RbXp7ci5wateCmbeYwR23qIQAf3Qzg/exec"
+# Pages stay off the site until the Sheet URL is set and Colin approves; PREVIEW_READINESS=1 builds them locally.
+SHOW_READINESS = bool(READINESS_URL) or os.environ.get("PREVIEW_READINESS") == "1"
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
 LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
@@ -298,14 +303,15 @@ PAGES = [
       <a class="li li-page" href="{LINKEDIN}">""" + LI_ICON + """<span>Follow Grindstone on LinkedIn</span></a>
       <p class="crosslink">Still looking for a supplier? Compare 370+ <a href="{EMS}">UK contract electronics manufacturers</a> on EMS Directory.</p>
 
-      <h2 class="sub-h">Free problem-solving templates</h2>
-      <p class="cycle-intro">Fillable PDFs with step-by-step instructions built in. Type into them on screen or print them out. Free to use and share.</p>
+      <h2 class="sub-h">""" + ("Free tools and templates" if SHOW_READINESS else "Free problem-solving templates") + """</h2>
+      <p class="cycle-intro">Fillable PDFs with step-by-step instructions built in. Type into them on screen or print them out. Free to use and share.""" + (" The AI readiness checklist works online and shows your score as soon as you finish." if SHOW_READINESS else "") + """</p>
       <ul class="templates">
         <li><strong>8D Problem Solving Report</strong><span>Find the root cause, fix it and stop it coming back, from D0 to D8.</span><a class="dl" href="/downloads/grindstone-8d-problem-solving-template.pdf" download>Download PDF<small>3 pages, 310 KB</small></a></li>
         <li><strong>5 Whys</strong><span>Ask why across Man, Machine, Method and Material to reach the root cause.</span><a class="dl" href="/downloads/grindstone-5-whys-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
-        <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>
+        <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>""" + ("""
+        <li><strong>AI readiness checklist</strong><span>Twelve questions to check whether you're ready for a first AI agent pilot, with your score straight away.</span><a class="dl" href="/ai-readiness/">Take the checklist<small>Online, about 3 minutes</small></a></li>""" if SHOW_READINESS else "") + """
       </ul>
     </div>""",
     },
@@ -357,6 +363,10 @@ def shown_date(p):
     return p.get("original_date") or p.get("event_date") or p["date"]
 
 
+# Line a post can carry as {readiness}; dropped until the checklist page is live
+READINESS_MD = "Not sure where you stand? [Take the 3-minute AI readiness checklist](/ai-readiness/) and see your score straight away.\n"
+
+
 def load_posts():
     posts = []
     # PREVIEW_DRAFT=<slug> builds one draft from src/blog-drafts/ for a local look; never use it for a build that gets pushed
@@ -364,6 +374,7 @@ def load_posts():
     files = sorted((ROOT / "src/blog").glob("*.md")) + ([ROOT / "src/blog-drafts" / f"{preview}.md"] if preview else [])
     for f in files:
         head, body = f.read_text(encoding="utf-8").split("---\n", 2)[1:]
+        body = body.replace("{readiness}\n", READINESS_MD if SHOW_READINESS else "")
         meta = dict(l.split(": ", 1) for l in head.strip().splitlines())
         meta["slug"], meta["html"] = f.stem, md_to_html(body)
         if meta["date"] == "DRAFT":
@@ -430,6 +441,246 @@ for p in POSTS:
     })
 
 
+# ---------------------------------------------------------------- AI readiness checklist (lead capture)
+
+# Each statement scores 0/1/2. Partly or True opens its follow-ups; their names become Sheet column headings.
+#   ("checks", name, prompt, options)  tick all that apply
+#   ("choice", name, prompt, options)  pick one
+#   ("text", name, prompt)
+RC_GROUPS = [
+    ("Problem", [
+        ("We can name one specific, repetitive task that costs us real time every week.", [
+            ("checks", "Q1 tasks", "Which tasks take the time? Tick all that apply.",
+             ["Chasing leads and enquiries", "Quoting RFQs", "Checking and costing BOMs", "Chasing supplier delivery dates",
+              "Raising purchase orders", "Entering customer orders", "Customer progress updates", "Shortage and stock checks",
+              "Engineering changes", "Quality paperwork (NCRs, 8Ds, CoCs)", "Planning and scheduling", "Invoicing and credit control"]),
+            ("text", "Q1 other", "Anything else?")]),
+        ("We know roughly how long that task takes today, and how often it goes wrong.", [
+            ("choice", "Q2 hours a week", "Roughly how many hours a week does it take?",
+             ["Under 2", "2 to 5", "5 to 10", "10 to 20", "Over 20"]),
+            ("choice", "Q2 how often it goes wrong", "How often does it go wrong?",
+             ["Rarely", "Monthly", "Weekly", "Daily"]),
+            ("checks", "Q2 what goes wrong", "What goes wrong? Tick all that apply.",
+             ["Late or missed dates", "Wrong prices or costs", "Keying errors", "Emails missed",
+              "Customer complaints", "Rework or scrap"])]),
+        ("Our senior team is engaged in the process and will make time for the pilot each week.", [
+            ("checks", "Q3 who is engaged", "Who is engaged? Tick all that apply.",
+             ["Owner or MD", "Operations", "Sales", "Purchasing", "Quality", "Engineering", "Finance"])]),
+    ]),
+    ("Data", [
+        ("The information the task needs lives somewhere we can get at: the ERP, a shared drive or a mailbox.", [
+            ("checks", "Q4 where it lives", "Where does it live? Tick all that apply.",
+             ["ERP or MRP system", "Spreadsheets", "Shared drive", "Email inboxes", "Paper", "Supplier or customer portals"]),
+            ("text", "Q4 which ERP", "Which ERP or MRP system, if any?")]),
+        ("That information is mostly up to date (lead times, prices, stock, open orders).", [
+            ("text", "Q5 detail", "Which information is up to date, and which isn't?")]),
+        ("We know which data belongs to customers and is covered by an NDA or export control.", [
+            ("text", "Q6 detail", "How do you keep track of it? For example: a register, or flags in the ERP.")]),
+    ]),
+    ("People", [
+        ("The people who do the task today are involved and willing to try it.", [
+            ("text", "Q7 detail", "Who is involved? Job titles are enough.")]),
+        ("We have named one owner for the pilot and one person who checks the outputs.", [
+            ("text", "Q8 detail", "Who are the owner and the checker? Job titles are enough.")]),
+        ("Staff know which AI tools are approved, and which are not.", [
+            ("checks", "Q9 tools approved", "Which tools are approved? Tick all that apply.",
+             ["ChatGPT", "Microsoft Copilot", "Google Gemini", "Claude"]),
+            ("text", "Q9 other tools", "Any others?")]),
+    ]),
+    ("Guardrails", [
+        ("We have a written rule on what the agent may and may not do (for example: draft, never send).", [
+            ("text", "Q10 may do", "What may the agent do? For example: read RFQs and draft quotes."),
+            ("text", "Q10 must never do", "What must it never do? For example: send anything to a customer.")]),
+        ("We've made sure no agent can commit spend, change master data or make a promise to a customer.", [
+            ("text", "Q11 detail", "How is that stopped? For example: read-only access, or sign-off before anything leaves the building.")]),
+        ("We've decided where every agent output will be logged, so the work stays traceable for audit.", [
+            ("text", "Q12 detail", "Where will outputs be logged? For example: against the job in the ERP.")]),
+    ]),
+]
+# Unscored questions about the business, always shown, all optional
+RC_ABOUT = [
+    ("choice", "Staff", "How many people work in the business?", ["1 to 10", "11 to 50", "51 to 200", "Over 200"]),
+    ("checks", "What you make", "What do you make? Tick all that apply.",
+     ["PCB assembly", "Cable and harness", "Box build", "Mechanical or machined parts", "Other"]),
+    ("checks", "Sectors", "Which sectors do you supply? Tick all that apply.",
+     ["Defence", "Aerospace", "Medical", "Industrial", "Automotive", "Rail", "Telecoms", "Consumer"]),
+    ("choice", "When to start", "When would you like to start?", ["Just exploring", "Within 3 months", "Within 6 months", "Within a year"]),
+]
+
+
+def rc_field(kind, name, prompt, opts=None):
+    if kind == "text":
+        return f'<label class="rc-text">{prompt}<textarea name="{name}" rows="2" maxlength="300"></textarea></label>'
+    t = "checkbox" if kind == "checks" else "radio"
+    chips = "".join(f'<label><input type="{t}" name="{name}" value="{html_escape(o)}"><span>{html_escape(o)}</span></label>' for o in opts)
+    return f'<div class="rc-pick"><p>{prompt}</p><div class="rc-opts rc-chips">{chips}</div></div>'
+
+
+def rc_form():
+    out, n = [], 0
+    for group, items in RC_GROUPS:
+        out.append(f'      <h3 class="rc-group">{group}</h3>')
+        for text, follow in items:
+            n += 1
+            score = "".join(f'<label><input type="radio" name="q{n}" value="{v}"><span>{lab}</span></label>'
+                            for v, lab in ((0, "Not true"), (1, "Partly"), (2, "True")))
+            more = "".join(rc_field(*f) for f in follow)
+            out.append(f'      <fieldset class="rc-q"><legend><b>{n:02d}</b> {text}</legend><div class="rc-opts">{score}</div>'
+                       f'<div class="rc-more rc-x" hidden>{more}</div></fieldset>')
+    out.append('      <h3 class="rc-group">About your business <span class="rc-opt">(optional)</span></h3>')
+    out.append('      <fieldset class="rc-q rc-x rc-about">' + "".join(rc_field(*f) for f in RC_ABOUT) + '</fieldset>')
+    return "\n".join(out) + "\n"
+
+
+if SHOW_READINESS: PAGES.append({
+    "id": "ai-readiness", "path": "/ai-readiness/", "nav": None,
+    "title": "AI readiness checklist for contract manufacturers | Grindstone",
+    "description": "Twelve questions to check whether your business is ready for a first AI agent pilot. Free, takes about five minutes, with your score straight away.",
+    "jsonld": {"@context": "https://schema.org", "@type": "WebPage", "name": "AI readiness checklist", "url": SITE + "/ai-readiness/", "publisher": ORG},
+    "body": """
+    <div class="wrap page rc">
+      <a class="back" href="{gemba_page}">Consultancy</a>
+      <header class="big">
+        <span class="kind">Free checklist</span>
+        <h1 class="intro">Are you ready for a first AI agent pilot?</h1>
+        <p class="body">Twelve statements about one task you'd like to hand to an AI agent. Score each one honestly, and add the detail where it applies. It takes about five minutes, and you'll see your score and an action plan as soon as you finish.</p>
+      </header>
+      <form id="rc-form" novalidate onsubmit="return false">
+""" + rc_form() + """      <div class="rc-contact">
+        <h3>Enter your email to see your score</h3>
+        <div class="rc-fields">
+          <label>Email <span class="req">(required)</span><input type="email" name="email" autocomplete="email" required></label>
+          <label>Name<input type="text" name="name" autocomplete="name"></label>
+          <label>Company<input type="text" name="company" autocomplete="organization"></label>
+          <label>Role<input type="text" name="role" autocomplete="organization-title"></label>
+        </div>
+        <label class="rc-hp" aria-hidden="true">Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+        <label class="rc-optin"><input type="checkbox" name="call" value="yes"> I'd like a call to talk through my result.</label>
+        <label class="rc-optin"><input type="checkbox" name="news" value="yes"> Send me Grindstone's articles and free tools by email. You can unsubscribe at any time.</label>
+        <p class="rc-small">We use your details to show and record your result and, if you ticked the box, to send you our articles. See our <a href="{link:privacy}">privacy notice</a>.</p>
+        <p class="rc-error" id="rc-error" hidden></p>
+        <button class="cta" type="submit" id="rc-submit">See my score</button>
+      </div>
+      </form>
+      <section class="rc-result" id="rc-result" hidden aria-live="polite">
+        <span class="kind">Your result</span>
+        <p class="rc-score"><b id="rc-total">0</b> / 24</p>
+        <h2 id="rc-band"></h2>
+        <p id="rc-advice"></p>
+        <div class="rc-bars" id="rc-bars"></div>
+        <div class="rc-plan"><h3>Your action plan</h3><p class="rc-small">Work down the list. Anything marked Not true comes first, then the Partly items.</p><ol id="rc-plan"></ol></div>
+        <p>If you'd like help choosing a first task and running the pilot, email <b>""" + CONTACT + """</b>. Our <a href="{gemba_page}">free problem-solving templates</a> are on the Consultancy page.</p>
+      </section>
+    </div>
+    <script>
+    (function () {
+      var URL_ = """ + '"{READINESS_URL}"' + """;
+      var groups = ["Problem", "Data", "People", "Guardrails"];
+      var fixes = {
+        1: "Pick one specific, repetitive task that costs real time every week.",
+        2: "Time the task as it's done today, and count how often it goes wrong.",
+        3: "Get the senior team engaged in the process, and agree time for the pilot each week.",
+        4: "Find where the task's information lives, and make sure it can be reached.",
+        5: "Bring the key data up to date: lead times, prices, stock and open orders.",
+        6: "List which data is customer-owned and covered by an NDA or export control.",
+        7: "Involve the people who do the task today.",
+        8: "Name one owner for the pilot and one person who checks the outputs.",
+        9: "Tell staff which AI tools are approved, and which are not.",
+        10: "Write a one-line rule on what the agent may and may not do.",
+        11: "Make sure no agent can commit spend, change master data or make a promise to a customer.",
+        12: "Decide where every agent output will be logged, so the work stays traceable for audit."
+      };
+      var form = document.getElementById("rc-form"), err = document.getElementById("rc-error");
+      // Partly or True opens a short box asking for the detail
+      form.addEventListener("change", function (ev) {
+        if (!/^q\d+$/.test(ev.target.name)) return;
+        ev.target.closest(".rc-q").querySelector(".rc-more").hidden = ev.target.value === "0";
+      });
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var d = new FormData(form), q = [], missing = 0;
+        for (var i = 1; i <= 12; i++) { var v = d.get("q" + i); if (v === null) missing++; q.push(v === null ? null : Number(v)); }
+        var email = String(d.get("email") || "").trim();
+        if (missing) { err.textContent = "Please score all 12 statements (" + missing + " to go)."; err.hidden = false; return; }
+        var emailBox = form.querySelector("input[name=email]");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err.textContent = "That doesn't look like a full email address. It needs an @ and a domain, for example name@company.co.uk."; err.hidden = false; emailBox.classList.add("rc-bad"); emailBox.focus(); return; }
+        emailBox.classList.remove("rc-bad");
+        err.hidden = true;
+        var total = q.reduce(function (a, b) { return a + b; }, 0);
+        var g = [0, 1, 2, 3].map(function (k) { return q[k * 3] + q[k * 3 + 1] + q[k * 3 + 2]; });
+        var band, advice;
+        if (total >= 18) { band = "Ready for a first pilot"; advice = "The basics are in place. Pick the task, write the pilot charter and start measuring how it runs today."; }
+        else if (total >= 12) { band = "Nearly ready"; advice = "Close the gaps below first. Most can be fixed in a few weeks, without spending money."; }
+        else { band = "Start with the basics"; advice = "An agent would struggle here today. Fix the lowest-scoring area first; the rest gets easier once it's done."; }
+        // Action plan: every Not true in statement order, then every Partly; the final step is always the pilot itself
+        var plan = [];
+        [0, 1].forEach(function (score) { q.forEach(function (v, i) { if (v === score) plan.push(i + 1); }); });
+        var fix = plan.length ? fixes[plan[0]] : "Nothing obvious. Choose the task and start.";
+        var steps = plan.map(function (n) {
+          return '<li><span class="rc-tag' + (q[n - 1] === 0 ? ' rc-tag-0' : '') + '">' + (q[n - 1] === 0 ? "Not true" : "Partly") + '</span>' +
+            fixes[n] + '<small>' + groups[Math.floor((n - 1) / 3)] + ', statement ' + n + '</small></li>'; });
+        steps.push('<li><span class="rc-tag rc-tag-go">Then</span>Choose the task, measure how it runs today, and start the pilot.</li>');
+        document.getElementById("rc-total").textContent = total;
+        document.getElementById("rc-band").textContent = band;
+        document.getElementById("rc-advice").textContent = advice;
+        document.getElementById("rc-plan").innerHTML = steps.join("");
+        document.getElementById("rc-bars").innerHTML = groups.map(function (n, k) {
+          return '<div><span>' + n + '</span><i><em style="width:' + (g[k] / 6 * 100) + '%"></em></i><b>' + g[k] + ' / 6</b></div>'; }).join("");
+        var body = new URLSearchParams();
+        ["email", "name", "company", "role", "website"].forEach(function (k) { body.append(k, String(d.get(k) || "").trim()); });
+        body.append("news", d.get("news") ? "yes" : "no");
+        body.append("call", d.get("call") ? "yes" : "no");
+        q.forEach(function (v, i) { body.append("q" + (i + 1), v); });
+        // Follow-ups that are showing, plus the business questions: ticks joined with "; "
+        form.querySelectorAll(".rc-x").forEach(function (box) {
+          if (box.hidden) return;
+          var seen = {};
+          box.querySelectorAll("[name]").forEach(function (el) {
+            if (seen[el.name]) return; seen[el.name] = 1;
+            body.append(el.name, d.getAll(el.name).map(function (x) { return String(x).trim(); }).filter(Boolean).join("; "));
+          });
+        });
+        body.append("result", band); body.append("fix", fix);
+        body.append("Action plan", plan.map(function (n, k) { return (k + 1) + ". " + fixes[n]; }).join("\\n")); body.append("page", location.href);
+        if (URL_) { try { fetch(URL_, { method: "POST", mode: "no-cors", body: body }); } catch (e) {} }
+        form.hidden = true;
+        var r = document.getElementById("rc-result"); r.hidden = false; r.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    })();
+    </script>""",
+})
+
+if SHOW_READINESS: PAGES.append({
+    "id": "privacy", "path": "/privacy/", "nav": None,
+    "title": "Privacy notice | Grindstone",
+    "description": "How Grindstone Ltd collects, uses and protects personal information.",
+    "jsonld": {"@context": "https://schema.org", "@type": "WebPage", "name": "Privacy notice", "url": SITE + "/privacy/", "publisher": ORG},
+    "body": """
+    <div class="wrap page">
+      <a class="back" href="{home}">Home</a>
+      <header class="big"><span class="kind">Legal</span><h1 class="intro">Privacy notice</h1></header>
+      <div class="prose">
+        <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. Contact us at """ + CONTACT + """.</p>
+        <h2>What we collect</h2>
+        <ul><li>When you complete the AI readiness checklist: your email address, and your name, company and role if you give them, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
+        <li>When you email us: your name, email address and anything you include in your message.</li>
+        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics, which does not use cookies or identify you.</li></ul>
+        <h2>How we use it, and why</h2>
+        <ul><li>To show and record your checklist result, and to reply to you if you contact us. Our lawful basis is our legitimate interest in responding to people who ask for information about our services.</li>
+        <li>To send you our articles and free tools by email, only if you ticked the box to ask for them. Our lawful basis is your consent, which you can withdraw at any time by replying to any email or writing to """ + CONTACT + """.</li></ul>
+        <p>We do not sell your information or share it with anyone for their own marketing.</p>
+        <h2>Where it is kept</h2>
+        <p>Checklist responses and emails are stored in our Google Workspace account. Google acts as our processor and may store data outside the UK under the safeguards required by UK data protection law.</p>
+        <h2>How long we keep it</h2>
+        <p>We keep checklist responses and enquiry emails for 24 months after your last contact with us, then delete them. If you withdraw consent to emails, we stop sending them straight away.</p>
+        <h2>Your rights</h2>
+        <p>You can ask to see, correct or delete the information we hold about you, object to how we use it, or withdraw consent. Email """ + CONTACT + """. If you're unhappy with how we've handled your information, you can complain to the Information Commissioner's Office at ico.org.uk.</p>
+        <p class="muted">Last updated 26 October 2026.</p>
+      </div>
+    </div>""",
+})
+
+
 # Large faint brand watermark behind each sub page (the home page has its own wheel in the hero)
 MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
@@ -453,7 +704,8 @@ FOOTER = """
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
       <span class="foot-mail">""" + CONTACT + """</span>
-      <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>
+      <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""
+      <a href="/privacy/">Privacy</a>""" if SHOW_READINESS else "") + """
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
   </div>
@@ -479,7 +731,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO))
+            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
 
 
 def fill_links(text, links):
@@ -564,6 +816,9 @@ def build_dist():
     for d in (out / "blog").iterdir():
         if d.is_dir() and d.name not in live:
             shutil.rmtree(d)
+    if not SHOW_READINESS:
+        for name in ("ai-readiness", "privacy"):
+            shutil.rmtree(out / name, ignore_errors=True)
     (out / "blog" / "feed.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Grindstone blog</title><link>{SITE}/blog/</link>'
         f'<description>{html_escape(BLOG_DESC)}</description><language>en-gb</language>{items}</channel></rss>\n', encoding="utf-8")

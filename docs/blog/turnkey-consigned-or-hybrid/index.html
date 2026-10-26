@@ -394,6 +394,57 @@
   @media (min-width: 60rem) { .templates { grid-template-columns: repeat(5, 1fr); gap: 1.6rem 1.1rem; } }
   .post-img { margin: .6rem 0; } .post-img img { display: block; width: 100%; max-width: 30rem; height: auto; border-radius: 10px; border: 1px solid var(--line); }
 
+  /* AI readiness checklist */
+  .rc [hidden] { display: none !important; }
+  .rc form { margin-top: 1.6rem; display: grid; gap: .7rem; max-width: 52rem; }
+  .rc-group { font-family: var(--font-display); font-weight: 800; font-size: 1rem; letter-spacing: .1em; text-transform: uppercase; color: var(--spark); margin-top: 1.2rem; }
+  .rc-q { border: 1px solid var(--line); border-radius: 10px; background: var(--surface); padding: .9rem 1.1rem; margin: 0; display: grid; gap: .6rem; }
+  .rc-q legend { padding: 0; float: left; width: 100%; font-weight: 600; }
+  .rc-q legend b { color: var(--spark); font-family: var(--font-display); margin-right: .4rem; }
+  .rc-opts { display: flex; flex-wrap: wrap; gap: .5rem; clear: both; }
+  .rc-opts label { cursor: pointer; }
+  .rc-opts input { position: absolute; opacity: 0; pointer-events: none; }
+  .rc-opts span { display: inline-block; padding: .4rem .9rem; border: 1.5px solid var(--line); border-radius: 999px; font-weight: 600; font-size: .92rem; }
+  .rc-opts input:checked + span { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .rc-opts input:focus-visible + span { outline: 2px solid var(--spark); outline-offset: 2px; }
+  .rc-contact { margin-top: 1.4rem; border-top: 3px solid var(--spark); padding-top: 1rem; display: grid; gap: .8rem; }
+  .rc-contact h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
+  .rc-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .8rem 1rem; }
+  .rc-fields label { display: grid; gap: .3rem; font-weight: 600; font-size: .9rem; }
+  .rc-fields input { font: inherit; padding: .6rem .7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); color: var(--fg); }
+  .req { font-weight: 500; color: var(--spark); font-size: .8rem; }
+  .rc-hp { position: absolute; left: -9999px; }
+  .rc-optin { display: flex; gap: .6rem; align-items: flex-start; font-size: .95rem; }
+  .rc-small { font-size: .85rem; color: var(--muted); }
+  .rc-error { color: #c8372d; font-weight: 600; }
+  .rc .cta { justify-self: start; margin-top: .2rem; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+  .rc-result { margin-top: 1.6rem; max-width: 52rem; display: grid; gap: .8rem; border-top: 3px solid var(--spark); padding-top: 1rem; }
+  .rc-score { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; } .rc-score b { font-size: 3.6rem; color: var(--spark); }
+  .rc-result h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; }
+  .rc-bars { display: grid; gap: .5rem; }
+  .rc-bars div { display: grid; grid-template-columns: 7rem 1fr 3.2rem; gap: .8rem; align-items: center; font-weight: 600; }
+  .rc-bars i { display: block; height: .7rem; border-radius: 99px; background: var(--line); overflow: hidden; }
+  .rc-bars em { display: block; height: 100%; background: var(--spark); }
+  @media (min-width: 60rem) { .templates:has(> li:nth-child(6)) { grid-template-columns: repeat(3, 1fr); } }
+  .rc-fields input.rc-bad { border: 2px solid #c8372d; }
+  .rc-more { display: grid; gap: .9rem; padding-top: .3rem; border-top: 1px dashed var(--line); }
+  .rc-pick p, .rc-text { font-size: .9rem; color: var(--muted); font-weight: 500; margin: 0 0 .4rem; }
+  .rc-text { display: grid; gap: .35rem; }
+  .rc-text textarea { font: inherit; color: var(--fg); padding: .55rem .7rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); resize: vertical; }
+  .rc-chips { gap: .4rem; }
+  .rc-chips span { padding: .3rem .75rem; font-size: .85rem; font-weight: 500; }
+  .rc-about { gap: 1.1rem; }
+  .rc-opt { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--muted); font-size: .85rem; }
+  .rc-plan { background: var(--surface); border-left: 4px solid var(--spark); padding: 1rem 1.2rem; border-radius: 0 10px 10px 0; }
+  .rc-plan h3 { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; margin: 0 0 .2rem; }
+  .rc-plan ol { margin: .8rem 0 0; padding-left: 1.4rem; display: grid; gap: .7rem; }
+  .rc-plan li { padding-left: .3rem; font-weight: 500; }
+  .rc-plan li::marker { font-family: var(--font-display); font-weight: 800; color: var(--spark); }
+  .rc-plan small { display: block; color: var(--muted); font-size: .8rem; margin-top: .1rem; }
+  .rc-tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .1rem .45rem; border-radius: 4px; margin-right: .5rem; vertical-align: .1em; background: var(--line); color: var(--fg); }
+  .rc-tag-0 { background: #c8372d; color: #fff; }
+  .rc-tag-go { background: var(--spark); color: var(--spark-ink); }
+
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Turnkey, Consigned or Hybrid: Choosing a Component Sourcing Model", "description": "The three component sourcing models in contract electronics manufacturing, turnkey, consigned and hybrid, and how to choose the right one for your project.", "datePublished": "2026-10-21", "url": "https://grindstone.ltd/blog/turnkey-consigned-or-hybrid/", "author": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}}, "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}}, "isBasedOn": "https://www.emsdirectory.co.uk/blog/turnkey-vs-consigned-vs-hybrid-choosing-the-right-component-sourcing-model/"}</script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "a5c66aa1f32649e99122b57591ff7131"}'></script>
@@ -450,6 +501,7 @@
       <a href="/blog/">Blog</a>
       <span class="foot-mail">enquiries@grindstone.ltd</span>
       <a class="li" href="https://www.linkedin.com/company/grindstoneltd/"><svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>LinkedIn</span></a>
+      <a href="/privacy/">Privacy</a>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW</p>
   </div>
