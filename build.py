@@ -646,6 +646,7 @@ if SHOW_READINESS: PAGES.append({
             body.append(el.name, d.getAll(el.name).map(function (x) { return String(x).trim(); }).filter(Boolean).join("; "));
           });
         });
+        body.append("fields", Array.from(body.keys()).concat(["Action plan"]).join("|"));
         body.append("result", band); body.append("fix", fix);
         body.append("Action plan", plan.map(function (n, k) { return (k + 1) + ". " + fixes[n]; }).join("\\n")); body.append("page", location.href);
         if (URL_) { try { fetch(URL_, { method: "POST", mode: "no-cors", body: body }); } catch (e) {} }
