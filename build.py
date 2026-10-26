@@ -323,7 +323,7 @@ PAGES = [
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
         <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>""" + ("""
-        <li><strong>AI readiness checklist</strong><span>Twelve questions to check whether you're ready for a first AI agent pilot, with your score straight away.</span><a class="dl" href="/ai-readiness/">Take the checklist<small>Online, about 3 minutes</small></a></li>""" if SHOW_READINESS else "") + """
+        <li><strong>AI readiness checklist</strong><span>Twelve quick statements to see whether one job is ready to hand to AI, with your score and an action plan.</span><a class="dl" href="/ai-readiness/">Get my score<small>Online, about 3 minutes</small></a></li>""" if SHOW_READINESS else "") + """
       </ul>
     </div>""",
     },
@@ -376,7 +376,7 @@ def shown_date(p):
 
 
 # Line a post can carry as {readiness}; dropped until the checklist page is live
-READINESS_MD = "Not sure where you stand? [Take the 3-minute AI readiness checklist](/ai-readiness/) and see your score straight away.\n"
+READINESS_MD = "Not sure where you stand? [Score your business on our AI readiness checklist](/ai-readiness/). It takes five minutes, and you get an action plan straight away.\n"
 
 
 def load_posts():
