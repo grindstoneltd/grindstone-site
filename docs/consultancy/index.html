@@ -443,6 +443,15 @@
   .rc-tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: .1rem .45rem; border-radius: 4px; margin-right: .5rem; vertical-align: .1em; background: var(--line); color: var(--fg); }
   .rc-tag-0 { background: #c8372d; color: #fff; }
   .rc-tag-go { background: var(--spark); color: var(--spark-ink); }
+  /* Home page checklist band */
+  .tool-band { position: relative; z-index: 1; padding-bottom: clamp(3rem, 7vw, 5rem); }
+  .tool-band-in { background: #1b2125; color: #eceeee; border-radius: 14px; padding: clamp(1.4rem, 4vw, 2.4rem); display: grid; gap: 1.2rem; align-items: center; border-left: 6px solid var(--spark); }
+  @media (min-width: 52rem) { .tool-band-in { grid-template-columns: 1fr auto; gap: 2.5rem; } }
+  .tool-band .kind { color: #f08a3a; }
+  .tool-band h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 3.2vw, 2.1rem); line-height: 1.15; margin: .4rem 0 .6rem; color: #fff; }
+  .tool-band p { color: #c9d0d3; max-width: 46rem; margin: 0; }
+  .tool-band .cta { margin-top: 0; background: var(--spark); color: #fff; white-space: nowrap; justify-self: start; }
+  .tool-band .cta:hover { background: #fff; color: #1b2125; }
 
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "name": "Contract manufacturing consultancy", "serviceType": "Sales, marketing, operations, quality, engineering and practical AI consultancy for electronics manufacturing", "provider": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}}, "areaServed": {"@type": "Country", "name": "United Kingdom"}}</script>

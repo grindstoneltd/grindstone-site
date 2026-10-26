@@ -36,6 +36,8 @@ CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
 READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1bLvCflY-6dSighM5RbXp7ci5wateCmbeYwR23qIQAf3Qzg/exec"
 # Pages stay off the site until the Sheet URL is set and Colin approves; PREVIEW_READINESS=1 builds them locally.
 SHOW_READINESS = bool(READINESS_URL) or os.environ.get("PREVIEW_READINESS") == "1"
+# Home page band promoting the checklist (wording approved by Colin 26 Oct 2026)
+SHOW_HOME_TOOL = SHOW_READINESS
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
 LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
@@ -105,7 +107,17 @@ PAGES = [
           <div class="card-foot"><a class="more" href="{gemba_page}">More about our consultancy</a></div>
         </article>
       </div>
-    </div>
+    </div>""" + ("""
+    <section class="wrap tool-band" aria-labelledby="tool-band-h">
+      <div class="tool-band-in">
+        <div>
+          <span class="kind">Free tool &middot; about five minutes</span>
+          <h2 id="tool-band-h">Could AI take the admin off your team's plate?</h2>
+          <p>Pick one job that eats time every week, such as quoting, chasing suppliers or updating customers. Twelve quick statements show whether it's ready to hand to an AI tool, and you get an action plan straight away.</p>
+        </div>
+        <a class="cta" href="{link:ai-readiness}">Take the checklist</a>
+      </div>
+    </section>""" if SHOW_HOME_TOOL else "") + """
     </div>""",
     },
     {
