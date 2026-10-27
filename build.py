@@ -63,8 +63,8 @@ DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">
 # CNC Directory wordmark: its cube mark (Other directories/CNC/brand/cnc_cube_only_black.svg) and CNC blue
 CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#cnc-mark"/></svg>'
           '<span>CNC <b>Directory</b></span></span>')
-CNC = "https://cncdirectory.co.uk/"
-# CNC Directory is switched off until launch (target Thu 26 Nov 2026): no link until then. Set True on launch day.
+CNC = "https://www.cncdirectory.co.uk/"
+# CNC Directory is switched off until launch (by Thu 5 Nov 2026): no link until then. Set True on launch day.
 CNC_LIVE = False
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
