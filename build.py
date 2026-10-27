@@ -66,8 +66,9 @@ CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusab
 CNC = "https://www.cncdirectory.co.uk/"
 # CNC Directory is switched off until launch (by Thu 5 Nov 2026): no link until then. Set True on launch day.
 CNC_LIVE = False
-# The /cnc-directory/ page goes live with the card link; PREVIEW_CNC=1 builds it for a local look only (never push that build)
-SHOW_CNC_PAGE = CNC_LIVE or os.environ.get("PREVIEW_CNC") == "1"
+# The /cnc-directory/ page is live from 27 Oct (Colin: "make it live"); until CNC_LIVE it shows "Launching November 2026"
+# instead of links to cncdirectory.co.uk
+SHOW_CNC_PAGE = True
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -114,7 +115,7 @@ PAGES = [
           <span class="kind">Find a machining supplier</span>
           <h3>""" + ('<a href="{link:cnc-directory}">' + CNC_WM + '</a>' if SHOW_CNC_PAGE else CNC_WM) + """</h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
-          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if SHOW_CNC_PAGE else '<span class="soon">Launching November 2026</span>') + """</div>
+          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>')) + """</div>
         </article>
         <article class="card">
           <span class="kind">Sales and operations</span>
@@ -179,7 +180,7 @@ PAGES = [
         "id": "cnc-directory", "path": "/cnc-directory/", "nav": None,
         "title": "CNC Directory: compare UK CNC machining companies | Grindstone",
         "description": "Compare UK CNC machining companies on the machining they do, the materials they work with and their certification.",
-        "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "CNC Directory", "url": CNC,
+        "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "CNC Directory", "url": CNC if CNC_LIVE else SITE + "/cnc-directory/",
                    "description": "Directory of UK CNC machining companies.", "publisher": ORG},
         "body": """
     <div class="wrap page">
@@ -188,7 +189,7 @@ PAGES = [
         <span class="kind">Find a machining supplier &middot; cncdirectory.co.uk</span>
         <div class="brandmark" role="img" aria-label="CNC Directory">""" + CNC_WM + """</div>
         <h1 class="intro">Find the UK machine shop that fits the job.</h1>
-        <p class="body"><a href="{CNC}">CNC Directory</a> lists UK CNC machining companies, from one-off prototypes to production
+        <p class="body">""" + ('<a href="{CNC}">CNC Directory</a>' if CNC_LIVE else 'CNC Directory') + """ lists UK CNC machining companies, from one-off prototypes to production
           runs. Every listing uses the same layout, so you can compare suppliers like for like on the things that decide a job.</p>
       </header>
       <h2 class="sub-h">Why use CNC Directory</h2>
@@ -198,7 +199,7 @@ PAGES = [
         <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
       </ul>
       <div class="cta-row">
-        <a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>
+        """ + ('<a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>') + """
       </div>
     </div>""",
     }] if SHOW_CNC_PAGE else []),
