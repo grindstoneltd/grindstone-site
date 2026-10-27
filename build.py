@@ -66,7 +66,7 @@ CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusab
 CNC = "https://www.cncdirectory.co.uk/"
 # CNC Directory is switched off until launch (by Thu 5 Nov 2026): no link until then. Set True on launch day.
 CNC_LIVE = False
-# The /cnc-directory/ page is live from 27 Oct (Colin: "make it live"); until CNC_LIVE it shows "Launching November 2026"
+# The /cnc-directory/ page is live from 27 Oct (Colin: "make it live"); until CNC_LIVE it shows "Coming soon"
 # instead of links to cncdirectory.co.uk
 SHOW_CNC_PAGE = True
 TM = '<span class="tm">&trade;</span>'
@@ -115,7 +115,7 @@ PAGES = [
           <span class="kind">Find a machining supplier</span>
           <h3>""" + ('<a href="{link:cnc-directory}">' + CNC_WM + '</a>' if SHOW_CNC_PAGE else CNC_WM) + """</h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
-          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>')) + """</div>
+          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Coming soon</span>')) + """</div>
         </article>
         <article class="card">
           <span class="kind">Sales and operations</span>
@@ -199,7 +199,7 @@ PAGES = [
         <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
       </ul>
       <div class="cta-row">
-        """ + ('<a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>') + """
+        """ + ('<a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>' if CNC_LIVE else '<span class="soon">Coming soon</span>') + """
       </div>
     </div>""",
     }] if SHOW_CNC_PAGE else []),
