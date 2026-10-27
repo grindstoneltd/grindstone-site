@@ -1,7 +1,7 @@
 ---
 title: Visual Management on the Shop Floor: One Question per Board
 seo_title: Visual Management on the Shop Floor: What Works
-date: DRAFT
+date: 2026-11-09
 kind: Article
 description: Visual management works when each board answers one question at a glance. Six questions, the tools that answer them, and electronics manufacturing examples.
 ---
