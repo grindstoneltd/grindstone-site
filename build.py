@@ -60,6 +60,15 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
 EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusable="false"><use href="#ems-mark"/></svg>'
           '<span>EMS <b>Directory</b></span></span>')
 DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span></span>'
+# CNC Directory wordmark: its cube mark (Other directories/CNC/brand/cnc_cube_only_black.svg) and CNC blue
+CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" viewBox="749.39 291.56 421.22 476.88" aria-hidden="true" focusable="false"><g fill="currentColor">'
+          '<polygon points="1146.3 540.25 1170.55 526.25 1170.61 526.22 1170.61 441.95 976.38 554.09 976.38 778.36 1025.05 750.27 1025.1 750.23 1122.05 694.26 1122.1 694.23 1146.3 680.26 1170.55 666.26 1170.61 666.23 1170.61 581.97 1146.19 596.06 1121.94 610.06 1121.88 610.1 1121.88 638.1 1049.18 680.07 1025.1 693.97 1025.1 582.22 1049.3 568.25 1121.88 526.35 1121.88 554.35 1146.3 540.25"/>'
+          '<polygon points="1081.37 371.6 1081.35 371.59 1081.29 371.59 1032.59 399.7 1056.84 413.7 1008.51 441.61 984.26 455.61 960.07 469.58 863.29 413.7 887.37 399.8 911.62 385.8 960.07 357.83 984.32 371.83 1033.04 343.7 960.07 301.56 765.84 413.7 960.07 525.84 1154.29 413.7 1081.37 371.6"/>'
+          '<polygon points="894.94 693.11 879.04 628.85 870.98 596.29 870.98 596.21 846.7 498.11 846.69 498.06 749.39 441.89 749.39 666.21 798.21 694.39 798.21 527.21 822.17 624.04 822.17 624.11 846.44 722.22 846.45 722.26 943.75 778.44 943.75 554.12 894.94 525.94 894.94 693.11"/>'
+          '</g></svg><span>CNC <b>Directory</b></span></span>')
+CNC = "https://cncdirectory.co.uk/"
+# CNC Directory is switched off until launch (target Thu 26 Nov 2026): no link until then. Set True on launch day.
+CNC_LIVE = False
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -101,6 +110,12 @@ PAGES = [
           <h3><a href="{ems_page}">""" + EMS_WM + """</a></h3>
           <p>370+ <a href="{EMS}">UK contract electronics manufacturers</a> in one place. Compare them on capability and certification, then send one RFQ to your whole shortlist.</p>
           <div class="card-foot"><a class="more" href="{ems_page}">More about EMS Directory</a><a class="ext" href="{EMS}">emsdirectory.co.uk</a></div>
+        </article>
+        <article class="card">
+          <span class="kind">Find a machining supplier</span>
+          <h3>""" + (f'<a href="{CNC}">{CNC_WM}</a>' if CNC_LIVE else CNC_WM) + """</h3>
+          <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
+          <div class="card-foot">""" + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>') + """</div>
         </article>
         <article class="card">
           <span class="kind">Sales and operations</span>
