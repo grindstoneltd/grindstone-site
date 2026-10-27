@@ -66,6 +66,8 @@ CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusab
 CNC = "https://www.cncdirectory.co.uk/"
 # CNC Directory is switched off until launch (by Thu 5 Nov 2026): no link until then. Set True on launch day.
 CNC_LIVE = False
+# The /cnc-directory/ page goes live with the card link; PREVIEW_CNC=1 builds it for a local look only (never push that build)
+SHOW_CNC_PAGE = CNC_LIVE or os.environ.get("PREVIEW_CNC") == "1"
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -110,9 +112,9 @@ PAGES = [
         </article>
         <article class="card">
           <span class="kind">Find a machining supplier</span>
-          <h3>""" + (f'<a href="{CNC}">{CNC_WM}</a>' if CNC_LIVE else CNC_WM) + """</h3>
+          <h3>""" + ('<a href="{link:cnc-directory}">' + CNC_WM + '</a>' if SHOW_CNC_PAGE else CNC_WM) + """</h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
-          <div class="card-foot">""" + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching November 2026</span>') + """</div>
+          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if SHOW_CNC_PAGE else '<span class="soon">Launching November 2026</span>') + """</div>
         </article>
         <article class="card">
           <span class="kind">Sales and operations</span>
@@ -173,6 +175,33 @@ PAGES = [
       </div>
     </div>""",
     },
+    *([{
+        "id": "cnc-directory", "path": "/cnc-directory/", "nav": None,
+        "title": "CNC Directory: compare UK CNC machining companies | Grindstone",
+        "description": "Compare UK CNC machining companies on the machining they do, the materials they work with and their certification.",
+        "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "CNC Directory", "url": CNC,
+                   "description": "Directory of UK CNC machining companies.", "publisher": ORG},
+        "body": """
+    <div class="wrap page">
+      <a class="back" href="{home}">Home</a>
+      <header class="big">
+        <span class="kind">Find a machining supplier &middot; cncdirectory.co.uk</span>
+        <div class="brandmark" role="img" aria-label="CNC Directory">""" + CNC_WM + """</div>
+        <h1 class="intro">Find the UK machine shop that fits the job.</h1>
+        <p class="body"><a href="{CNC}">CNC Directory</a> lists UK CNC machining companies, from one-off prototypes to production
+          runs. Every listing uses the same layout, so you can compare suppliers like for like on the things that decide a job.</p>
+      </header>
+      <h2 class="sub-h">Why use CNC Directory</h2>
+      <ul class="points">
+        <li><strong>UK machine shops in one place</strong><span>Milling, turning and more, without searching company by company.</span></li>
+        <li><strong>Compare like for like</strong><span>See the machining each company does, the materials they work with and their certification.</span></li>
+        <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>
+      </div>
+    </div>""",
+    }] if SHOW_CNC_PAGE else []),
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
         "title": "drumbeat+ sales and operations software for EMS | Grindstone",
@@ -724,6 +753,7 @@ if SHOW_READINESS: PAGES.append({
 # Large faint brand watermark behind each sub page (the home page has its own wheel in the hero)
 MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
+    "cnc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#cnc-mark"/></svg></div>',
     "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">+</div>',
     "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
 }
@@ -771,7 +801,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
+            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
 
 
 def fill_links(text, links):
@@ -856,6 +886,8 @@ def build_dist():
     for d in (out / "blog").iterdir():
         if d.is_dir() and d.name not in live:
             shutil.rmtree(d)
+    if not SHOW_CNC_PAGE:
+        shutil.rmtree(out / "cnc-directory", ignore_errors=True)
     if not SHOW_READINESS:
         for name in ("ai-readiness", "privacy"):
             shutil.rmtree(out / name, ignore_errors=True)
