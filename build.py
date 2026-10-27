@@ -85,7 +85,7 @@ PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
         "title": "Grindstone | Cutting-edge solutions for contract manufacturing",
-        "description": "Grindstone runs EMS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract electronics manufacturers.",
+        "description": "Grindstone runs EMS Directory and CNC Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
