@@ -4,9 +4,10 @@ Each template is laid out in HTML (site fonts and colours), printed to PDF by he
 write-in box gets a fillable form field: each box carries a tiny marker word, PyMuPDF finds the marker,
 takes the box drawn around it as the field's size, and removes the marker.
 
-Run:  python3 make_templates.py      ->  src/downloads/*.pdf  (build.py copies them to docs/downloads/)
+Run:  python3 make_templates.py [slug ...]     ->  src/downloads/*.pdf  (build.py copies them to docs/downloads/)
 """
 import pathlib
+import sys
 import subprocess
 import tempfile
 
@@ -90,13 +91,13 @@ def help_panel(title, text):
             '<span><b>enquiries@grindstone.ltd</b> &middot; grindstone.ltd/consultancy</span></div>')
 
 
-def page(title, lead, meta, how, steps, file_title, help_title, help_text, extra_css=""):
+def page(title, lead, meta, how, steps, file_title, help_title, help_text, extra_css="", tag="Free problem-solving template"):
     meta_html = "".join(f'<div><label>{m}</label>{box("meta_" + str(i), multiline=False, cls="line")}</div>'
                         for i, m in enumerate(meta))
     how_html = "".join(f"<li>{h}</li>" for h in how)
     return f"""<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>{file_title}</title>
 {b.FONTS.replace('display=swap', 'display=block')}<style>{CSS}{extra_css}</style></head><body>
-<div class="top">{MARK}<span class="tag">Free problem-solving template</span></div>
+<div class="top">{MARK}<span class="tag">{tag}</span></div>
 <h1>{title}</h1><p class="lead">{lead}</p>
 <div class="meta">{meta_html}</div>
 <div class="how"><strong>How to use this template</strong><ol>{how_html}</ol></div>
@@ -337,11 +338,172 @@ def kaizen():
         "Grindstone plans and runs kaizen events with your team, on site, and makes sure the gains stick, at a fixed price agreed before we start.")
 
 
+# ---------------------------------------------------------------- Landscape ops templates (escalation, training, spares)
+# Each page is a fixed-height sheet; tables marked "grow" stretch their rows to fill whatever height is left,
+# so every page is full whatever the header above it takes.
+
+SHEET_CSS = """
+@page { size: A4 landscape; margin: 11mm 11mm 14mm; }
+.sheet { height: 183mm; display: flex; flex-direction: column; break-after: page; overflow: hidden; }
+.sheet:last-child { break-after: auto; }
+.sheet > .step { border-top: .8px solid #d2d7d9; }
+.sheet > .step.first { border-top: 0; padding-top: 0; }
+.step.grow { flex: 1; min-height: 0; grid-template-columns: 58mm 1fr; grid-template-rows: auto 1fr; }
+.step.grow.wide { display: grid; grid-template-columns: 1fr; }
+.step.grow .write { display: flex; flex-direction: column; min-height: 0; }
+.step.grow .tbl { flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.step.grow .tbl .row { flex: 1; min-height: 5mm; }
+.step.grow .tbl .row .box { height: auto; }
+.step h2 b { min-width: 0; }
+.tbl .hd span { font-size: 6.2pt; letter-spacing: .04em; }
+.scales { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; margin-bottom: 3mm; }
+.scales div { border: .8px solid #d2d7d9; border-radius: 1.5mm; padding: 2mm 3mm; }
+.scales b { font-family: "Archivo", sans-serif; font-size: 9.5pt; display: block; margin-bottom: .8mm; }
+.scales b em { font-style: normal; color: #d9661a; }
+.scales i { font-style: normal; font-weight: 700; }
+.meta.six { grid-template-columns: repeat(6, 1fr); margin-bottom: 3mm; }
+.how { margin-bottom: 3mm; }
+.help { margin-top: 3mm; }
+.dot { display: inline-block; width: 3.2mm; height: 3.2mm; border-radius: 50%; margin-right: 1.5mm; vertical-align: -.3mm; }
+.key { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2mm; margin-bottom: 3mm; }
+.key div { border: .8px solid #d2d7d9; border-radius: 1.5mm; padding: 1.5mm 3mm; }
+.key b { font-family: "Archivo", sans-serif; font-size: 12pt; color: #d9661a; margin-right: 1.5mm; }
+.key strong { font-size: 8.4pt; }
+.tm .row.sk .box { background: #f6efe9; }
+.tm .row.sk { flex: 1.6 !important; }
+.tm .row.tot .box { background: #eef3ef; }
+.rl { font-size: 6.4pt; font-weight: 600; letter-spacing: .06em; color: #59646b; align-self: center; }
+"""
+
+
+def intro(title, lead, meta, how, tag="Free template"):
+    meta_html = "".join(f'<div><label>{m}</label>{box("meta_" + str(i), multiline=False, cls="line")}</div>'
+                        for i, m in enumerate(meta))
+    return (f'<div class="top">{MARK}<span class="tag">{tag}</span></div><h1>{title}</h1><p class="lead">{lead}</p>'
+            f'<div class="meta six">{meta_html}</div>'
+            f'<div class="how"><strong>How to use this template</strong><ol>{"".join(f"<li>{h}</li>" for h in how)}</ol></div>')
+
+
+def sheets(file_title, pages):
+    body = "".join(f'<div class="sheet">{p}</div>' for p in pages)
+    return f"""<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><title>{file_title}</title>
+{b.FONTS.replace('display=swap', 'display=block')}<style>{CSS}{SHEET_CSS}</style></head><body>{body}</body></html>"""
+
+
+def grow(num, title, sub, guide, tbl, first=False, wide=False):
+    cls = "step grow" + (" first" if first else "") + (" wide" if wide else "")
+    g = f'<div class="guide">{guide}</div>' if guide else ""
+    return f'<section class="{cls}"><h2><b>{num}</b>{title}<span>{sub}</span></h2>{g}<div class="write">{tbl}</div></section>'
+
+
+def escalation():
+    cols = ["Event or problem", "Threshold (measurable)", "Who is told (name or role)", "How", "How fast", "Who tells the customer or supplier"]
+    widths = ["1.6fr", "1.1fr", "1.2fr", ".7fr", ".7fr", "1.3fr"]
+    tier = lambda n, colour, title, sub, guide, rows, first=False: grow(
+        n, f'<span class="dot" style="background:{colour}"></span>{title}', sub, guide, table(f"t{n}", cols, widths, rows), first)
+    thresholds = """<div class="scales">
+<div><b><em>What</em> a threshold is</b>The point where a problem moves into a tier. Make it something the person on shift can measure without judgement, so two people reading it at 2am make the same call.</div>
+<div><b><em>Four</em> kinds that work</b><i>Time:</i> line down over 2 hours. <i>Quantity:</i> 5 or more assemblies failing the same test in a shift. <i>Money:</i> a job 10% over its quoted hours. <i>Customer:</i> the job is due to ship this week.</div>
+<div><b><em>Not</em> a threshold</b>&ldquo;A long stoppage&rdquo; or &ldquo;a serious quality problem&rdquo;. One problem can sit in more than one tier: line down 30 minutes, the team handles it; over 2 hours, tell me today; over 2 hours on a job due out this week, call me now.</div>
+</div>"""
+    p1 = intro(
+        "Escalation Matrix",
+        "Who hears about a problem, and how fast. One page, so nobody on shift has to guess whether this one gets a call.",
+        ["Site or department", "Owner", "Revision", "Date issued", "Next review", "Approved by"],
+        ["Type straight into the boxes on screen, or print it and fill it in with your team leaders.",
+         "List the problems you'd least want to hear about late, across safety, quality, delivery, materials, machines, cost, people and outside visits. Put each under one of the three tiers.",
+         "For each one, write a measurable threshold (see below), who is told, how, how fast, and who tells the customer or supplier.",
+         "Fill in what the team can decide without a call (section 4), then review the matrix after 30 days and reissue it with a new revision."]) + thresholds
+    p2 = tier("1", "#c8372d", "Call me now", "A phone call, day or night", """
+<p>Problems that can't wait for the morning. No answer? Ring again, then the next name on the call list.</p>
+<ul><li>An injury beyond first aid, a fire</li><li>An HSE inspector or unannounced audit</li><li>Suspect product already with a customer</li><li>A line down past your threshold on a job due out this week</li></ul>""", 4, first=True)
+    p3 = tier("2", "#c28a10", "Tell me today", "Before the end of the day", """
+<p>Problems the manager needs to know about before the end of the day.</p>
+<ul><li>A customer delivery that will be missed</li><li>A complaint or returned assembly</li><li>A batch failing test, suspect components</li><li>A machine or the ERP down past your threshold</li></ul>""", 14, first=True)
+    p4 = tier("3", "#3a9a4a", "Bring me in before", "While there's still time to change the outcome", """
+<p>Problems you can see coming.</p>
+<ul><li>A shortage that will move a build date</li><li>An end-of-life notice</li><li>An engineering change hitting stock or work in progress</li><li>A job running over its quoted hours or cost</li></ul>""", 14, first=True)
+    p5 = (grow("4", "The team decides", "No call needed: act, log it, raise it at the next meeting", """
+<p>What the people nearest the problem can decide without asking, and the limit on each.</p>
+<ul><li>Move the next job forward while a line waits on parts</li><li>Book overtime up to an agreed number of hours</li><li>Call in the maintenance contractor</li><li>Quarantine suspect stock</li></ul>
+<p class="tip">Review the calls each month. If the team could have handled one with the authority, skills or part, change that and move it here.</p>""",
+               table("team", ["Decision", "Limit", "Who can make it", "Where it's logged"], ["2fr", "1.2fr", "1.2fr", "1.2fr"], 8), first=True)
+          + grow("5", "Call list", "In order: if the first name doesn't answer, ring the next",
+                 "<p>Keep it current, with a printed copy by the line phone and in the shift handover file.</p>",
+                 table("calls", ["Order", "Name", "Role", "Phone (working hours)", "Phone (out of hours)"], [".5fr", "1.4fr", "1.2fr", "1.2fr", "1.2fr"], 5))
+          + help_panel("Want to build it with your team?", "Grindstone runs this as a workshop with your managers and team leaders, on your site or remotely, and you leave with the matrix, the team's decisions and the call list agreed. Every job has a fixed price, agreed before we start."))
+    return sheets("Escalation Matrix | Grindstone", [p1 + p2.replace(' first"', '"'), p3, p4, p5])
+
+
+def tm_grid(name, people):
+    widths = ["1.5fr", "1fr"] + [".62fr"] * 10
+    tpl = f'grid-template-columns:{" ".join(widths)}'
+    head = f'<div class="hd" style="{tpl}"><span>Name</span><span>Role or shift</span>' + "".join(f"<span>{i}</span>" for i in range(1, 11)) + "</div>"
+    sk = (f'<div class="row sk" style="{tpl}"><span class="rl">SKILL, MACHINE OR TEST &rarr;</span><span></span>'
+          + "".join(box(f"{name}_skill{i}") for i in range(1, 11)) + "</div>")
+    rows = "".join(f'<div class="row" style="{tpl}">' + "".join(box(f"{name}_r{r}c{c}", multiline=False) for c in range(12)) + "</div>"
+                   for r in range(1, people + 1))
+    tot = (f'<div class="row tot" style="{tpl}"><span class="rl">PEOPLE AT 3 OR 4</span><span></span>'
+           + "".join(box(f"{name}_tot{i}", multiline=False) for i in range(1, 11)) + "</div>")
+    return f'<div class="tbl tm">{head}{sk}{rows}{tot}</div>'
+
+
+def training_matrix():
+    key = """<div class="key">
+<div><b>0</b><strong>Not trained</strong></div><div><b>1</b><strong>In training</strong>, always with a trainer</div>
+<div><b>2</b><strong>With support</strong>, someone checks</div><div><b>3</b><strong>Competent</strong>, works alone, signed off</div>
+<div><b>4</b><strong>Can train others</strong> and sign them off</div></div>"""
+    p1 = intro(
+        "Training Matrix",
+        "Who can do what, to what level, and where one absence would leave a machine or test without cover.",
+        ["Area or line", "Owner", "Revision", "Date", "Next review", "Approved by"],
+        ["Write the skills, machines and tests across the top: for example SMT line set-up, reflow profile, AOI programming, X-ray, wave solder, ICT, functional test, conformal coating, rework.",
+         "Write each person's level, 0 to 4, using the key below. Count the people at 3 or 4 in each column.",
+         "Any column with fewer than two people at 3 or 4 is a gap: one absence leaves that machine or test without cover. Plan training for it in section 2.",
+         "Review the matrix every quarter, and when someone joins or leaves."]) + key
+    p1 += grow("1", "Training matrix", "One row per person, one column per skill, machine or test", "", tm_grid("tm", 8), wide=True)
+    p1b = grow("1", "Training matrix, continued", "Write the same skills across the top", "", tm_grid("tm2", 18), first=True, wide=True)
+    p2 = (grow("2", "Training plan", "Close the gaps, starting with the columns that have only one competent person", """
+<ul><li>One row per person and skill being trained.</li><li>The trainer must be at level 4 for that skill.</li><li>Update the matrix when the person is signed off.</li></ul>""",
+               table("plan", ["Person", "Skill, machine or test", "From", "To", "Trainer", "Due", "Signed off"], ["1.3fr", "1.6fr", ".5fr", ".5fr", "1.1fr", ".7fr", ".9fr"], 16), first=True)
+          + help_panel("Want help setting up training and sign-off?", "Grindstone works with your team to set the skills list, the sign-off standard and the training plan, on your site or remotely. Every job has a fixed price, agreed before we start."))
+    return sheets("Training Matrix | Grindstone", [p1, p1b, p2])
+
+
+def critical_spares():
+    cols = ["Machine or equipment", "Part", "Part number", "Supplier", "Lead time", "Min stock", "On hand", "Location", "Who reorders", "Last checked"]
+    widths = ["1.2fr", "1.3fr", "1fr", "1fr", ".6fr", ".55fr", ".55fr", ".8fr", ".9fr", ".7fr"]
+    guide = """<div class="scales">
+<div><b><em>Is</em> it critical?</b>A spare is critical if its failure stops a line or a test, and you'd wait longer for a replacement than you can afford to be down.</div>
+<div><b><em>Where</em> to look</b>Machines with no backup, parts that have failed before, and anything with a long lead time: for example placement nozzles and feeders, reflow fans and thermocouples, test fixture probes.</div>
+<div><b><em>Set</em> the minimum</b>Enough to cover the lead time, based on how often it has failed. When stock reaches the minimum, the named person reorders.</div>
+</div>"""
+    p1 = intro(
+        "Critical Spares",
+        "The parts that would stop a line if they failed, how many to keep, where they are, and who reorders them.",
+        ["Site or area", "Owner", "Revision", "Date", "Next review", "Approved by"],
+        ["Type straight into the boxes on screen, or print it for the maintenance area.",
+         "List each machine and test station, then the parts whose failure would stop it. Use the guide below to decide what's critical.",
+         "For each part, record the supplier, lead time, minimum stock, where it's kept and who reorders it.",
+         "Check stock every month and after every breakdown, and put a copy of the service contacts (section 2) in the shift file."]) + guide
+    p1 += grow("1", "Critical spares list", "One row per part. Check stock against the minimum every month.", "", table("sp1", cols, widths, 6), wide=True)
+    p2 = grow("1", "Critical spares list, continued", "", "", table("sp2", cols, widths, 18), first=True, wide=True)
+    p3 = (grow("2", "Service contacts", "Keep a copy in the shift file, so the night shift can find them", "",
+               table("svc", ["Machine or equipment", "Supplier or contractor", "Contract or account no.", "Phone (working hours)", "Phone (out of hours)", "Response agreed"],
+                     ["1.3fr", "1.3fr", "1fr", "1fr", "1fr", ".9fr"], 14), first=True, wide=True)
+          + help_panel("Want help cutting downtime?", "Grindstone works with your team on maintenance planning, critical spares and first-response guides, on your site or remotely. Every job has a fixed price, agreed before we start."))
+    return sheets("Critical Spares | Grindstone", [p1, p2, p3])
+
+
+
 TEMPLATES = {"grindstone-8d-problem-solving-template": eight_d,
              "grindstone-5-whys-template": five_whys,
              "grindstone-fishbone-diagram-template": fishbone,
              "grindstone-pfmea-template": pfmea,
-             "grindstone-kaizen-template": kaizen}
+             "grindstone-kaizen-template": kaizen,
+             "grindstone-escalation-matrix-template": escalation,
+             "grindstone-training-matrix-template": training_matrix,
+             "grindstone-critical-spares-template": critical_spares}
 
 
 def make_fillable(pdf_in, pdf_out, footer_left="Free template from Grindstone Ltd  ·  grindstone.ltd/consultancy  ·  enquiries@grindstone.ltd",
@@ -391,7 +553,10 @@ def make_fillable(pdf_in, pdf_out, footer_left="Free template from Grindstone Lt
 if __name__ == "__main__":
     OUT.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
+        only = sys.argv[1:]     # optional: build just these slugs, so the others stay byte-for-byte as they are
         for slug, fn in TEMPLATES.items():
+            if only and slug not in only:
+                continue
             src = pathlib.Path(tmp) / f"{slug}.html"
             raw = pathlib.Path(tmp) / f"{slug}.raw.pdf"
             src.write_text(fn(), encoding="utf-8")

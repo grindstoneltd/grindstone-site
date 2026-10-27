@@ -38,6 +38,14 @@ READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1
 SHOW_READINESS = bool(READINESS_URL) or os.environ.get("PREVIEW_READINESS") == "1"
 # Home page band promoting the checklist (wording approved by Colin 26 Oct 2026)
 SHOW_HOME_TOOL = SHOW_READINESS
+
+# Escalation matrix, training matrix and critical spares templates: cards go live with the escalation matrix post
+# (Wed 4 Nov 2026). The PDFs wait in Grindstone/marketing/escalation-matrix/ until the publish run copies them into src/downloads/.
+SHOW_OPS_TEMPLATES = datetime.date.today().isoformat() >= "2026-11-04"
+OPS_TEMPLATES = """
+        <li><strong>Escalation matrix</strong><span>Who hears about a problem, and how fast: three tiers, measurable thresholds, the team's own decisions and a call list.</span><a class="dl" href="/downloads/grindstone-escalation-matrix-template.pdf" download>Download PDF<small>4 pages, 470 KB</small></a></li>
+        <li><strong>Training matrix</strong><span>Who can do what, to what level, and where one absence would leave a machine or test without cover.</span><a class="dl" href="/downloads/grindstone-training-matrix-template.pdf" download>Download PDF<small>3 pages, 26 people, 660 KB</small></a></li>
+        <li><strong>Critical spares</strong><span>The parts that would stop a line, how many to keep, where they are and who reorders them.</span><a class="dl" href="/downloads/grindstone-critical-spares-template.pdf" download>Download PDF<small>3 pages, 490 KB</small></a></li>"""
 # LinkedIn "in" logo (Simple Icons 9.0.0, CC0)
 LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>')
 TODAY = datetime.date.today().isoformat()
@@ -322,7 +330,7 @@ PAGES = [
         <li><strong>5 Whys</strong><span>Ask why across Man, Machine, Method and Material to reach the root cause.</span><a class="dl" href="/downloads/grindstone-5-whys-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>
         <li><strong>Fishbone (Ishikawa) diagram</strong><span>List every possible cause in six groups before you start testing.</span><a class="dl" href="/downloads/grindstone-fishbone-diagram-template.pdf" download>Download PDF<small>2 pages, 220 KB</small></a></li>
         <li><strong>Process FMEA</strong><span>Find where each process step could fail, and what stops it.</span><a class="dl" href="/downloads/grindstone-pfmea-template.pdf" download>Download PDF<small>6 pages, 75 rows, 1.1 MB</small></a></li>
-        <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>""" + ("""
+        <li><strong>Kaizen improvement sheet</strong><span>See the waste, try a fix, measure the result and make it the new standard.</span><a class="dl" href="/downloads/grindstone-kaizen-template.pdf" download>Download PDF<small>2 pages, 270 KB</small></a></li>""" + (OPS_TEMPLATES if SHOW_OPS_TEMPLATES else "") + ("""
         <li><strong>AI readiness checklist</strong><span>Twelve quick statements to see whether one job is ready to hand to AI, with your score and an action plan.</span><a class="dl" href="/ai-readiness/">Get my score<small>Online, about three minutes</small></a></li>""" if SHOW_READINESS else "") + """
       </ul>
     </div>""",
