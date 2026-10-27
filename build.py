@@ -51,7 +51,7 @@ LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusabl
 TODAY = datetime.date.today().isoformat()
 
 CSS = (ROOT / "src/styles.css").read_text(encoding="utf-8")
-EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8")
+EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8") + (ROOT / "src/cnc-mark.svg.html").read_text(encoding="utf-8")
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900'
@@ -61,11 +61,8 @@ EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusab
           '<span>EMS <b>Directory</b></span></span>')
 DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span></span>'
 # CNC Directory wordmark: its cube mark (Other directories/CNC/brand/cnc_cube_only_black.svg) and CNC blue
-CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" viewBox="749.39 291.56 421.22 476.88" aria-hidden="true" focusable="false"><g fill="currentColor">'
-          '<polygon points="1146.3 540.25 1170.55 526.25 1170.61 526.22 1170.61 441.95 976.38 554.09 976.38 778.36 1025.05 750.27 1025.1 750.23 1122.05 694.26 1122.1 694.23 1146.3 680.26 1170.55 666.26 1170.61 666.23 1170.61 581.97 1146.19 596.06 1121.94 610.06 1121.88 610.1 1121.88 638.1 1049.18 680.07 1025.1 693.97 1025.1 582.22 1049.3 568.25 1121.88 526.35 1121.88 554.35 1146.3 540.25"/>'
-          '<polygon points="1081.37 371.6 1081.35 371.59 1081.29 371.59 1032.59 399.7 1056.84 413.7 1008.51 441.61 984.26 455.61 960.07 469.58 863.29 413.7 887.37 399.8 911.62 385.8 960.07 357.83 984.32 371.83 1033.04 343.7 960.07 301.56 765.84 413.7 960.07 525.84 1154.29 413.7 1081.37 371.6"/>'
-          '<polygon points="894.94 693.11 879.04 628.85 870.98 596.29 870.98 596.21 846.7 498.11 846.69 498.06 749.39 441.89 749.39 666.21 798.21 694.39 798.21 527.21 822.17 624.04 822.17 624.11 846.44 722.22 846.45 722.26 943.75 778.44 943.75 554.12 894.94 525.94 894.94 693.11"/>'
-          '</g></svg><span>CNC <b>Directory</b></span></span>')
+CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#cnc-mark"/></svg>'
+          '<span>CNC <b>Directory</b></span></span>')
 CNC = "https://cncdirectory.co.uk/"
 # CNC Directory is switched off until launch (target Thu 26 Nov 2026): no link until then. Set True on launch day.
 CNC_LIVE = False
