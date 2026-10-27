@@ -90,7 +90,7 @@ PAGES = [
     <div class="hero">
       <div class="wrap">
         <h1><span class="nowrap">Cutting-edge</span> solutions for <em>contract manufacturing.</em></h1>
-        <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on over thirty years in engineering, sales and operations across OEMs, Tier 1s and EMS companies.</p>
+        <p class="lead lead-big">Sourcing, software and support for contract manufacturing, built on 30+ years in engineering, sales and operations across OEMs, Tier 1s and EMS companies.</p>
       </div>
     </div>
     <div class="wrap products">
@@ -225,7 +225,7 @@ PAGES = [
         <span class="kind">Consultancy</span>
         <div class="brandmark" role="img" aria-label="Grindstone">""" + GS_WM + """</div>
         <h1 class="intro">Contract manufacturing consultancy, remotely or on your shop floor.</h1>
-        <p class="body">Over thirty years in engineering and manufacturing: building and leading teams, running production and quality, and
+        <p class="body">30+ years in engineering and manufacturing: building and leading teams, running production and quality, and
           representing companies to OEMs around the world. We help contract manufacturers win the right work, get new products
           through customer approval and fix quality problems for good. We help OEMs get the best from their suppliers. And we help
           both put AI to practical use. Every job has a fixed price, agreed before we start.</p>

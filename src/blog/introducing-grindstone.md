@@ -17,7 +17,7 @@ A grindstone is the tool that keeps every other tool sharp. That's the job we've
 
 ## Who is behind it
 
-Grindstone was founded by Colin Astbury, who has spent over thirty years in engineering and manufacturing, from the Royal Navy's Fleet Air Arm to 18 years at TT Electronics and operations roles across OEMs and Tier 1 suppliers. [Connect with Colin on LinkedIn](https://www.linkedin.com/in/colinastbury/).
+Grindstone was founded by Colin Astbury, who has spent 30+ years in engineering and manufacturing, from the Royal Navy's Fleet Air Arm to 18 years at TT Electronics and operations roles across OEMs and Tier 1 suppliers. [Connect with Colin on LinkedIn](https://www.linkedin.com/in/colinastbury/).
 
 ## Get in touch
 
