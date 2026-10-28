@@ -68,7 +68,7 @@
       repeating-radial-gradient(circle, var(--wheel-a) 0 2px, var(--wheel-b) 2px 9px);
     opacity: .5; }
   @media (prefers-reduced-motion: no-preference) { .wheel { animation: turn 90s linear infinite; } @keyframes turn { to { transform: rotate(360deg); } } }
-  @media (max-width: 40rem) { .wheel { opacity: .25; width: 40rem; right: -22rem; top: -4rem; } }
+  @media (max-width: 40rem) { .wheel { opacity: .5; width: 40rem; right: -18rem; top: -4rem; } }
   .eyebrow { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
   .hero h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.6rem, 7vw, 5rem); line-height: 1.03; letter-spacing: -.02em; max-width: 20ch; position: relative; }
   .hero h1 em { font-style: normal; color: var(--spark); }
@@ -340,8 +340,8 @@
   .mark-ems svg { display: block; width: 100%; height: 100%; }
   .mark-drum { top: -2rem; right: 6rem; font-family: var(--font-drum); font-weight: 900; font-size: 42rem; line-height: 1; color: var(--plus); opacity: .09; }
   @media (max-width: 40rem) {
-    .mark-ems { width: 22rem; right: -5rem; top: 9.5rem; opacity: .05; }
-    .mark-drum { font-size: 26rem; right: -6rem; top: -2rem; opacity: .07; }
+    .mark-ems { width: 22rem; right: -4rem; top: 9.5rem; opacity: .09; }
+    .mark-drum { font-size: 26rem; right: -4rem; top: 4rem; opacity: .1; }
   }
 
   .nowrap { white-space: nowrap; }
