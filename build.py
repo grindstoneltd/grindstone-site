@@ -190,7 +190,7 @@ PAGES = [
     </div>""",
     },
     *([{
-        "id": "cnc-directory", "path": "/cnc-directory/", "nav": None,
+        "id": "cnc-directory", "path": "/cnc-directory/", "nav": "CNC Directory" if CNC_LIVE else None,
         "title": "CNC Directory: compare UK CNC machining companies | Grindstone",
         "description": "Compare UK CNC machining companies on the machining they do, the materials they work with and their certification.",
         "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "CNC Directory", "url": CNC if CNC_LIVE else SITE + "/cnc-directory/",
@@ -811,7 +811,8 @@ FOOTER = """
 <footer>
   <div class="wrap">
     <nav aria-label="Our sites">
-      <a href="{EMS}">EMS Directory</a>
+      <a href="{EMS}">EMS Directory</a>""" + ("""
+      <a href="{CNC}">CNC Directory</a>""" if CNC_LIVE else "") + """
       <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
