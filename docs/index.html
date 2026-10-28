@@ -42,7 +42,7 @@
     --o-wheel: #3d464c;
     /* product brands */
     --ems-green: #419400;
-    --cnc-blue: #3a6ea5;
+    --cnc-blue: #3a6ea5; --emc-red: #b42318;
     --ems-lime: #b6df1c;
     --beat: #419400;
     --plus: #d4a017;
@@ -56,13 +56,13 @@
     :root:not([data-theme="light"]) {
       --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
       --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
-      --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
+      --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
     --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
-    --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
+    --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
   }
 
   html, body { margin: 0; }
@@ -125,9 +125,15 @@
   .ems-logo { height: 1.55em; width: calc(1.55em * 500 / 574); color: var(--fg); flex: none; }
   .wm-cnc { font-family: var(--font-ems); font-weight: 800; font-size: 1.7rem; letter-spacing: -.02em; line-height: 1.1; display: inline-flex; align-items: center; gap: .45em; }
   .wm-cnc b { color: var(--cnc-blue); font-weight: 800; }
+  .wm-emc b { color: var(--emc-red); }
   .cnc-logo { height: 1.55em; width: calc(1.55em * 500 / 574); color: var(--fg); flex: none; }
   /* four products: two by two rather than three and one */
   @media (min-width: 40rem) { .cards:has(> .card:nth-child(4)) { grid-template-columns: repeat(2, 1fr); } }
+  /* Five cards: the three directories in a row, then drumbeat+ and consultancy */
+  @media (min-width: 60rem) { .cards:has(> .card:nth-child(5)) { grid-template-columns: repeat(6, 1fr); }
+    .cards:has(> .card:nth-child(5)) > .card { grid-column: span 2; }
+    .cards:has(> .card:nth-child(5)) > .card:nth-child(n+4) { grid-column: span 3; } }
+  @media (min-width: 40rem) and (max-width: 59.99rem) { .cards:has(> .card:nth-child(5)) > .card:last-child { grid-column: 1 / -1; } }
   .wm-drum { font-family: var(--font-drum); font-weight: 900; font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.1; }
   .wm-drum .b { color: var(--beat); }
   .wm-drum .p { color: var(--plus); }
@@ -482,6 +488,16 @@
     </symbol>
   </defs>
 </svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="emc-grad" gradientUnits="userSpaceOnUse" x1="948.37" y1="184.61" x2="962.93" y2="629.55"><stop offset="0" stop-color="#e8604f"/><stop offset="1" stop-color="#7a160e"/></linearGradient>
+    <symbol id="emc-mark" viewBox="710.04 252.92 499.92 574.16">
+      <!-- EMC cube from EMS Directory/marketing/graphics/emc_cnc_logos/emc/emc_cube_only_black.svg (already drawn on the EMS cube's grid), inside the same hexagon outline as the EMS mark, in EMC signal red -->
+      <g fill="currentColor" transform="translate(0 -5)"><polygon points="749.46 666.26 773.77 680.3 798.02 694.3 798.18 694.39 798.18 526.38 822.21 540.25 822.21 708.27 870.94 736.4 870.94 568.39 894.96 582.26 894.96 750.27 943.69 778.4 943.69 554.13 749.46 441.99 749.46 666.26"/><polygon points="1170.48 526.28 1170.54 526.25 1170.54 441.99 976.37 554.09 976.31 554.13 976.31 778.4 1000.73 764.3 1000.78 764.27 1024.98 750.3 1073.48 722.3 1097.73 708.3 1097.79 708.26 1170.48 666.3 1170.54 666.26 1170.54 582 1121.87 610.1 1121.81 610.13 1121.81 638.13 1097.62 652.1 1025.03 694.01 1025.03 582.26 1097.73 540.29 1121.81 526.38 1121.81 554.38 1170.48 526.28"/><polygon points="1105.5 385.6 960 469.61 935.97 455.74 1081.47 371.73 1032.75 343.6 887.25 427.61 863.22 413.74 1008.72 329.73 960.06 301.63 960 301.6 765.77 413.74 887.19 483.84 959.94 525.84 960 525.87 1154.23 413.74 1105.5 385.6"/></g>
+      <path fill="url(#emc-grad)" d="m960,827.08c-1.73,0-3.45-.45-5-1.34l-239.96-138.54c-3.09-1.79-5-5.09-5-8.66v-277.08c0-3.57,1.91-6.87,5-8.66l239.96-138.54c3.09-1.79,6.91-1.79,10,0l239.96,138.54c3.09,1.79,5,5.09,5,8.66v277.08c0,3.57-1.91,6.87-5,8.66l-239.96,138.54c-1.55.89-3.27,1.34-5,1.34Zm-229.96-154.31l229.96,132.77,229.96-132.77v-265.54l-229.96-132.77-229.96,132.77v265.54Zm469.92,5.77h0,0Z"/>
+    </symbol>
+  </defs>
+</svg>
 
 
 <div class="top">
@@ -520,6 +536,12 @@
           <h3><a href="/cnc-directory/"><span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#cnc-mark"/></svg><span>CNC <b>Directory</b></span></span></a></h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
           <div class="card-foot"><a class="more" href="/cnc-directory/">More about CNC Directory</a><span class="soon">Coming soon</span></div>
+        </article>
+        <article class="card">
+          <span class="kind">Find an EMC test lab</span>
+          <h3><a href="/emc-directory/"><span class="wm-cnc wm-emc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#emc-mark"/></svg><span>EMC <b>Directory</b></span></span></a></h3>
+          <p>UK EMC testing and compliance companies in one place. Compare them on the standards they test to, the tests they run and their accreditations.</p>
+          <div class="card-foot"><a class="more" href="/emc-directory/">More about EMC Directory</a><span class="soon">Launching November</span></div>
         </article>
         <article class="card">
           <span class="kind">Sales and operations</span>

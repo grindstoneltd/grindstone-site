@@ -46,6 +46,7 @@ def cards():
     yield "home", card(MARK, '<span class="nowrap">Cutting-edge</span> solutions for <em>contract manufacturing.</em>', "/")
     yield "ems-directory", card(b.EMS_WM, "Find the UK EMS partner that fits the job.", "/ems-directory/")
     yield "cnc-directory", card(b.CNC_WM, "Find the UK machine shop that fits the job.", "/cnc-directory/")
+    yield "emc-directory", card(b.EMC_WM, "Find the UK EMC test lab that fits the product.", "/emc-directory/")
     yield "drumbeat", card(b.DRUM_WM + b.TM, "Your ERP keeps the books. " + b.DRUM_WM + " keeps the beat.", "/drumbeat/")
     yield "consultancy", card(MARK + '<span class="eyebrow">Consultancy</span>', "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
     yield "ai-readiness", card(MARK + '<span class="eyebrow">Free checklist</span>',

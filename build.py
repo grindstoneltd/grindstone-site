@@ -52,7 +52,7 @@ LI_ICON = ('<svg class="li-icon" viewBox="0 0 24 24" aria-hidden="true" focusabl
 TODAY = datetime.date.today().isoformat()
 
 CSS = (ROOT / "src/styles.css").read_text(encoding="utf-8")
-EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8") + (ROOT / "src/cnc-mark.svg.html").read_text(encoding="utf-8")
+EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8") + (ROOT / "src/cnc-mark.svg.html").read_text(encoding="utf-8") + (ROOT / "src/emc-mark.svg.html").read_text(encoding="utf-8")
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900'
@@ -70,6 +70,12 @@ CNC_LIVE = False
 # The /cnc-directory/ page is live from 27 Oct (Colin: "make it live"); until CNC_LIVE it shows "Coming soon"
 # instead of links to cncdirectory.co.uk
 SHOW_CNC_PAGE = True
+# EMC Directory wordmark: its cube mark (src/emc-mark.svg.html) and EMC signal red. Switch-on planned Thu 12 Nov 2026
+EMC_WM = ('<span class="wm-cnc wm-emc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#emc-mark"/></svg>'
+          '<span>EMC <b>Directory</b></span></span>')
+EMC = "https://www.emcdirectory.co.uk/"
+EMC_LIVE = False
+SHOW_EMC_PAGE = True
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -117,7 +123,13 @@ PAGES = [
           <h3>""" + ('<a href="{link:cnc-directory}">' + CNC_WM + '</a>' if SHOW_CNC_PAGE else CNC_WM) + """</h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
           <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Coming soon</span>')) + """</div>
-        </article>
+        </article>""" + ("""
+        <article class="card">
+          <span class="kind">Find an EMC test lab</span>
+          <h3><a href="{link:emc-directory}">""" + EMC_WM + """</a></h3>
+          <p>UK EMC testing and compliance companies in one place. Compare them on the standards they test to, the tests they run and their accreditations.</p>
+          <div class="card-foot"><a class="more" href="{link:emc-directory}">More about EMC Directory</a>""" + (f'<a class="ext" href="{EMC}">emcdirectory.co.uk</a>' if EMC_LIVE else '<span class="soon">Launching November</span>') + """</div>
+        </article>""" if SHOW_EMC_PAGE else "") + """
         <article class="card">
           <span class="kind">Sales and operations</span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
@@ -204,6 +216,33 @@ PAGES = [
       </div>
     </div>""",
     }] if SHOW_CNC_PAGE else []),
+    *([{
+        "id": "emc-directory", "path": "/emc-directory/", "nav": None,
+        "title": "EMC Directory: compare UK EMC test labs | Grindstone",
+        "description": "Compare UK EMC testing and compliance companies on the standards they test to, the tests they run and their accreditations.",
+        "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "EMC Directory", "url": EMC if EMC_LIVE else SITE + "/emc-directory/",
+                   "description": "Directory of UK EMC testing and compliance companies.", "publisher": ORG},
+        "body": """
+    <div class="wrap page">
+      <a class="back" href="{home}">Home</a>
+      <header class="big">
+        <span class="kind">Find an EMC test lab &middot; emcdirectory.co.uk</span>
+        <div class="brandmark" role="img" aria-label="EMC Directory">""" + EMC_WM + """</div>
+        <h1 class="intro">Find the UK EMC test lab that fits the product.</h1>
+        <p class="body">""" + ('<a href="{EMC}">EMC Directory</a>' if EMC_LIVE else 'EMC Directory') + """ lists UK EMC testing and compliance companies, from pre-compliance checks
+          to formal testing. Every listing uses the same layout, so you can compare labs like for like on the things that decide a test.</p>
+      </header>
+      <h2 class="sub-h">Why use EMC Directory</h2>
+      <ul class="points">
+        <li><strong>UK EMC labs in one place</strong><span>Testing and compliance support, without searching company by company.</span></li>
+        <li><strong>Compare like for like</strong><span>See the standards each company tests to, the tests and chambers they have, and their accreditations.</span></li>
+        <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
+      </ul>
+      <div class="cta-row">
+        """ + ('<a class="cta" href="{EMC}">Find a lab on EMC Directory</a>' if EMC_LIVE else '<span class="soon">Launching November</span>') + """
+      </div>
+    </div>""",
+    }] if SHOW_EMC_PAGE else []),
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
         "title": "drumbeat+ sales and operations software for EMS | Grindstone",
@@ -756,6 +795,7 @@ if SHOW_READINESS: PAGES.append({
 MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
     "cnc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#cnc-mark"/></svg></div>',
+    "emc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#emc-mark"/></svg></div>',
     "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">+</div>',
     "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
 }
@@ -803,7 +843,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
+            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{EMC}", EMC).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
 
 
 def fill_links(text, links):
@@ -890,6 +930,8 @@ def build_dist():
             shutil.rmtree(d)
     if not SHOW_CNC_PAGE:
         shutil.rmtree(out / "cnc-directory", ignore_errors=True)
+    if not SHOW_EMC_PAGE:
+        shutil.rmtree(out / "emc-directory", ignore_errors=True)
     if not SHOW_READINESS:
         for name in ("ai-readiness", "privacy"):
             shutil.rmtree(out / name, ignore_errors=True)
