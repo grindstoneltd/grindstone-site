@@ -66,7 +66,7 @@ CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusab
           '<span>CNC <b>Directory</b></span></span>')
 CNC = "https://www.cncdirectory.co.uk/"
 # CNC Directory is switched off until launch (by Thu 5 Nov 2026): no link until then. Set True on launch day.
-CNC_LIVE = False
+CNC_LIVE = True
 # The /cnc-directory/ page is live from 27 Oct (Colin: "make it live"); until CNC_LIVE it shows "Coming soon"
 # instead of links to cncdirectory.co.uk
 SHOW_CNC_PAGE = True
