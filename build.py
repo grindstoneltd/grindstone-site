@@ -125,9 +125,9 @@ PAGES = [
           <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching October</span>')) + """</div>
         </article>""" + ("""
         <article class="card">
-          <span class="kind">Find an EMC lab or supplier</span>
+          <span class="kind">Find an EMC test lab</span>
           <h3><a href="{link:emc-directory}">""" + EMC_WM + """</a></h3>
-          <p>UK EMC test labs, consultancies and equipment suppliers in one place. Compare them on the standards they work to, the tests they run and their accreditations.</p>
+          <p>UK EMC test labs and consultancies in one place. Compare them on the standards they test to, the tests they run and their accreditations.</p>
           <div class="card-foot"><a class="more" href="{link:emc-directory}">More about EMC Directory</a>""" + (f'<a class="ext" href="{EMC}">emcdirectory.co.uk</a>' if EMC_LIVE else '<span class="soon">Launching November</span>') + """</div>
         </article>""" if SHOW_EMC_PAGE else "") + """
         <article class="card">
@@ -218,24 +218,24 @@ PAGES = [
     }] if SHOW_CNC_PAGE else []),
     *([{
         "id": "emc-directory", "path": "/emc-directory/", "nav": None,
-        "title": "EMC Directory: compare UK EMC test labs and suppliers | Grindstone",
-        "description": "Compare UK EMC test labs, consultancies and equipment suppliers on the standards they work to, the tests they run and their accreditations.",
+        "title": "EMC Directory: compare UK EMC test labs | Grindstone",
+        "description": "Compare UK EMC test labs and consultancies on the standards they test to, the tests they run and their accreditations.",
         "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "EMC Directory", "url": EMC if EMC_LIVE else SITE + "/emc-directory/",
-                   "description": "Directory of UK EMC test labs, consultancies and equipment suppliers.", "publisher": ORG},
+                   "description": "Directory of UK EMC test labs and consultancies.", "publisher": ORG},
         "body": """
     <div class="wrap page">
       <a class="back" href="{home}">Home</a>
       <header class="big">
-        <span class="kind">Find an EMC lab or supplier &middot; emcdirectory.co.uk</span>
+        <span class="kind">Find an EMC test lab &middot; emcdirectory.co.uk</span>
         <div class="brandmark" role="img" aria-label="EMC Directory">""" + EMC_WM + """</div>
         <h1 class="intro">Find the UK EMC test lab that fits the product.</h1>
-        <p class="body">""" + ('<a href="{EMC}">EMC Directory</a>' if EMC_LIVE else 'EMC Directory') + """ lists UK EMC test labs, consultancies and equipment suppliers, from pre-compliance checks
-          to formal testing. Every listing uses the same layout, so you can compare them like for like.</p>
+        <p class="body">""" + ('<a href="{EMC}">EMC Directory</a>' if EMC_LIVE else 'EMC Directory') + """ lists UK EMC test labs and consultancies, from pre-compliance checks
+          to formal testing. Every listing uses the same layout, so you can compare labs like for like on the things that decide a test.</p>
       </header>
       <h2 class="sub-h">Why use EMC Directory</h2>
       <ul class="points">
-        <li><strong>UK EMC labs and suppliers in one place</strong><span>Testing, compliance support and test equipment, without searching company by company.</span></li>
-        <li><strong>Compare like for like</strong><span>See the standards each company works to, the tests and chambers they have, and their accreditations.</span></li>
+        <li><strong>UK EMC labs in one place</strong><span>Testing, consultancy and design support, without searching company by company.</span></li>
+        <li><strong>Compare like for like</strong><span>See the standards each company tests to, the tests and chambers they have, and their accreditations.</span></li>
         <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
       </ul>
       <div class="cta-row">
