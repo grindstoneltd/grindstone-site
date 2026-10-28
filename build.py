@@ -92,7 +92,7 @@ PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
         "title": "Grindstone | Cutting-edge solutions for contract manufacturing",
-        "description": "Grindstone runs EMS Directory and CNC Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
+        "description": "Grindstone runs EMS Directory, CNC Directory and EMC Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
@@ -113,7 +113,7 @@ PAGES = [
       <h2 class="sr">What Grindstone does</h2>
       <div class="cards">
         <article class="card">
-          <span class="kind">Find a supplier</span>
+          <span class="kind">Find an electronics manufacturer</span>
           <h3><a href="{ems_page}">""" + EMS_WM + """</a></h3>
           <p>370+ <a href="{EMS}">UK contract electronics manufacturers</a> in one place. Compare them on capability and certification, then send one RFQ to your whole shortlist.</p>
           <div class="card-foot"><a class="more" href="{ems_page}">More about EMS Directory</a><a class="ext" href="{EMS}">emsdirectory.co.uk</a></div>
@@ -122,7 +122,7 @@ PAGES = [
           <span class="kind">Find a machining supplier</span>
           <h3>""" + ('<a href="{link:cnc-directory}">' + CNC_WM + '</a>' if SHOW_CNC_PAGE else CNC_WM) + """</h3>
           <p>UK CNC machining companies in one place. Compare them on the machining they do, the materials they work with and their certification.</p>
-          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Coming soon</span>')) + """</div>
+          <div class="card-foot">""" + ('<a class="more" href="{link:cnc-directory}">More about CNC Directory</a>' + (f'<a class="ext" href="{CNC}">cncdirectory.co.uk</a>' if CNC_LIVE else '<span class="soon">Launching October</span>')) + """</div>
         </article>""" + ("""
         <article class="card">
           <span class="kind">Find an EMC lab or supplier</span>
@@ -168,7 +168,7 @@ PAGES = [
     <div class="wrap page">
       <a class="back" href="{home}">Home</a>
       <header class="big">
-        <span class="kind">Find a supplier &middot; emsdirectory.co.uk</span>
+        <span class="kind">Find an electronics manufacturer &middot; emsdirectory.co.uk</span>
         <div class="brandmark" role="img" aria-label="EMS Directory">""" + EMS_WM + """</div>
         <h1 class="intro">Find the UK EMS partner that fits the job.</h1>
         <p class="body"><a href="{EMS}">EMS Directory</a> lists 370+ UK contract electronics manufacturers, from prototype
@@ -212,7 +212,7 @@ PAGES = [
         <li><strong>From the team behind EMS Directory</strong><span>Built the same way as <a href="{EMS}">EMS Directory</a>, our directory of UK contract electronics manufacturers.</span></li>
       </ul>
       <div class="cta-row">
-        """ + ('<a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>' if CNC_LIVE else '<span class="soon">Coming soon</span>') + """
+        """ + ('<a class="cta" href="{CNC}">Find a supplier on CNC Directory</a>' if CNC_LIVE else '<span class="soon">Launching October</span>') + """
       </div>
     </div>""",
     }] if SHOW_CNC_PAGE else []),
