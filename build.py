@@ -21,6 +21,7 @@ SITE = "https://grindstone.ltd"
 EMS = "https://www.emsdirectory.co.uk/"          # canonical address of EMS Directory (apex 301s here)
 DRUM = "https://drumbeat.plus/"
 CONTACT = "enquiries@grindstone.ltd"
+MAIL = '<a href="mailto:' + CONTACT + '">' + CONTACT + '</a>'
 LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
 from urllib.parse import quote
 DEMO_BODY = "Hi,\r\n\r\nI'd like a demo of drumbeat+.\r\n\r\nName:\r\nCompany:\r\nPhone:\r\nBest time to call:\r\n"
@@ -360,7 +361,7 @@ PAGES = [
 
       <div class="contact">
         <strong>Tell us the problem. We'll say straight away if we can help.</strong>
-        <span class="addr">""" + CONTACT + """</span>
+        <a class="addr" href="mailto:""" + CONTACT + """">""" + CONTACT + """</a>
       </div>
       <a class="li li-page" href="{LINKEDIN}">""" + LI_ICON + """<span>Follow Grindstone on LinkedIn</span></a>
       <p class="crosslink">Still looking for a supplier? Compare 370+ <a href="{EMS}">UK contract electronics manufacturers</a> on EMS Directory.</p>
@@ -633,7 +634,7 @@ if SHOW_READINESS: PAGES.append({
         <p id="rc-advice"></p>
         <div class="rc-bars" id="rc-bars"></div>
         <div class="rc-plan"><h3>Your action plan</h3><p class="rc-small">Work down the list. Anything marked Not true comes first, then the Partly items.</p><ol id="rc-plan"></ol></div>
-        <p>If you'd like help choosing a first task and running the pilot, email <b>""" + CONTACT + """</b>. Our <a href="{gemba_page}">free problem-solving templates</a> are on the Consultancy page.</p>
+        <p>If you'd like help choosing a first task and running the pilot, email <b>""" + MAIL + """</b>. Our <a href="{gemba_page}">free problem-solving templates</a> are on the Consultancy page.</p>
       </section>
     </div>
     <script>
@@ -730,21 +731,21 @@ if SHOW_READINESS: PAGES.append({
       <a class="back" href="{home}">Home</a>
       <header class="big"><span class="kind">Legal</span><h1 class="intro">Privacy notice</h1></header>
       <div class="prose">
-        <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. We are registered with the Information Commissioner's Office, registration number ZC285025. Contact us at """ + CONTACT + """.</p>
+        <p><b>Who we are.</b> Grindstone Ltd (company number 17440074, registered in England and Wales, 8 Aldermans Hill, Hockley, Essex SS5 4RW) is responsible for the personal information described here. We are registered with the Information Commissioner's Office, registration number ZC285025. Contact us at """ + MAIL + """.</p>
         <h2>What we collect</h2>
         <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
         <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics, which does not use cookies or identify you.</li></ul>
         <h2>How we use it, and why</h2>
         <ul><li>To show and record your checklist result, and to reply to you if you contact us. Our lawful basis is our legitimate interest in responding to people who ask for information about our services.</li>
-        <li>To send you our articles and free tools by email, only if you ticked the box to ask for them. Our lawful basis is your consent, which you can withdraw at any time by replying to any email or writing to """ + CONTACT + """.</li></ul>
+        <li>To send you our articles and free tools by email, only if you ticked the box to ask for them. Our lawful basis is your consent, which you can withdraw at any time by replying to any email or writing to """ + MAIL + """.</li></ul>
         <p>We do not sell your information or share it with anyone for their own marketing.</p>
         <h2>Where it is kept</h2>
         <p>Checklist responses and emails are stored in our Google Workspace account. Google acts as our processor and may store data outside the UK under the safeguards required by UK data protection law.</p>
         <h2>How long we keep it</h2>
         <p>We keep checklist responses and enquiry emails for 24 months after your last contact with us, then delete them. If you withdraw consent to emails, we stop sending them straight away.</p>
         <h2>Your rights</h2>
-        <p>You can ask to see, correct or delete the information we hold about you, object to how we use it, or withdraw consent. Email """ + CONTACT + """. If you're unhappy with how we've handled your information, you can complain to the Information Commissioner's Office at ico.org.uk.</p>
+        <p>You can ask to see, correct or delete the information we hold about you, object to how we use it, or withdraw consent. Email """ + MAIL + """. If you're unhappy with how we've handled your information, you can complain to the Information Commissioner's Office at ico.org.uk.</p>
         <p class="muted">Last updated 26 October 2026.</p>
       </div>
     </div>""",
@@ -776,7 +777,7 @@ FOOTER = """
       <a href="{link:blog}">Blog</a>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""
       <a href="/privacy/">Privacy</a>""" if SHOW_READINESS else "") + """
-      <span class="foot-mail">""" + CONTACT + """</span>
+      <a class="foot-mail" href="mailto:""" + CONTACT + """">""" + CONTACT + """</a>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW &middot; ICO registration ZC285025</p>
   </div>

@@ -20,4 +20,4 @@ We've published five problem-solving templates as free PDFs. Each one has instru
 
 Use the 8D when a customer has raised a complaint or the problem needs a formal record. Use the 5 Whys or the fishbone to get to the cause, either on their own or as part of D4 of an 8D. Use the PFMEA before production starts, and keep it up to date afterwards. Use the kaizen sheet for small improvements the team can make in days.
 
-All five are on the [Consultancy page]({gemba_page}) too. If you'd like help running any of them with your team, email enquiries@grindstone.ltd.
+All five are on the [Consultancy page]({gemba_page}) too. If you'd like help running any of them with your team, email [enquiries@grindstone.ltd](mailto:enquiries@grindstone.ltd).

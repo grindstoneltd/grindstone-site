@@ -169,7 +169,7 @@
   }
   .contact { margin-top: 2.4rem; padding: 1.3rem 1.4rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
   .contact strong { font-weight: 600; }
-  .contact .addr { user-select: all; font-weight: 600; color: var(--spark); }
+  .contact .addr { font-weight: 600; color: var(--spark); }
 
   /* Eyes on the Ground page */
   .gemba { margin-top: 2.2rem; max-width: 46rem; border-left: 3px solid var(--spark); padding: .2rem 0 .2rem 1.2rem; display: grid; gap: .3rem; }
@@ -249,7 +249,7 @@
   nav .li-head { border-bottom: 0; color: var(--muted); }
   nav .li-head .li-icon { width: 1.2em; height: 1.2em; }
 
-  .foot-mail { user-select: all; color: var(--fg); padding-block: .2rem; border-bottom: 2px solid transparent; }
+  .foot-mail { color: var(--fg); padding-block: .2rem; border-bottom: 2px solid transparent; }
 
   .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.6rem; margin-top: 2rem; }
   .cta-row .cta { margin-top: 0; }

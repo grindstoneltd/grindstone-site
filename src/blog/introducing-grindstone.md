@@ -21,4 +21,4 @@ Grindstone was founded by Colin Astbury, who has spent 30+ years in engineering 
 
 ## Get in touch
 
-Whether you're looking for a supplier, want a demo of drumbeat+ or have a problem that needs fixing, email enquiries@grindstone.ltd. You can also [follow Grindstone on LinkedIn](https://www.linkedin.com/company/grindstoneltd/) for news and new articles.
+Whether you're looking for a supplier, want a demo of drumbeat+ or have a problem that needs fixing, email [enquiries@grindstone.ltd](mailto:enquiries@grindstone.ltd). You can also [follow Grindstone on LinkedIn](https://www.linkedin.com/company/grindstoneltd/) for news and new articles.
