@@ -12,7 +12,7 @@
     --o-wheel: #3d464c;
     /* product brands */
     --ems-green: #419400;
-    --cnc-blue: #3a6ea5; --emc-red: #b42318;
+    --cnc-blue: #2f5379; --emc-red: #b42318;
     --ems-lime: #b6df1c;
     --beat: #419400;
     --plus: #d4a017;
@@ -26,13 +26,13 @@
     :root:not([data-theme="light"]) {
       --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
       --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
-      --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
+      --ems-green: #6cc11f; --cnc-blue: #8fa9cc; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
     --bg: #14181b; --surface: #1c2125; --fg: #e5e9ea; --muted: #9aa5ab; --line: #2e353a;
     --spark: #f08a3a; --spark-ink: #14181b; --wheel-a: #232a2e; --wheel-b: #1b2024; --o-wheel: #b3bcc1;
-    --ems-green: #6cc11f; --cnc-blue: #7fa9d6; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
+    --ems-green: #6cc11f; --cnc-blue: #8fa9cc; --emc-red: #ff8a7a; --beat: #6cc11f; --plus: #e8b833; color-scheme: dark;
   }
 
   html, body { margin: 0; }
