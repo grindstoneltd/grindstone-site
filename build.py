@@ -421,7 +421,7 @@ PAGES = [
 
 # ---------------------------------------------------------------- blog
 # Posts are markdown files in src/blog/ with a small front matter block (title, date, kind, order, description,
-# original). kind "Summary" = a short Grindstone take on an EMS Directory article, linking to the full piece there,
+# original, source). kind "Summary" = a short Grindstone take on an EMS Directory article (or source: CNC Directory etc.), linking to the full piece there,
 # so the two sites never carry duplicate copies. Unpublished pieces wait in src/blog-drafts/ and are not built.
 
 def md_inline(t):
@@ -495,7 +495,7 @@ POSTS = load_posts()
 BLOG_DESC = "Articles for contract manufacturers and the OEMs who buy from them: choosing suppliers, NPI, quality and sourcing."
 blog_items = "\n".join(
     f"""        <li><a href="{{link:post-{p['slug']}}}"><span class="post-meta">{nice_date(shown_date(p))}"""
-    + (" &middot; EMS Directory article, summarised" if p.get("kind") == "Summary" else " &middot; Company news" if p.get("kind") == "News" else "")
+    + (f" &middot; {p.get('source', 'EMS Directory')} article, summarised" if p.get("kind") == "Summary" else " &middot; Company news" if p.get("kind") == "News" else "")
     + f"""</span><strong>{brand_heading(html_escape(p['title']))}</strong><span>{html_escape(p['description'])}</span></a></li>"""
     for p in POSTS)
 PAGES.append({
@@ -519,7 +519,7 @@ for p in POSTS:
     src = ""
     if p.get("original"):
         src = f"""
-        <p class="post-source"><a class="cta" href="{p['original']}">Read the full article on EMS Directory</a></p>"""
+        <p class="post-source"><a class="cta" href="{p['original']}">Read the full article on {p.get('source', 'EMS Directory')}</a></p>"""
     PAGES.append({
         "id": "post-" + p["slug"], "path": f"/blog/{p['slug']}/", "nav": None, "og_type": "article",
         "title": (lambda t: t + " | Grindstone" if len(t) <= 47 else t)(p.get("seo_title", p["title"])), "description": p["description"],
@@ -532,7 +532,7 @@ for p in POSTS:
       <a class="back" href="{{link:blog}}">Blog</a>
       <article class="post">
         <header class="big">
-          <span class="kind">{('Summary of an EMS Directory article first published ' + nice_date(p['original_date'])) if p.get('original_date') else ('Company news &middot; ' + nice_date(p['event_date'])) if p.get('event_date') else nice_date(p['date'])}</span>
+          <span class="kind">{('Summary of an ' + p.get('source', 'EMS Directory') + ' article first published ' + nice_date(p['original_date'])) if p.get('original_date') else ('Company news &middot; ' + nice_date(p['event_date'])) if p.get('event_date') else nice_date(p['date'])}</span>
           <h1 class="intro">{brand_heading(html_escape(p['title']))}</h1>
         </header>
         <div class="prose">
