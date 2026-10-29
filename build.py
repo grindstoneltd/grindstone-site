@@ -31,7 +31,7 @@ LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
 LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
 # Cloudflare Web Analytics (cookie-free, so no consent banner). Paste the site token from the Cloudflare dashboard;
 # empty = no tracking script. Live site only, never the Claude preview.
-CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
+CF_BEACON_TOKEN = ""  # emptied 29 Oct 2026: Cloudflare analytics removed (Colin), GA4 and Ahrefs cover it
 # Ahrefs Web Analytics (cookie-free too), added 29 Oct 2026 at Colin's request. Empty = no script.
 AHREFS_KEY = "uoiEgduM5ZsvMzW1SkoHgg"
 # Google Analytics 4 (added 29 Oct 2026). It uses cookies, so Consent Mode starts everything as denied and the cookie bar
@@ -779,7 +779,7 @@ if SHOW_READINESS: PAGES.append({
         <h2>What we collect</h2>
         <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
-        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics and Ahrefs Web Analytics, which do not use cookies or identify you.</li>
+        <li>When you visit the site: anonymous visit statistics through Ahrefs Web Analytics, which does not use cookies or identify you.</li>
         <li>Only if you accept cookies: Google Analytics sets cookies (named _ga) to count visits and see which pages are used. They last up to 2 years. If you decline, no Google Analytics cookies are set. You can change your choice at any time with "Cookie settings" at the foot of every page.</li></ul>
         <h2>How we use it, and why</h2>
         <ul><li>To show and record your checklist result, and to reply to you if you contact us. Our lawful basis is our legitimate interest in responding to people who ask for information about our services.</li>
