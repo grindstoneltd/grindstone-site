@@ -36,7 +36,7 @@ CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
 AHREFS_KEY = "uoiEgduM5ZsvMzW1SkoHgg"
 # Google Analytics 4 (added 29 Oct 2026). It uses cookies, so Consent Mode starts everything as denied and the cookie bar
 # below asks first (Colin chose "Add with a banner"). Until Accept, Google gets cookie-free pings only. Empty = no tag, no bar.
-GA_ID = "G-Y4WE2KNC8H"
+GA_ID = "G-DBR57MWQK9"  # replaced G-Y4WE2KNC8H on 29 Oct 2026 (Colin)
 # Answers go to a Google Sheet through an Apps Script web app (Grindstone/marketing/readiness-checklist/).
 # Empty READINESS_URL = the form still works and shows the result, but nothing is stored.
 READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1bLvCflY-6dSighM5RbXp7ci5wateCmbeYwR23qIQAf3Qzg/exec"
