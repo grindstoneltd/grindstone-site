@@ -79,7 +79,7 @@ SHOW_CNC_PAGE = True
 EMC_WM = ('<span class="wm-cnc wm-emc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#emc-mark"/></svg>'
           '<span>EMC <b>Directory</b></span></span>')
 EMC = "https://www.emcdirectory.co.uk/"
-EMC_LIVE = False
+EMC_LIVE = True  # live 29 Oct 2026 (Colin: "EMC is live")
 SHOW_EMC_PAGE = True
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
@@ -104,6 +104,8 @@ PAGES = [
                    "address": {"@type": "PostalAddress", "streetAddress": "8 Aldermans Hill", "addressLocality": "Hockley",
                                "addressRegion": "Essex", "postalCode": "SS5 4RW", "addressCountry": "GB"},
                    "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS, "sameAs": [LI_EMS]},
+                             {"@type": "Brand", "name": "CNC Directory", "url": CNC},
+                             {"@type": "Brand", "name": "EMC Directory", "url": EMC},
                              {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
         "body": """
     <div class="home">
@@ -222,7 +224,7 @@ PAGES = [
     </div>""",
     }] if SHOW_CNC_PAGE else []),
     *([{
-        "id": "emc-directory", "path": "/emc-directory/", "nav": None,
+        "id": "emc-directory", "path": "/emc-directory/", "nav": "EMC Directory" if EMC_LIVE else None,
         "title": "EMC Directory: compare UK EMC test labs | Grindstone",
         "description": "Compare UK EMC test labs and consultancies on the standards they test to, the tests they run and their accreditations.",
         "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "EMC Directory", "url": EMC if EMC_LIVE else SITE + "/emc-directory/",
@@ -819,7 +821,8 @@ FOOTER = """
   <div class="wrap">
     <nav aria-label="Our sites">
       <a href="{EMS}">EMS Directory</a>""" + ("""
-      <a href="{CNC}">CNC Directory</a>""" if CNC_LIVE else "") + """
+      <a href="{CNC}">CNC Directory</a>""" if CNC_LIVE else "") + ("""
+      <a href="{EMC}">EMC Directory</a>""" if EMC_LIVE else "") + """
       <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
