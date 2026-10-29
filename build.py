@@ -32,6 +32,8 @@ LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
 # Cloudflare Web Analytics (cookie-free, so no consent banner). Paste the site token from the Cloudflare dashboard;
 # empty = no tracking script. Live site only, never the Claude preview.
 CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
+# Ahrefs Web Analytics (cookie-free too), added 29 Oct 2026 at Colin's request. Empty = no script.
+AHREFS_KEY = "uoiEgduM5ZsvMzW1SkoHgg"
 # Answers go to a Google Sheet through an Apps Script web app (Grindstone/marketing/readiness-checklist/).
 # Empty READINESS_URL = the form still works and shows the result, but nothing is stored.
 READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1bLvCflY-6dSighM5RbXp7ci5wateCmbeYwR23qIQAf3Qzg/exec"
@@ -774,7 +776,7 @@ if SHOW_READINESS: PAGES.append({
         <h2>What we collect</h2>
         <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
-        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics, which does not use cookies or identify you.</li></ul>
+        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics and Ahrefs Web Analytics, which do not use cookies or identify you.</li></ul>
         <h2>How we use it, and why</h2>
         <ul><li>To show and record your checklist result, and to reply to you if you contact us. Our lawful basis is our legitimate interest in responding to people who ask for information about our services.</li>
         <li>To send you our articles and free tools by email, only if you ticked the box to ask for them. Our lawful basis is your consent, which you can withdraw at any time by replying to any email or writing to """ + MAIL + """.</li></ul>
@@ -785,7 +787,7 @@ if SHOW_READINESS: PAGES.append({
         <p>We keep checklist responses and enquiry emails for 24 months after your last contact with us, then delete them. If you withdraw consent to emails, we stop sending them straight away.</p>
         <h2>Your rights</h2>
         <p>You can ask to see, correct or delete the information we hold about you, object to how we use it, or withdraw consent. Email """ + MAIL + """. If you're unhappy with how we've handled your information, you can complain to the Information Commissioner's Office at ico.org.uk.</p>
-        <p class="muted">Last updated 26 October 2026.</p>
+        <p class="muted">Last updated 29 October 2026.</p>
       </div>
     </div>""",
 })
@@ -861,6 +863,8 @@ def build_dist():
     global CF_BEACON
     CF_BEACON = ("<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
                  f"data-cf-beacon='{{\"token\": \"{CF_BEACON_TOKEN}\"}}'></script>") if CF_BEACON_TOKEN else ""
+    if AHREFS_KEY:
+        CF_BEACON += f'\n<script src="https://analytics.ahrefs.com/analytics.js" data-key="{AHREFS_KEY}" async></script>'
     links = {p["id"]: p["path"] for p in PAGES}
     out = ROOT / "docs"
     for p in PAGES:
