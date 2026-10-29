@@ -34,6 +34,9 @@ LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
 CF_BEACON_TOKEN = "a5c66aa1f32649e99122b57591ff7131"
 # Ahrefs Web Analytics (cookie-free too), added 29 Oct 2026 at Colin's request. Empty = no script.
 AHREFS_KEY = "uoiEgduM5ZsvMzW1SkoHgg"
+# Google Analytics 4 (added 29 Oct 2026). It uses cookies, so Consent Mode starts everything as denied and the cookie bar
+# below asks first (Colin chose "Add with a banner"). Until Accept, Google gets cookie-free pings only. Empty = no tag, no bar.
+GA_ID = "G-Y4WE2KNC8H"
 # Answers go to a Google Sheet through an Apps Script web app (Grindstone/marketing/readiness-checklist/).
 # Empty READINESS_URL = the form still works and shows the result, but nothing is stored.
 READINESS_URL = "https://script.google.com/macros/s/AKfycbx5I1WfB0XPxjau-cv0nwY1bLvCflY-6dSighM5RbXp7ci5wateCmbeYwR23qIQAf3Qzg/exec"
@@ -776,13 +779,15 @@ if SHOW_READINESS: PAGES.append({
         <h2>What we collect</h2>
         <ul><li>When you complete the AI readiness checklist: your email address, your name, company and role if you give them, your phone number if you ask us to call you, with your answers, any details you add, what you tell us about your business, whether you asked for a call, and your score.</li>
         <li>When you email us: your name, email address and anything you include in your message.</li>
-        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics and Ahrefs Web Analytics, which do not use cookies or identify you.</li></ul>
+        <li>When you visit the site: anonymous visit statistics through Cloudflare Web Analytics and Ahrefs Web Analytics, which do not use cookies or identify you.</li>
+        <li>Only if you accept cookies: Google Analytics sets cookies (named _ga) to count visits and see which pages are used. They last up to 2 years. If you decline, no Google Analytics cookies are set. You can change your choice at any time with "Cookie settings" at the foot of every page.</li></ul>
         <h2>How we use it, and why</h2>
         <ul><li>To show and record your checklist result, and to reply to you if you contact us. Our lawful basis is our legitimate interest in responding to people who ask for information about our services.</li>
+        <li>To understand which pages are useful, through Google Analytics, only if you accept cookies. Our lawful basis is your consent.</li>
         <li>To send you our articles and free tools by email, only if you ticked the box to ask for them. Our lawful basis is your consent, which you can withdraw at any time by replying to any email or writing to """ + MAIL + """.</li></ul>
         <p>We do not sell your information or share it with anyone for their own marketing.</p>
         <h2>Where it is kept</h2>
-        <p>Checklist responses and emails are stored in our Google Workspace account. Google acts as our processor and may store data outside the UK under the safeguards required by UK data protection law.</p>
+        <p>Checklist responses and emails are stored in our Google Workspace account. Google Analytics data is held by Google. Google acts as our processor and may store data outside the UK under the safeguards required by UK data protection law.</p>
         <h2>How long we keep it</h2>
         <p>We keep checklist responses and enquiry emails for 24 months after your last contact with us, then delete them. If you withdraw consent to emails, we stop sending them straight away.</p>
         <h2>Your rights</h2>
@@ -820,11 +825,25 @@ FOOTER = """
       <a href="{link:blog}">Blog</a>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""
       <a href="/privacy/">Privacy</a>""" if SHOW_READINESS else "") + """
+      """ + ('<button type="button" class="cookie-link" data-cookie-settings>Cookie settings</button>' if GA_ID else "") + """
       <a class="foot-mail" href="mailto:""" + CONTACT + """">""" + CONTACT + """</a>
     </nav>
     <p class="legal">Grindstone Ltd &middot; Registered in England and Wales, company no. 17440074 &middot; Registered office: 8 Aldermans Hill, Hockley, Essex SS5 4RW &middot; ICO registration ZC285025</p>
   </div>
 </footer>"""
+
+
+# Cookie bar for Google Analytics: shown until the visitor chooses; "Cookie settings" in the footer reopens it
+COOKIE_BAR = """<div class="cookie-bar" role="region" aria-label="Cookies" hidden>
+  <p>We'd like to use Google Analytics cookies to see how people use this site. They're off unless you accept. <a href="/privacy/">Privacy notice</a></p>
+  <div class="cookie-btns"><button type="button" data-cookie="no">Decline</button><button type="button" class="yes" data-cookie="yes">Accept</button></div>
+</div>
+<script>(function(){var bar=document.querySelector('.cookie-bar');if(!bar)return;var v=null;try{v=localStorage.getItem('gs-cookies');}catch(e){}
+if(v!=='yes'&&v!=='no')bar.hidden=false;
+function set(c){try{localStorage.setItem('gs-cookies',c);}catch(e){}if(window.gtag)gtag('consent','update',{analytics_storage:c==='yes'?'granted':'denied'});
+if(c==='no'){document.cookie.split(';').forEach(function(k){k=k.split('=')[0].trim();if(k.indexOf('_ga')===0)['',location.hostname,'.'+location.hostname.replace(/^www\\./,'')].forEach(function(d){document.cookie=k+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/'+(d?';domain='+d:'');});});}bar.hidden=true;}
+bar.addEventListener('click',function(e){var b=e.target.closest('[data-cookie]');if(b)set(b.getAttribute('data-cookie'));});
+document.addEventListener('click',function(e){if(e.target.closest('[data-cookie-settings]'))bar.hidden=false;});})();</script>""" if GA_ID else ""
 
 
 def header(links, current):
@@ -865,6 +884,13 @@ def build_dist():
                  f"data-cf-beacon='{{\"token\": \"{CF_BEACON_TOKEN}\"}}'></script>") if CF_BEACON_TOKEN else ""
     if AHREFS_KEY:
         CF_BEACON += f'\n<script src="https://analytics.ahrefs.com/analytics.js" data-key="{AHREFS_KEY}" async></script>'
+    if GA_ID:
+        CF_BEACON += (
+            "\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}"
+            "var gsc=null;try{gsc=localStorage.getItem('gs-cookies');}catch(e){}"
+            "gtag('consent','default',{analytics_storage:gsc==='yes'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});"
+            f"gtag('js',new Date());gtag('config','{GA_ID}');</script>"
+            f'\n<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>')
     links = {p["id"]: p["path"] for p in PAGES}
     out = ROOT / "docs"
     for p in PAGES:
@@ -911,6 +937,7 @@ def build_dist():
 {page_body(p, links)}
 </main>
 {fill_links(fill(FOOTER, links), links)}
+{COOKIE_BAR}
 </body>
 </html>
 """

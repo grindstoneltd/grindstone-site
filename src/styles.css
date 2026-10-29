@@ -434,3 +434,14 @@
   .tool-band p { color: #c9d0d3; max-width: 46rem; margin: 0; }
   .tool-band .cta { margin-top: 0; background: var(--spark); color: #fff; white-space: nowrap; justify-self: start; }
   .tool-band .cta:hover { background: #fff; color: #1b2125; }
+
+  /* cookie bar (Google Analytics consent) and its footer link */
+  .cookie-bar { position: fixed; z-index: 50; left: 1rem; right: 1rem; bottom: 1rem; max-width: 46rem; margin-inline: auto; display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem;
+    padding: .9rem 1.1rem; border-radius: 10px; background: var(--fg); color: var(--bg); box-shadow: 0 8px 28px rgb(0 0 0 / .25); font-size: .92rem; line-height: 1.45; }
+  .cookie-bar[hidden] { display: none; }
+  .cookie-bar p { margin: 0; flex: 1 1 18rem; }
+  .cookie-bar a { color: inherit; text-decoration-color: var(--spark); text-underline-offset: 3px; }
+  .cookie-btns { display: flex; gap: .5rem; }
+  .cookie-bar button { font: inherit; font-weight: 600; padding: .5rem 1rem; border-radius: 8px; border: 1px solid currentColor; background: transparent; color: inherit; cursor: pointer; }
+  .cookie-bar button.yes { background: var(--spark); border-color: var(--spark); color: var(--spark-ink); }
+  .cookie-link { font: inherit; color: var(--fg); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--fg) 45%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
