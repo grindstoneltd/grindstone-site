@@ -12,7 +12,9 @@ import datetime
 import json
 import shutil
 import os
+import hashlib
 import re
+import subprocess
 from html import escape as html_escape
 import pathlib
 
@@ -881,6 +883,27 @@ def jsonld(obj):
 
 # ---------------------------------------------------------------- real site (dist/)
 
+def page_dates(bodies):
+    """Sitemap lastmod: the date a page's content last changed, not the build date. src/lastmod.json remembers a hash of
+    each page's main content; a changed hash means today, a new post starts on its published date."""
+    file = ROOT / "src/lastmod.json"
+    stored = json.loads(file.read_text(encoding="utf-8")) if file.exists() else {}
+    seen = {}
+    for p in PAGES:
+        path, h = p["path"], hashlib.sha256(bodies[p["path"]].encode("utf-8")).hexdigest()[:16]
+        old = stored.get(path)
+        seen[path] = {"hash": h, "date": old["date"] if old and old["hash"] == h else TODAY if old else p.get("published") or TODAY}
+    if not (os.environ.get("PREVIEW_DRAFT") or os.environ.get("PREVIEW_READINESS")):   # preview builds never touch the record
+        file.write_text(json.dumps(seen, indent=1) + "\n", encoding="utf-8")
+    return {path: v["date"] for path, v in seen.items()}
+
+
+def file_date(f):
+    """A download's last commit date (survives a fresh clone, unlike the file's modified time); today if not committed yet."""
+    r = subprocess.run(["git", "log", "-1", "--format=%ad", "--date=short", "--", str(f)], cwd=ROOT, capture_output=True, text=True)
+    return r.stdout.strip() or TODAY
+
+
 def build_dist():
     global CF_BEACON
     CF_BEACON = ("<script type=\"module\" src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
@@ -896,9 +919,11 @@ def build_dist():
             f'\n<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>')
     links = {p["id"]: p["path"] for p in PAGES}
     out = ROOT / "docs"
+    bodies = {}
     for p in PAGES:
         url = SITE + p["path"]
         og_img = f"{SITE}/og/{p['id']}.png" if (ROOT / "src/og" / f"{p['id']}.png").exists() else f"{SITE}/og-image.png"
+        body = page_body(p, links)
         art = f'\n<meta property="article:published_time" content="{p["published"]}">' if p.get("published") else ""
         html = f"""<!doctype html>
 <html lang="en-GB">
@@ -937,19 +962,21 @@ def build_dist():
 {EMS_SYMBOL}
 {header(links, p['id'])}
 <main>
-{page_body(p, links)}
+{body}
 </main>
 {fill_links(fill(FOOTER, links), links)}
 {COOKIE_BAR}
 </body>
 </html>
 """
+        bodies[p["path"]] = body
         target = out / p["path"].strip("/") / "index.html" if p["path"] != "/" else out / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(html, encoding="utf-8")
-    urls = "\n".join(f"  <url><loc>{SITE}{p['path']}</loc><lastmod>{TODAY}</lastmod></url>" for p in PAGES)
+    dates = page_dates(bodies)
+    urls = "\n".join(f"  <url><loc>{SITE}{p['path']}</loc><lastmod>{dates[p['path']]}</lastmod></url>" for p in PAGES)
     # the free templates on the Consultancy page, so Google indexes the PDFs too
-    urls += "".join(f"\n  <url><loc>{SITE}/downloads/{f.name}</loc><lastmod>{TODAY}</lastmod></url>"
+    urls += "".join(f"\n  <url><loc>{SITE}/downloads/{f.name}</loc><lastmod>{file_date(f)}</lastmod></url>"
                     for f in sorted((ROOT / "src/downloads").glob("*.pdf")))
     (out / "sitemap.xml").write_text(
         f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n',
