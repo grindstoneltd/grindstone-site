@@ -1,7 +1,7 @@
 ---
 title: Gemba, Kaizen, 5S, Kanban, Poka-Yoke: Which Lean Tool for Which Problem?
 seo_title: Gemba, Kaizen, 5S, Kanban and Poka-Yoke Explained
-date: 2026-11-13
+date: 2026-11-16
 kind: Article
 description: Gemba, kaizen, 5S, kanban and poka-yoke each do a different job. What each one is for, when to use it, and electronics manufacturing examples.
 ---

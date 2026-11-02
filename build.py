@@ -49,7 +49,7 @@ SHOW_HOME_TOOL = SHOW_READINESS
 
 # Escalation matrix, training matrix and critical spares templates: cards go live with the escalation matrix post
 # (Wed 4 Nov 2026). The PDFs wait in Grindstone/marketing/escalation-matrix/ until the publish run copies them into src/downloads/.
-SHOW_OPS_TEMPLATES = datetime.date.today().isoformat() >= "2026-11-04"
+SHOW_OPS_TEMPLATES = datetime.date.today().isoformat() >= "2026-11-02"
 OPS_TEMPLATES = """
         <li><strong>Escalation matrix</strong><span>Who hears about a problem, and how fast: three tiers, measurable thresholds, the team's own decisions and a call list.</span><a class="dl" href="/downloads/grindstone-escalation-matrix-template.pdf" download>Download PDF<small>4 pages, 470 KB</small></a></li>
         <li><strong>Training matrix</strong><span>Who can do what, to what level, and where one absence would leave a machine or test without cover.</span><a class="dl" href="/downloads/grindstone-training-matrix-template.pdf" download>Download PDF<small>3 pages, 26 people, 660 KB</small></a></li>

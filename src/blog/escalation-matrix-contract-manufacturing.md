@@ -1,7 +1,7 @@
 ---
 title: The Escalation Matrix: Who Hears About a Problem, and How Fast
 seo_title: Escalation Matrix for Contract Manufacturers
-date: 2026-11-04
+date: 2026-11-02
 kind: Article
 description: A one-page escalation matrix for contract manufacturers: what gets a call at 2am, what can wait until today, what needs a warning in advance, and when the customer hears.
 ---

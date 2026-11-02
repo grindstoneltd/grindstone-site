@@ -20,12 +20,16 @@
   "date": "2026-10-21"
  },
  "/consultancy/": {
-  "hash": "669e291ea40401d1",
-  "date": "2026-10-28"
+  "hash": "3c0c12431d977380",
+  "date": "2026-11-02"
  },
  "/blog/": {
-  "hash": "43a76649f8052281",
-  "date": "2026-10-30"
+  "hash": "6592a9dba7c4fe51",
+  "date": "2026-11-02"
+ },
+ "/blog/escalation-matrix-contract-manufacturing/": {
+  "hash": "74a7c86e6704a876",
+  "date": "2026-11-02"
  },
  "/blog/dfmea-pfmea-control-plan/": {
   "hash": "cac0352f8a9b30a7",
