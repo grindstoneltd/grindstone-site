@@ -83,6 +83,14 @@ EMC_WM = ('<span class="wm-cnc wm-emc"><svg class="cnc-logo" aria-hidden="true" 
 EMC = "https://www.emcdirectory.co.uk/"
 EMC_LIVE = True  # live 29 Oct 2026 (Colin: "EMC is live")
 SHOW_EMC_PAGE = True
+# PCB, 3DP and ESS Directory: live on our own app from 5 Nov 2026 (Colin, via Stella: "links to all the directories").
+# No logos yet, so text wordmarks in each brand's dark colour (Stella/brand-family-colours.md); add marks when the logos land.
+PCB = "https://www.pcbdirectory.co.uk/"
+DDP = "https://www.3dpdirectory.co.uk/"
+ESS = "https://www.essdirectory.co.uk/"
+PCB_WM = '<span class="wm-cnc wm-pcb"><span>PCB <b>Directory</b></span></span>'
+DDP_WM = '<span class="wm-cnc wm-3dp"><span>3DP <b>Directory</b></span></span>'
+ESS_WM = '<span class="wm-cnc wm-ess"><span>ESS <b>Directory</b></span></span>'
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -99,7 +107,7 @@ PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
         "title": "Grindstone | Cutting-edge solutions for contract manufacturing",
-        "description": "Grindstone runs EMS Directory, CNC Directory and EMC Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
+        "description": "Grindstone runs EMS, CNC, EMC, PCB, 3DP and ESS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
@@ -108,6 +116,9 @@ PAGES = [
                    "brand": [{"@type": "Brand", "name": "EMS Directory", "url": EMS, "sameAs": [LI_EMS]},
                              {"@type": "Brand", "name": "CNC Directory", "url": CNC},
                              {"@type": "Brand", "name": "EMC Directory", "url": EMC},
+                             {"@type": "Brand", "name": "PCB Directory", "url": PCB},
+                             {"@type": "Brand", "name": "3DP Directory", "url": DDP},
+                             {"@type": "Brand", "name": "ESS Directory", "url": ESS},
                              {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
         "body": """
     <div class="home">
@@ -139,6 +150,24 @@ PAGES = [
           <p>UK EMC test labs and consultancies in one place. Compare them on the standards they test to, the tests they run and their accreditations.</p>
           <div class="card-foot"><a class="more" href="{link:emc-directory}">More about EMC Directory</a>""" + (f'<a class="ext" href="{EMC}">emcdirectory.co.uk</a>' if EMC_LIVE else '<span class="soon">Launching November</span>') + """</div>
         </article>""" if SHOW_EMC_PAGE else "") + """
+        <article class="card">
+          <span class="kind">Find a PCB manufacturer</span>
+          <h3><a href="{PCB}">""" + PCB_WM + """</a></h3>
+          <p>UK bare-board PCB manufacturers in one place. Compare them on board type, volume and certification, from fast-turn prototypes to production runs.</p>
+          <div class="card-foot"><a class="ext" href="{PCB}">pcbdirectory.co.uk</a></div>
+        </article>
+        <article class="card">
+          <span class="kind">Find a 3D printing service</span>
+          <h3><a href="{DDP}">""" + DDP_WM + """</a></h3>
+          <p>UK 3D printing and additive manufacturing companies in one place. Compare them on process, material and certification, from rapid prototypes to production parts.</p>
+          <div class="card-foot"><a class="ext" href="{DDP}">3dpdirectory.co.uk</a></div>
+        </article>
+        <article class="card">
+          <span class="kind">Find an environmental test lab</span>
+          <h3><a href="{ESS}">""" + ESS_WM + """</a></h3>
+          <p>UK environmental test labs in one place, from climatic and vibration testing to IP, salt spray, sand and dust. Compare them on test, standard and accreditation.</p>
+          <div class="card-foot"><a class="ext" href="{ESS}">essdirectory.co.uk</a></div>
+        </article>
         <article class="card">
           <span class="kind">Sales and operations</span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
@@ -825,6 +854,9 @@ FOOTER = """
       <a href="{EMS}">EMS Directory</a>""" + ("""
       <a href="{CNC}">CNC Directory</a>""" if CNC_LIVE else "") + ("""
       <a href="{EMC}">EMC Directory</a>""" if EMC_LIVE else "") + """
+      <a href="{PCB}">PCB Directory</a>
+      <a href="{DDP}">3DP Directory</a>
+      <a href="{ESS}">ESS Directory</a>
       <a href="{drum_page}">drumbeat+</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
@@ -870,7 +902,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{EMC}", EMC).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
+            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{EMC}", EMC).replace("{PCB}", PCB).replace("{DDP}", DDP).replace("{ESS}", ESS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
 
 
 def fill_links(text, links):
