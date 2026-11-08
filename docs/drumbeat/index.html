@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Drumbeat sales and operations software for EMS | Grindstone</title>
-<meta name="description" content="Drumbeat is sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.">
+<title>Drumbeat: sales and operations software for contract manufacturing | Grindstone</title>
+<meta name="description" content="Drumbeat keeps sales and operations in sync at contract manufacturers, from enquiry to delivery, beside the ERP you already have.">
 <link rel="canonical" href="https://grindstone.ltd/drumbeat/">
 <meta property="og:type" content="website">
 <link rel="alternate" type="application/rss+xml" title="Grindstone blog" href="https://grindstone.ltd/blog/feed.xml">
 <meta property="og:site_name" content="Grindstone Ltd">
-<meta property="og:title" content="Drumbeat sales and operations software for EMS | Grindstone">
-<meta property="og:description" content="Drumbeat is sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.">
+<meta property="og:title" content="Drumbeat: sales and operations software for contract manufacturing | Grindstone">
+<meta property="og:description" content="Drumbeat keeps sales and operations in sync at contract manufacturers, from enquiry to delivery, beside the ERP you already have.">
 <meta property="og:url" content="https://grindstone.ltd/drumbeat/">
 <meta property="og:locale" content="en_GB">
 <meta property="og:image" content="https://grindstone.ltd/og/drumbeat.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Drumbeat sales and operations software for EMS | Grindstone">
+<meta property="og:image:alt" content="Drumbeat: sales and operations software for contract manufacturing | Grindstone">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Drumbeat sales and operations software for EMS | Grindstone">
-<meta name="twitter:description" content="Drumbeat is sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.">
+<meta name="twitter:title" content="Drumbeat: sales and operations software for contract manufacturing | Grindstone">
+<meta name="twitter:description" content="Drumbeat keeps sales and operations in sync at contract manufacturers, from enquiry to delivery, beside the ERP you already have.">
 <meta name="twitter:image" content="https://grindstone.ltd/og/drumbeat.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -143,10 +143,15 @@
   .wm-service { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.85rem; letter-spacing: .02em; line-height: 1; }
   .wm-service span { color: var(--spark); }
   /* Drumbeat lockup on its page: sound-wave mark, wordmark, then the strapline behind a mustard bar (as on drumbeat-site) */
-  .drum-lockup { display: flex; flex-wrap: wrap; align-items: center; gap: .2em .25em; }
+  .drum-lockup { display: flex; flex-wrap: nowrap; align-items: center; gap: .25em; width: max-content; max-width: none; }
   .drum-lockup .mk { width: clamp(2.6rem, 7.5vw, 3.9rem); height: auto; aspect-ratio: 1; flex: none; }
-  .drum-lockup .dstrap { font: 600 clamp(1rem, 2.4vw, 1.25rem)/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding-left: .85rem; margin-left: .6rem; white-space: nowrap; }
-  @media (max-width: 40rem) { .drum-lockup .dstrap { flex-basis: 100%; margin-left: 0; margin-top: .5rem; } }
+  /* strapline beside the logo behind a mustard bar, as on the drumbeat site and LinkedIn banner; under it on phones */
+  .drum-lockup .dstrap { font: 600 clamp(1rem, 2.4vw, 1.25rem)/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .2rem 0 .2rem .85rem; margin-left: .9rem; white-space: nowrap; }
+  @media (max-width: 52rem) { .drum-lockup { flex-wrap: wrap; width: auto; } .drum-lockup .dstrap { flex-basis: 100%; margin-left: 0; margin-top: .5rem; } }
+  .card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem .9rem; }
+  .card h3 .drum-card { display: inline-flex; align-items: center; gap: .3em; }
+  .card .card-strap { display: block; font: 600 .95rem/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .15rem 0 .15rem .7rem; white-space: nowrap; }
+  .card h3 .drum-card .mk { width: 1.9rem; height: 1.9rem; flex: none; }
   .big .wm-ems, .big .wm-drum { font-size: clamp(2.4rem, 7vw, 3.6rem); }
   .big .wm-service { font-size: clamp(2.8rem, 9vw, 5rem); }
 
@@ -486,7 +491,7 @@
   .cookie-link { font: inherit; color: var(--fg); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--fg) 45%, transparent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
 
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Drumbeat", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"], "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.", "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Drumbeat", "url": "https://grindstone.ltd/drumbeat/", "sameAs": ["https://www.linkedin.com/company/drumbeatplus/"], "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "description": "Sales and operations software for contract manufacturing: keeps every department in sync from enquiry to delivery, beside the ERP you already have.", "publisher": {"@type": "Organization", "name": "Grindstone Ltd", "url": "https://grindstone.ltd/", "sameAs": ["https://www.linkedin.com/company/grindstoneltd/"], "founder": {"@type": "Person", "name": "Colin Astbury", "sameAs": ["https://www.linkedin.com/in/colinastbury/"]}}}</script>
 
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="uoiEgduM5ZsvMzW1SkoHgg" async></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}var gsc=null;try{gsc=localStorage.getItem('gs-cookies');}catch(e){}gtag('consent','default',{analytics_storage:gsc==='yes'?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});gtag('js',new Date());gtag('config','G-DBR57MWQK9');</script>
@@ -542,17 +547,19 @@
     <div class="wrap page page-top">
       <a class="back" href="/">Home</a>
       <header class="big">
-        <span class="kind">Sales and operations</span>
+        <span class="kind">Sales and operations software</span>
         <div class="brandmark drum-lockup" role="img" aria-label="Drumbeat"><svg class="mk" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#419400" stroke-linecap="round"><path stroke-width="9" d="M79.78 83.07A44.5 44.5 0 0 0 79.78 16.93M20.22 16.93A44.5 44.5 0 0 0 20.22 83.07"/><path stroke-width="8" d="M67.24 72.06A28 28 0 0 0 67.24 27.94M32.76 27.94A28 28 0 0 0 32.76 72.06"/></g><circle cx="50" cy="50" r="9" fill="#d4a017"/></svg><span class="wm-drum">drum<span class="b">beat</span></span><span class="tm">&trade;</span><span class="dstrap">Synchronise sales &amp; operations.</span></div>
-        <h1 class="intro">Your ERP keeps the books. <span class="wm-drum">drum<span class="b">beat</span></span> keeps the beat.</h1>
-        <p class="body">Drumbeat&trade; is sales and operations software for contract electronics manufacturers.
-          Every job in one place, from first enquiry to despatch, so every team knows what to do next.</p>
+        <h1 class="intro">Keep every department in sync.</h1>
+        <p class="body">Your RFQ is with engineering. Or is it? The order is waiting on parts, the job is waiting on final QA,
+          and nobody can say when it will move.</p>
+        <p class="body">With Drumbeat&trade;, every job follows your own stages, someone owns each step, and the whole business
+          works to the same beat, from enquiry to delivery. Your ERP stays as it is.</p>
       </header>
     </div>
     <section class="beatband" aria-label="From enquiry to delivery">
       <div class="wrap">
         <p class="bb-eyebrow">From enquiry to delivery</p>
-        <h2 class="bb-h">Every stage, on one beat.</h2>
+        <h2 class="bb-h">Win it. Deliver it. Improve it.</h2>
         <div class="track">
           <div class="seg crm"><span class="seglab">crm</span><ol><li style="--i:0">Enquiry</li><li style="--i:1">RFQ and reviews</li><li style="--i:2">Quote</li></ol></div>
           <div class="seg ops"><span class="seglab">ops</span><ol><li style="--i:3">Order</li><li style="--i:4">Materials</li><li style="--i:5">Production</li><li style="--i:6">Quality</li><li style="--i:7">Delivery</li></ol></div>
@@ -561,17 +568,17 @@
     </section>
     <div class="wrap page page-cont">
       <ul class="points">
-        <li><strong>Built for EMS</strong><span>Follows a job the way an electronics manufacturer actually runs one.</span></li>
-        <li><strong>Beside your ERP</strong><span>Works alongside the ERP you already have, rather than replacing it.</span></li>
-        <li><strong>Right task, right time</strong><span>Everyone sees what needs doing today, so jobs keep moving without chasing.</span></li>
-        <li><strong>Your customers can see it</strong><span>A live link shows each customer where their orders are.</span></li>
+        <li><strong>Your own stages</strong><span>Every job follows the stages on your floor. Rename them to match how you work.</span></li>
+        <li><strong>An owner at every step</strong><span>When a job moves to another team, they see it straight away, with who has it and when it's due.</span></li>
+        <li><strong>Beside your ERP</strong><span>Your ERP keeps the books, stock and invoicing. <span class="wm-drum">drum<span class="b">beat</span></span> keeps every department in sync.</span></li>
+        <li><strong>Customers see their orders</strong><span>A live link shows each customer where their orders are, so they don't have to phone.</span></li>
       </ul>
-      <h2 class="sub-h">Four plans, one platform</h2>
+      <h2 class="sub-h">Four plans, each building on the last</h2>
       <ul class="plans">
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">crm</span></span><span>Win the order.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">opx</span></span><span>Improve how it runs.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">pro</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">pro</span></span><span>For AS9100, ISO 13485 and IATF 16949.</span></li>
       </ul>
       <div class="cta-row">
         <a class="cta" href="mailto:enquiries@grindstone.ltd?subject=Drumbeat%20demo%20request&amp;body=Hi%2C%0D%0A%0D%0AI%27d%20like%20a%20demo%20of%20Drumbeat.%0D%0A%0D%0AName%3A%0D%0ACompany%3A%0D%0APhone%3A%0D%0ABest%20time%20to%20call%3A%0D%0A">Request a demo</a>

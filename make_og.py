@@ -47,7 +47,7 @@ def cards():
     yield "ems-directory", card(b.EMS_WM, "Find the UK EMS partner that fits the job.", "/ems-directory/")
     yield "cnc-directory", card(b.CNC_WM, "Find the UK machine shop that fits the job.", "/cnc-directory/")
     yield "emc-directory", card(b.EMC_WM, "Find the UK EMC test lab that fits the product.", "/emc-directory/")
-    yield "drumbeat", card(b.DRUM_WM + b.TM, "Your ERP keeps the books. " + b.DRUM_WM + " keeps the beat.", "/drumbeat/")
+    yield "drumbeat", card(b.DRUM_WM + b.TM, "Keep every department in sync.", "/drumbeat/")
     yield "consultancy", card(MARK + '<span class="eyebrow">Consultancy</span>', "Contract manufacturing consultancy, remotely or on your shop floor.", "/consultancy/")
     yield "ai-readiness", card(MARK + '<span class="eyebrow">Free checklist</span>',
                                "Could AI take the admin off your team&rsquo;s <em>plate?</em>", "/ai-readiness/")

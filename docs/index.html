@@ -143,10 +143,15 @@
   .wm-service { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.85rem; letter-spacing: .02em; line-height: 1; }
   .wm-service span { color: var(--spark); }
   /* Drumbeat lockup on its page: sound-wave mark, wordmark, then the strapline behind a mustard bar (as on drumbeat-site) */
-  .drum-lockup { display: flex; flex-wrap: wrap; align-items: center; gap: .2em .25em; }
+  .drum-lockup { display: flex; flex-wrap: nowrap; align-items: center; gap: .25em; width: max-content; max-width: none; }
   .drum-lockup .mk { width: clamp(2.6rem, 7.5vw, 3.9rem); height: auto; aspect-ratio: 1; flex: none; }
-  .drum-lockup .dstrap { font: 600 clamp(1rem, 2.4vw, 1.25rem)/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding-left: .85rem; margin-left: .6rem; white-space: nowrap; }
-  @media (max-width: 40rem) { .drum-lockup .dstrap { flex-basis: 100%; margin-left: 0; margin-top: .5rem; } }
+  /* strapline beside the logo behind a mustard bar, as on the drumbeat site and LinkedIn banner; under it on phones */
+  .drum-lockup .dstrap { font: 600 clamp(1rem, 2.4vw, 1.25rem)/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .2rem 0 .2rem .85rem; margin-left: .9rem; white-space: nowrap; }
+  @media (max-width: 52rem) { .drum-lockup { flex-wrap: wrap; width: auto; } .drum-lockup .dstrap { flex-basis: 100%; margin-left: 0; margin-top: .5rem; } }
+  .card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem .9rem; }
+  .card h3 .drum-card { display: inline-flex; align-items: center; gap: .3em; }
+  .card .card-strap { display: block; font: 600 .95rem/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .15rem 0 .15rem .7rem; white-space: nowrap; }
+  .card h3 .drum-card .mk { width: 1.9rem; height: 1.9rem; flex: none; }
   .big .wm-ems, .big .wm-drum { font-size: clamp(2.4rem, 7vw, 3.6rem); }
   .big .wm-service { font-size: clamp(2.8rem, 9vw, 5rem); }
 
@@ -587,9 +592,9 @@
           <div class="card-foot"><a class="ext" href="https://www.essdirectory.co.uk/">essdirectory.co.uk</a></div>
         </article>
         <article class="card">
-          <span class="kind">Sales and operations</span>
-          <h3><a href="/drumbeat/"><span class="wm-drum">drum<span class="b">beat</span></span><span class="tm">&trade;</span></a></h3>
-          <p><a href="/drumbeat/">Sales and operations software for EMS companies</a>: quotes, orders and production in one place, beside the ERP you already have.</p>
+          <span class="kind">Sales and operations software</span>
+          <h3><a class="drum-card" href="/drumbeat/"><svg class="mk" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#419400" stroke-linecap="round"><path stroke-width="9" d="M79.78 83.07A44.5 44.5 0 0 0 79.78 16.93M20.22 16.93A44.5 44.5 0 0 0 20.22 83.07"/><path stroke-width="8" d="M67.24 72.06A28 28 0 0 0 67.24 27.94M32.76 27.94A28 28 0 0 0 32.76 72.06"/></g><circle cx="50" cy="50" r="9" fill="#d4a017"/></svg><span class="wm-drum">drum<span class="b">beat</span></span><span class="tm">&trade;</span></a><span class="card-strap">Synchronise sales &amp; operations.</span></h3>
+          <p><a href="/drumbeat/">Keep every department in sync</a>, from enquiry to delivery. Every job follows your own stages, with an owner at each step, beside the ERP you already have.</p>
           <div class="card-foot"><a class="more" href="/drumbeat/">More about Drumbeat</a></div>
         </article>
         <article class="card">

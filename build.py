@@ -175,9 +175,9 @@ PAGES = [
           <div class="card-foot"><a class="ext" href="{ESS}">essdirectory.co.uk</a></div>
         </article>
         <article class="card">
-          <span class="kind">Sales and operations</span>
-          <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
-          <p><a href="{drum_page}">Sales and operations software for EMS companies</a>: quotes, orders and production in one place, beside the ERP you already have.</p>
+          <span class="kind">Sales and operations software</span>
+          <h3><a class="drum-card" href="{drum_page}">""" + DRUM_MARK + DRUM_WM + TM + """</a><span class="card-strap">""" + DRUM_STRAP + """</span></h3>
+          <p><a href="{drum_page}">Keep every department in sync</a>, from enquiry to delivery. Every job follows your own stages, with an owner at each step, beside the ERP you already have.</p>
           <div class="card-foot"><a class="more" href="{drum_page}">More about Drumbeat</a></div>
         </article>
         <article class="card">
@@ -289,28 +289,30 @@ PAGES = [
     }] if SHOW_EMC_PAGE else []),
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "Drumbeat",
-        "title": "Drumbeat sales and operations software for EMS | Grindstone",
-        "description": "Drumbeat is sales and operations software for EMS companies: quotes, orders and production in one place, "
+        "title": "Drumbeat: sales and operations software for contract manufacturing | Grindstone",
+        "description": "Drumbeat keeps sales and operations in sync at contract manufacturers, from enquiry to delivery, "
                        "beside the ERP you already have.",
         "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Drumbeat", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
-                   "description": "Sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.",
+                   "description": "Sales and operations software for contract manufacturing: keeps every department in sync from enquiry to delivery, beside the ERP you already have.",
                    "publisher": ORG},
         "body": """
     <div class="wrap page page-top">
       <a class="back" href="{home}">Home</a>
       <header class="big">
-        <span class="kind">Sales and operations</span>
+        <span class="kind">Sales and operations software</span>
         <div class="brandmark drum-lockup" role="img" aria-label="Drumbeat">""" + DRUM_MARK + DRUM_WM + TM + """<span class="dstrap">""" + DRUM_STRAP + """</span></div>
-        <h1 class="intro">Your ERP keeps the books. """ + DRUM_WM + """ keeps the beat.</h1>
-        <p class="body">Drumbeat&trade; is sales and operations software for contract electronics manufacturers.
-          Every job in one place, from first enquiry to despatch, so every team knows what to do next.</p>
+        <h1 class="intro">Keep every department in sync.</h1>
+        <p class="body">Your RFQ is with engineering. Or is it? The order is waiting on parts, the job is waiting on final QA,
+          and nobody can say when it will move.</p>
+        <p class="body">With Drumbeat&trade;, every job follows your own stages, someone owns each step, and the whole business
+          works to the same beat, from enquiry to delivery. Your ERP stays as it is.</p>
       </header>
     </div>
     <section class="beatband" aria-label="From enquiry to delivery">
       <div class="wrap">
         <p class="bb-eyebrow">From enquiry to delivery</p>
-        <h2 class="bb-h">Every stage, on one beat.</h2>
+        <h2 class="bb-h">Win it. Deliver it. Improve it.</h2>
         <div class="track">
           <div class="seg crm"><span class="seglab">crm</span><ol><li style="--i:0">Enquiry</li><li style="--i:1">RFQ and reviews</li><li style="--i:2">Quote</li></ol></div>
           <div class="seg ops"><span class="seglab">ops</span><ol><li style="--i:3">Order</li><li style="--i:4">Materials</li><li style="--i:5">Production</li><li style="--i:6">Quality</li><li style="--i:7">Delivery</li></ol></div>
@@ -319,17 +321,17 @@ PAGES = [
     </section>
     <div class="wrap page page-cont">
       <ul class="points">
-        <li><strong>Built for EMS</strong><span>Follows a job the way an electronics manufacturer actually runs one.</span></li>
-        <li><strong>Beside your ERP</strong><span>Works alongside the ERP you already have, rather than replacing it.</span></li>
-        <li><strong>Right task, right time</strong><span>Everyone sees what needs doing today, so jobs keep moving without chasing.</span></li>
-        <li><strong>Your customers can see it</strong><span>A live link shows each customer where their orders are.</span></li>
+        <li><strong>Your own stages</strong><span>Every job follows the stages on your floor. Rename them to match how you work.</span></li>
+        <li><strong>An owner at every step</strong><span>When a job moves to another team, they see it straight away, with who has it and when it's due.</span></li>
+        <li><strong>Beside your ERP</strong><span>Your ERP keeps the books, stock and invoicing. """ + DRUM_WM + """ keeps every department in sync.</span></li>
+        <li><strong>Customers see their orders</strong><span>A live link shows each customer where their orders are, so they don't have to phone.</span></li>
       </ul>
-      <h2 class="sub-h">Four plans, one platform</h2>
+      <h2 class="sub-h">Four plans, each building on the last</h2>
       <ul class="plans">
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">crm</span></span><span>Win the order.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
         <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">opx</span></span><span>Improve how it runs.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">pro</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">pro</span></span><span>For AS9100, ISO 13485 and IATF 16949.</span></li>
       </ul>
       <div class="cta-row">
         <a class="cta" href="{DEMO}">Request a demo</a>
