@@ -26,8 +26,8 @@ CONTACT = "enquiries@grindstone.ltd"
 MAIL = '<a href="mailto:' + CONTACT + '">' + CONTACT + '</a>'
 LINKEDIN = "https://www.linkedin.com/company/grindstoneltd/"
 from urllib.parse import quote
-DEMO_BODY = "Hi,\r\n\r\nI'd like a demo of drumbeat+.\r\n\r\nName:\r\nCompany:\r\nPhone:\r\nBest time to call:\r\n"
-DEMO = "mailto:" + CONTACT + "?subject=" + quote("drumbeat+ demo request") + "&amp;body=" + quote(DEMO_BODY)
+DEMO_BODY = "Hi,\r\n\r\nI'd like a demo of Drumbeat.\r\n\r\nName:\r\nCompany:\r\nPhone:\r\nBest time to call:\r\n"
+DEMO = "mailto:" + CONTACT + "?subject=" + quote("Drumbeat demo request") + "&amp;body=" + quote(DEMO_BODY)
 LI_EMS = "https://www.linkedin.com/company/emsdirectory/"
 LI_DRUM = "https://www.linkedin.com/company/drumbeatplus/"
 LI_COLIN = "https://www.linkedin.com/in/colinastbury/"
@@ -67,7 +67,13 @@ FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
 
 EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusable="false"><use href="#ems-mark"/></svg>'
           '<span>EMS <b>Directory</b></span></span>')
-DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span></span>'
+DRUM_WM = '<span class="wm-drum">drum<span class="b">beat</span></span>'
+# Drumbeat mark: the Grindstone rings opened into sound waves, green arcs and a mustard beat (Colin, 7-8 Nov 2026; matches drumbeat-site)
+DRUM_MARK = ('<svg class="mk" viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#419400" stroke-linecap="round">'
+             '<path stroke-width="9" d="M79.78 83.07A44.5 44.5 0 0 0 79.78 16.93M20.22 16.93A44.5 44.5 0 0 0 20.22 83.07"/>'
+             '<path stroke-width="8" d="M67.24 72.06A28 28 0 0 0 67.24 27.94M32.76 27.94A28 28 0 0 0 32.76 72.06"/></g>'
+             '<circle cx="50" cy="50" r="9" fill="#d4a017"/></svg>')
+DRUM_STRAP = "Synchronise sales &amp; operations."
 # CNC Directory wordmark: its cube mark (Other directories/CNC/brand/cnc_cube_only_black.svg) and CNC blue
 CNC_WM = ('<span class="wm-cnc"><svg class="cnc-logo" aria-hidden="true" focusable="false"><use href="#cnc-mark"/></svg>'
           '<span>CNC <b>Directory</b></span></span>')
@@ -107,7 +113,7 @@ PAGES = [
     {
         "id": "home", "path": "/", "nav": "Home",
         "title": "Grindstone | Cutting-edge solutions for contract manufacturing",
-        "description": "Grindstone runs EMS, CNC, EMC, PCB, 3DP and ESS Directory, builds drumbeat+ sales and operations software, and offers hands-on consultancy for contract manufacturers.",
+        "description": "Grindstone runs EMS, CNC, EMC, PCB, 3DP and ESS Directory, builds Drumbeat sales and operations software, and offers hands-on consultancy for contract manufacturers.",
         "jsonld": {"@context": "https://schema.org", **ORG,
                    "legalName": "Grindstone Ltd",
                    "identifier": {"@type": "PropertyValue", "propertyID": "Companies House company number", "value": "17440074"},
@@ -119,7 +125,7 @@ PAGES = [
                              {"@type": "Brand", "name": "PCB Directory", "url": PCB},
                              {"@type": "Brand", "name": "3DP Directory", "url": DDP},
                              {"@type": "Brand", "name": "ESS Directory", "url": ESS},
-                             {"@type": "Brand", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
+                             {"@type": "Brand", "name": "Drumbeat", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
         "body": """
     <div class="home">
     <div class="wheel" aria-hidden="true"></div>
@@ -172,7 +178,7 @@ PAGES = [
           <span class="kind">Sales and operations</span>
           <h3><a href="{drum_page}">""" + DRUM_WM + TM + """</a></h3>
           <p><a href="{drum_page}">Sales and operations software for EMS companies</a>: quotes, orders and production in one place, beside the ERP you already have.</p>
-          <div class="card-foot"><a class="more" href="{drum_page}">More about drumbeat+</a></div>
+          <div class="card-foot"><a class="more" href="{drum_page}">More about Drumbeat</a></div>
         </article>
         <article class="card">
           <span class="kind">Consultancy</span>
@@ -282,11 +288,11 @@ PAGES = [
     </div>""",
     }] if SHOW_EMC_PAGE else []),
     {
-        "id": "drumbeat", "path": "/drumbeat/", "nav": "drumbeat+",
-        "title": "drumbeat+ sales and operations software for EMS | Grindstone",
-        "description": "drumbeat+ is sales and operations software for EMS companies: quotes, orders and production in one place, "
+        "id": "drumbeat", "path": "/drumbeat/", "nav": "Drumbeat",
+        "title": "Drumbeat sales and operations software for EMS | Grindstone",
+        "description": "Drumbeat is sales and operations software for EMS companies: quotes, orders and production in one place, "
                        "beside the ERP you already have.",
-        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "drumbeat+", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
+        "jsonld": {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Drumbeat", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM],
                    "applicationCategory": "BusinessApplication", "operatingSystem": "Web",
                    "description": "Sales and operations software for EMS companies: quotes, orders and production in one place, beside the ERP you already have.",
                    "publisher": ORG},
@@ -295,9 +301,9 @@ PAGES = [
       <a class="back" href="{home}">Home</a>
       <header class="big">
         <span class="kind">Sales and operations</span>
-        <div class="brandmark" role="img" aria-label="drumbeat+">""" + DRUM_WM + TM + """</div>
+        <div class="brandmark drum-lockup" role="img" aria-label="Drumbeat">""" + DRUM_MARK + DRUM_WM + TM + """<span class="dstrap">""" + DRUM_STRAP + """</span></div>
         <h1 class="intro">Your ERP keeps the books. """ + DRUM_WM + """ keeps the beat.</h1>
-        <p class="body">drumbeat+&trade; is sales and operations software for contract electronics manufacturers.
+        <p class="body">Drumbeat&trade; is sales and operations software for contract electronics manufacturers.
           Every job in one place, from first enquiry to despatch, so every team knows what to do next.</p>
       </header>
     </div>
@@ -320,14 +326,14 @@ PAGES = [
       </ul>
       <h2 class="sub-h">Four plans, one platform</h2>
       <ul class="plans">
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">crm</span></span><span>Win the work.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">opx</span></span><span>Operational excellence.</span></li>
-        <li><span class="wm-drum">drum<span class="b">beat</span><span class="p">+</span><span class="pl">max</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">crm</span></span><span>Win the order.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">ops</span></span><span>Deliver on time.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">opx</span></span><span>Improve how it runs.</span></li>
+        <li><span class="wm-drum">drum<span class="b">beat</span><span class="pl">pro</span></span><span>Built for AS9100, ISO 13485 and IATF 16949.</span></li>
       </ul>
       <div class="cta-row">
         <a class="cta" href="{DEMO}">Request a demo</a>
-        <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow drumbeat+ on LinkedIn</span></a>
+        <a class="li li-page" href="{LI_DRUM}">""" + LI_ICON + """<span>Follow Drumbeat on LinkedIn</span></a>
       </div>
     </div>""",
     },
@@ -465,10 +471,10 @@ PAGES = [
 def md_inline(t):
     t = html_escape(t)
     t = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", t)
-    # drumbeat+ in running text: its wordmark, linked to its page (left unlinked when it is already inside a link)
+    # Drumbeat in running text: its wordmark, linked to its page (left unlinked when it is already inside a link)
     parts = re.split(r"(\[[^\]]+\]\([^)\s]+\))", t)
-    t = "".join(p.replace("drumbeat+", DRUM_WM) if p.startswith("[")
-                else p.replace("drumbeat+", f'<a class="wm-link" href="{{drum_page}}">{DRUM_WM}</a>') for p in parts)
+    t = "".join(re.sub(r"\bDrumbeat\b", DRUM_WM, p) if p.startswith("[")
+                else re.sub(r"\bDrumbeat\b", f'<a class="wm-link" href="{{drum_page}}">{DRUM_WM}</a>', p) for p in parts)
     return re.sub(r"\[([^\]]+)\]\(([^)\s]+)\)", lambda m: f'<a href="{m.group(2)}">{m.group(1)}</a>', t)
 
 
@@ -836,7 +842,7 @@ MARKS = {
     "ems-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#ems-mark"/></svg></div>',
     "cnc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#cnc-mark"/></svg></div>',
     "emc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#emc-mark"/></svg></div>',
-    "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">+</div>',
+    "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">' + DRUM_MARK + '</div>',
     "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
 }
 
@@ -857,7 +863,7 @@ FOOTER = """
       <a href="{PCB}">PCB Directory</a>
       <a href="{DDP}">3DP Directory</a>
       <a href="{ESS}">ESS Directory</a>
-      <a href="{drum_page}">drumbeat+</a>
+      <a href="{drum_page}">Drumbeat</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
       <a class="li" href="{LINKEDIN}">""" + LI_ICON + """<span>LinkedIn</span></a>""" + ("""

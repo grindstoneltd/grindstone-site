@@ -21,7 +21,7 @@ Strip away the jargon and Industry 4.0 is about three things: capturing data fro
 
 Most EMS firms already have some of this. The data often sits in separate machines, spreadsheets and the ERP, and nobody has time to join it up.
 
-Joining up the job-level picture is the gap we built drumbeat+ to fill. It's our own sales and operations software for EMS companies: it follows each job from enquiry to delivery, shows every team what needs doing today, and gives customers a live view of their orders, all beside the ERP you already have. [Request a demo]({drum_page}).
+Joining up the job-level picture is the gap we built Drumbeat to fill. It's our own sales and operations software for EMS companies: it follows each job from enquiry to delivery, shows every team what needs doing today, and gives customers a live view of their orders, all beside the ERP you already have. [Request a demo]({drum_page}).
 
 ## Where AI already pays its way
 
