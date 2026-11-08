@@ -118,9 +118,7 @@
   /* strapline beside the logo behind a mustard bar, as on the drumbeat site and LinkedIn banner; under it on phones */
   .drum-lockup .dstrap { font: 600 clamp(1rem, 2.4vw, 1.25rem)/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .2rem 0 .2rem .85rem; margin-left: .9rem; white-space: nowrap; }
   @media (max-width: 52rem) { .drum-lockup { flex-wrap: wrap; width: auto; } .drum-lockup .dstrap { flex-basis: 100%; margin-left: 0; margin-top: .5rem; } }
-  .card h3 { display: flex; flex-wrap: wrap; align-items: center; gap: .55rem .9rem; }
   .card h3 .drum-card { display: inline-flex; align-items: center; gap: .3em; }
-  .card .card-strap { display: block; font: 600 .95rem/1.1 var(--font-ems); color: var(--fg); border-left: 3px solid var(--plus); padding: .15rem 0 .15rem .7rem; white-space: nowrap; }
   .card h3 .drum-card .mk { width: 1.9rem; height: 1.9rem; flex: none; }
   .big .wm-ems, .big .wm-drum { font-size: clamp(2.4rem, 7vw, 3.6rem); }
   .big .wm-service { font-size: clamp(2.8rem, 9vw, 5rem); }

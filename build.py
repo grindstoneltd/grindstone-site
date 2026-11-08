@@ -176,7 +176,7 @@ PAGES = [
         </article>
         <article class="card">
           <span class="kind">Sales and operations software</span>
-          <h3><a class="drum-card" href="{drum_page}">""" + DRUM_MARK + DRUM_WM + TM + """</a><span class="card-strap">""" + DRUM_STRAP + """</span></h3>
+          <h3><a class="drum-card" href="{drum_page}">""" + DRUM_MARK + DRUM_WM + TM + """</a></h3>
           <p><a href="{drum_page}">Keep every department in sync</a>, from enquiry to delivery. Every job follows your own stages, with an owner at each step, beside the ERP you already have.</p>
           <div class="card-foot"><a class="more" href="{drum_page}">More about Drumbeat</a></div>
         </article>
