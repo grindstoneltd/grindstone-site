@@ -1,6 +1,6 @@
 {
  "/": {
-  "hash": "e01f8b3361061fb4",
+  "hash": "866eb4a044e5c4b8",
   "date": "2026-11-09"
  },
  "/ems-directory/": {
@@ -14,6 +14,10 @@
  "/emc-directory/": {
   "hash": "7f8adc17f165370e",
   "date": "2026-10-29"
+ },
+ "/contract-manufacturing-uk/": {
+  "hash": "67d207a5748c9871",
+  "date": "2026-11-09"
  },
  "/drumbeat/": {
   "hash": "29e4ed9394dae0fa",

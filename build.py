@@ -100,7 +100,7 @@ ESS_WM = '<span class="wm-cnc wm-ess"><span>ESS <b>Directory</b></span></span>'
 # Contract Manufacturing UK (front door to the six directories). NOT public yet: Engineering confirms launch, then set CM_LIVE = True
 # (or PREVIEW_CM=1 for a local preview). Final address is www (Engineering, 9 Nov 2026). Navy #0b2a5b, Montserrat 800, robot mark on the left.
 CM = "https://www.contractmanufacturing.co.uk/"
-CM_LIVE = False
+CM_LIVE = True
 SHOW_CM = CM_LIVE or os.environ.get("PREVIEW_CM") == "1"
 _CM_ROBOT = re.sub(r"<svg ", '<svg class="cm-logo" aria-hidden="true" focusable="false" ', (ROOT / "src/cm-robot.svg").read_text(encoding="utf-8").strip(), count=1)
 CM_WM = '<span class="wm-cm">' + _CM_ROBOT + '<span>Contract Manufacturing UK</span></span>'
