@@ -24,8 +24,12 @@
   "date": "2026-11-02"
  },
  "/blog/": {
-  "hash": "b4bc7ded0b190b08",
-  "date": "2026-11-08"
+  "hash": "4144da7224aa31a6",
+  "date": "2026-11-09"
+ },
+ "/blog/visual-management-one-question-per-board/": {
+  "hash": "e8a087bff79afe4c",
+  "date": "2026-11-09"
  },
  "/blog/escalation-matrix-contract-manufacturing/": {
   "hash": "74a7c86e6704a876",
