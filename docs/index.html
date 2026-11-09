@@ -144,7 +144,10 @@
   @media (min-width: 60rem) { .cards:has(> .card:nth-child(5)) > .card.card-wide { grid-column: span 6; } }
   /* Contract Manufacturing UK: navy, white and red (#d0021b), per Colin 9 Nov */
   .cm-red { color: #d0021b; }
-  .card-cm { border-top: 4px solid #d0021b; border-left: 4px solid #0b2a5b; }
+  .card-cm { position: relative; overflow: hidden; }
+  .card-cm > * { position: relative; z-index: 1; }
+  .card-cm > .card-shadow { position: absolute; z-index: 0; right: 2rem; top: 50%; transform: translateY(-50%) rotate(8deg); width: 11rem; height: 11rem; opacity: .07; pointer-events: none; }
+  .card-shadow svg { display: block; width: 100%; height: 100%; }
   .card-cm .kind { color: #d0021b; }
   .card-cm .more { color: #0b2a5b; }
   a.cta.cta-cm { background: #d0021b; border-color: #d0021b; color: #fff; }
@@ -571,6 +574,7 @@
       <h2 class="sr">What Grindstone does</h2>
       <div class="cards">
         <article class="card card-wide card-cm">
+          <span class="card-shadow" aria-hidden="true"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><mask id="m3"><rect width="24" height="24" fill="#fff"/><circle cx="8.8" cy="13" r="2.1" fill="#000"/><circle cx="15.2" cy="13" r="2.1" fill="#000"/><rect x="8.5" y="17.2" width="7" height="1.6" rx=".8" fill="#000"/></mask></defs><g fill="#0b2a5b" mask="url(#m3)"><rect x="11" y="1.5" width="2" height="5" rx="1"/><circle cx="12" cy="1.8" r="1.6"/><rect x="3" y="6" width="18" height="15" rx="4.5"/></g></svg></span>
           <span class="kind">Find a UK contract manufacturer</span>
           <h3><a href="/contract-manufacturing-uk/"><span class="wm-cm"><svg class="cm-logo" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><defs><mask id="m"><rect width="24" height="24" fill="#fff"/><circle cx="8.8" cy="13" r="2.1" fill="#000"/><circle cx="15.2" cy="13" r="2.1" fill="#000"/><rect x="8.5" y="17.2" width="7" height="1.6" rx=".8" fill="#000"/></mask></defs><g fill="#0b2a5b" mask="url(#m)"><rect x="11" y="1.5" width="2" height="5" rx="1"/><circle cx="12" cy="1.8" r="1.6"/><rect x="3" y="6" width="18" height="15" rx="4.5"/></g></svg><span>Contract Manufacturing UK</span></span></a></h3>
           <p>Search 1,000+ UK contract manufacturing companies across six directories, or ask Chip to shortlist suppliers for your job and send your RFQ. Free.</p>

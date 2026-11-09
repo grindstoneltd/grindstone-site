@@ -145,7 +145,10 @@
   @media (min-width: 60rem) { .cards:has(> .card:nth-child(5)) > .card.card-wide { grid-column: span 6; } }
   /* Contract Manufacturing UK: navy, white and red (#d0021b), per Colin 9 Nov */
   .cm-red { color: #d0021b; }
-  .card-cm { border-top: 4px solid #d0021b; border-left: 4px solid #0b2a5b; }
+  .card-cm { position: relative; overflow: hidden; }
+  .card-cm > * { position: relative; z-index: 1; }
+  .card-cm > .card-shadow { position: absolute; z-index: 0; right: 2rem; top: 50%; transform: translateY(-50%) rotate(8deg); width: 11rem; height: 11rem; opacity: .07; pointer-events: none; }
+  .card-shadow svg { display: block; width: 100%; height: 100%; }
   .card-cm .kind { color: #d0021b; }
   .card-cm .more { color: #0b2a5b; }
   a.cta.cta-cm { background: #d0021b; border-color: #d0021b; color: #fff; }

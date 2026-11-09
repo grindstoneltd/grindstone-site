@@ -147,6 +147,7 @@ PAGES = [
       <h2 class="sr">What Grindstone does</h2>
       <div class="cards">""" + ("""
         <article class="card card-wide card-cm">
+          <span class="card-shadow" aria-hidden="true">""" + _CM_ROBOT.replace(' class="cm-logo"',"").replace('id="m"','id="m3"').replace("url(#m)","url(#m3)") + """</span>
           <span class="kind">Find a UK contract manufacturer</span>
           <h3><a href="{link:contract-manufacturing-uk}">""" + CM_WM + """</a></h3>
           <p>Search 1,000+ UK contract manufacturing companies across six directories, or ask Chip to shortlist suppliers for your job and send your RFQ. Free.</p>
