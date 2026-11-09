@@ -110,6 +110,8 @@
   @media (min-width: 40rem) and (max-width: 59.99rem) { .cards:has(> .card:nth-child(5)) > .card:last-child:nth-child(odd) { grid-column: 1 / -1; } }
   .wm-cm { font-family: "Montserrat", var(--font-ems); font-weight: 800; font-size: 1.5rem; letter-spacing: -.01em; line-height: 1.1; color: #0b2a5b; display: inline-flex; align-items: center; gap: .45em; white-space: nowrap; }
   .wm-cm .cm-logo { width: 1.4em; height: 1.4em; flex: none; }
+  .card-cm, .card-cm h3, .card-cm p { min-width: 0; max-width: 100%; }
+  @media (max-width: 40rem) { .wm-cm { white-space: normal; font-size: 1.2rem; align-items: center; } .big .wm-cm { font-size: 1.3rem; } }
   .big .wm-cm { font-size: clamp(1.4rem, 5.2vw, 2.6rem); }
   @media (min-width: 60rem) { .cards:has(> .card:nth-child(5)) > .card.card-wide { grid-column: span 6; } }
   /* Contract Manufacturing UK: navy, white and red (#d0021b), per Colin 9 Nov */
