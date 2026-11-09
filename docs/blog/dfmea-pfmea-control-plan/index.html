@@ -27,7 +27,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Michroma&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900&family=Michroma&family=Montserrat:wght@800&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">
 <style>
   /* Layout: one narrow column of stone; a ground-wheel disc behind the hero; three product cards; each card opens its own page. */
   :root {
@@ -139,6 +139,22 @@
     .cards:has(> .card:nth-child(5)) > .card { grid-column: span 2; }
     .cards:has(> .card:nth-child(5)) > .card:nth-last-child(-n+2) { grid-column: span 3; } }
   @media (min-width: 40rem) and (max-width: 59.99rem) { .cards:has(> .card:nth-child(5)) > .card:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+  .wm-cm { font-family: "Montserrat", var(--font-ems); font-weight: 800; font-size: 1.5rem; letter-spacing: -.01em; line-height: 1.1; color: #0b2a5b; display: inline-flex; align-items: center; gap: .45em; white-space: nowrap; }
+  .wm-cm .cm-logo { width: 1.4em; height: 1.4em; flex: none; }
+  .big .wm-cm { font-size: clamp(1.4rem, 5.2vw, 2.6rem); }
+  @media (min-width: 60rem) { .cards:has(> .card:nth-child(5)) > .card.card-wide { grid-column: span 6; } }
+  /* Contract Manufacturing UK: navy, white and red (#d0021b), per Colin 9 Nov */
+  .cm-red { color: #d0021b; }
+  .card-cm { border-top: 4px solid #d0021b; border-left: 4px solid #0b2a5b; }
+  .card-cm .kind { color: #d0021b; }
+  .card-cm .more { color: #0b2a5b; }
+  a.cta.cta-cm { background: #d0021b; border-color: #d0021b; color: #fff; }
+  a.cta.cta-cm:hover { background: #0b2a5b; border-color: #0b2a5b; }
+  .card-cm .more { --arrow: #d0021b; }
+  .card-cm .more::after, .card-cm .more svg { color: #d0021b; }
+  .mark-cm { top: 7.5rem; right: 3rem; width: 30rem; aspect-ratio: 1; opacity: .08; }
+  .mark-cm svg { display: block; width: 100%; height: 100%; }
+  @media (max-width: 40rem) { .mark-cm { width: 20rem; right: -3rem; top: 9.5rem; opacity: .09; } }
   .wm-drum { font-family: var(--font-drum); font-weight: 900; font-size: 1.6rem; letter-spacing: -.02em; line-height: 1.1; }
   .wm-drum .b { color: var(--beat); }
   .wm-service { font-family: var(--font-display); font-weight: 900; text-transform: uppercase; font-size: 1.85rem; letter-spacing: .02em; line-height: 1; }

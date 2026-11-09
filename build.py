@@ -63,7 +63,7 @@ EMS_SYMBOL = (ROOT / "src/ems-mark.svg.html").read_text(encoding="utf-8") + (ROO
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,600..900'
-         '&family=Michroma&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">')
+         '&family=Michroma&family=Montserrat:wght@800&family=Instrument+Sans:wght@400;500;600&family=Inter:wght@700;800&family=Unbounded:wght@900&display=swap">')
 
 EMS_WM = ('<span class="wm-ems"><svg class="ems-logo" aria-hidden="true" focusable="false"><use href="#ems-mark"/></svg>'
           '<span>EMS <b>Directory</b></span></span>')
@@ -97,6 +97,13 @@ ESS = "https://www.essdirectory.co.uk/"
 PCB_WM = '<span class="wm-cnc wm-pcb"><span>PCB <b>Directory</b></span></span>'
 DDP_WM = '<span class="wm-cnc wm-3dp"><span>3DP <b>Directory</b></span></span>'
 ESS_WM = '<span class="wm-cnc wm-ess"><span>ESS <b>Directory</b></span></span>'
+# Contract Manufacturing UK (front door to the six directories). NOT public yet: Engineering confirms launch, then set CM_LIVE = True
+# (or PREVIEW_CM=1 for a local preview). Final address is www (Engineering, 9 Nov 2026). Navy #0b2a5b, Montserrat 800, robot mark on the left.
+CM = "https://www.contractmanufacturing.co.uk/"
+CM_LIVE = False
+SHOW_CM = CM_LIVE or os.environ.get("PREVIEW_CM") == "1"
+_CM_ROBOT = re.sub(r"<svg ", '<svg class="cm-logo" aria-hidden="true" focusable="false" ', (ROOT / "src/cm-robot.svg").read_text(encoding="utf-8").strip(), count=1)
+CM_WM = '<span class="wm-cm">' + _CM_ROBOT + '<span>Contract Manufacturing UK</span></span>'
 TM = '<span class="tm">&trade;</span>'
 # 'stone' with the O drawn as the grindstone wheel (a hidden 'o' keeps the word readable to screen readers and search)
 STONE = ('st<span class="o-wheel"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="44.5" fill="none" stroke="currentColor" stroke-width="11"/><circle cx="50" cy="50" r="28" fill="none" stroke="currentColor" stroke-width="8"/><circle cx="50" cy="50" r="12" fill="none" stroke="currentColor" stroke-width="7"/></svg><span class="sr">o</span></span>ne')
@@ -123,6 +130,7 @@ PAGES = [
                              {"@type": "Brand", "name": "CNC Directory", "url": CNC},
                              {"@type": "Brand", "name": "EMC Directory", "url": EMC},
                              {"@type": "Brand", "name": "PCB Directory", "url": PCB},
+                             *([{"@type": "Brand", "name": "Contract Manufacturing UK", "url": CM}] if SHOW_CM else []),
                              {"@type": "Brand", "name": "3DP Directory", "url": DDP},
                              {"@type": "Brand", "name": "ESS Directory", "url": ESS},
                              {"@type": "Brand", "name": "Drumbeat", "url": SITE + "/drumbeat/", "sameAs": [LI_DRUM]}]},
@@ -137,7 +145,13 @@ PAGES = [
     </div>
     <div class="wrap products">
       <h2 class="sr">What Grindstone does</h2>
-      <div class="cards">
+      <div class="cards">""" + ("""
+        <article class="card card-wide card-cm">
+          <span class="kind">Find a UK contract manufacturer</span>
+          <h3><a href="{link:contract-manufacturing-uk}">""" + CM_WM + """</a></h3>
+          <p>Search 1,000+ UK contract manufacturing companies across six directories, or ask Chip to shortlist suppliers for your job and send your RFQ. Free.</p>
+          <div class="card-foot"><a class="more" href="{link:contract-manufacturing-uk}">More about Contract Manufacturing UK</a><a class="ext" href="{CM}">contractmanufacturing.co.uk</a></div>
+        </article>""" if SHOW_CM else "") + """
         <article class="card">
           <span class="kind">Find an electronics manufacturer</span>
           <h3><a href="{ems_page}">""" + EMS_WM + """</a></h3>
@@ -287,6 +301,34 @@ PAGES = [
       </div>
     </div>""",
     }] if SHOW_EMC_PAGE else []),
+    *([{
+        "id": "contract-manufacturing-uk", "path": "/contract-manufacturing-uk/", "nav": "Contract Manufacturing UK",
+        "title": "Contract Manufacturing UK: find a UK contract manufacturer | Grindstone",
+        "description": "Search 1,000+ UK contract manufacturing companies across six directories, or ask Chip to shortlist suppliers for your job and send your RFQ. Free.",
+        "jsonld": {"@context": "https://schema.org", "@type": "WebSite", "name": "Contract Manufacturing UK", "url": CM,
+                   "description": "Find UK contract manufacturing companies across six directories, with an assistant that shortlists suppliers and sends your RFQ.", "publisher": ORG},
+        "body": """
+    <div class="wrap page">
+      <a class="back" href="{home}">Home</a>
+      <header class="big">
+        <span class="kind">Find a UK contract manufacturer &middot; contractmanufacturing.co.uk</span>
+        <div class="brandmark" role="img" aria-label="Contract Manufacturing UK">""" + CM_WM + """</div>
+        <h1 class="intro">Find the right UK contract manufacturing partner. <span class="cm-red">Just ask Chip.</span></h1>
+        <p class="body"><a href="{CM}">Contract Manufacturing UK</a> brings our six UK directories together in one place: 1,000+ contract manufacturing companies,
+          from electronics and PCBs to machining and 3D printing. Describe your job and Chip, our friendly robot, shortlists suppliers that fit and sends your RFQ.</p>
+      </header>
+      <h2 class="sub-h">Why use Contract Manufacturing UK</h2>
+      <ul class="points">
+        <li><strong>One search, six directories</strong><span>Electronics, CNC machining, EMC testing, PCB fabrication, 3D printing and environmental testing.</span></li>
+        <li><strong>Just ask Chip</strong><span>Tell it about the job in plain English. It shortlists companies that fit and sends your RFQ for you.</span></li>
+        <li><strong>Free for buyers</strong><span>No charge to search, shortlist or send an RFQ.</span></li>
+        <li><strong>No searching company by company</strong><span>Find UK contract manufacturers in one place, then send your RFQ without leaving the page.</span></li>
+      </ul>
+      <div class="cta-row">
+        <a class="cta cta-cm" href="{CM}">Find a manufacturer</a>
+      </div>
+    </div>""",
+    }] if SHOW_CM else []),
     {
         "id": "drumbeat", "path": "/drumbeat/", "nav": "Drumbeat",
         "title": "Drumbeat: sales and operations software for contract manufacturing | Grindstone",
@@ -845,6 +887,7 @@ MARKS = {
     "cnc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#cnc-mark"/></svg></div>',
     "emc-directory": '<div class="wm-bg mark-ems" aria-hidden="true"><svg><use href="#emc-mark"/></svg></div>',
     "drumbeat": '<div class="wm-bg mark-drum" aria-hidden="true">' + DRUM_MARK + '</div>',
+    "contract-manufacturing-uk": '<div class="wm-bg mark-cm" aria-hidden="true">' + _CM_ROBOT.replace(' class="cm-logo"',"").replace('id="m"','id="m2"').replace("url(#m)","url(#m2)") + '</div>',
     "consultancy": '<div class="wm-bg wheel" aria-hidden="true"></div>',
 }
 
@@ -864,7 +907,8 @@ FOOTER = """
       <a href="{EMC}">EMC Directory</a>""" if EMC_LIVE else "") + """
       <a href="{PCB}">PCB Directory</a>
       <a href="{DDP}">3DP Directory</a>
-      <a href="{ESS}">ESS Directory</a>
+      <a href="{ESS}">ESS Directory</a>""" + ("""
+      <a href="{CM}">Contract Manufacturing UK</a>""" if SHOW_CM else "") + """
       <a href="{drum_page}">Drumbeat</a>
       <a href="{gemba_page}">Consultancy</a>
       <a href="{link:blog}">Blog</a>
@@ -910,7 +954,7 @@ def header(links, current):
 def fill(text, links):
     return (text.replace("{home}", links["home"]).replace("{ems_page}", links["ems-directory"])
             .replace("{drum_page}", links["drumbeat"]).replace("{gemba_page}", links["consultancy"])
-            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{EMC}", EMC).replace("{PCB}", PCB).replace("{DDP}", DDP).replace("{ESS}", ESS).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
+            .replace("{EMS}", EMS).replace("{CNC}", CNC).replace("{EMC}", EMC).replace("{PCB}", PCB).replace("{DDP}", DDP).replace("{ESS}", ESS).replace("{CM}", CM).replace("{DRUM}", DRUM).replace("{LINKEDIN}", LINKEDIN).replace("{LI_EMS}", LI_EMS).replace("{LI_DRUM}", LI_DRUM).replace("{LI_COLIN}", LI_COLIN).replace("{DEMO}", DEMO).replace("{READINESS_URL}", READINESS_URL))
 
 
 def fill_links(text, links):
@@ -1034,6 +1078,8 @@ def build_dist():
         shutil.rmtree(out / "cnc-directory", ignore_errors=True)
     if not SHOW_EMC_PAGE:
         shutil.rmtree(out / "emc-directory", ignore_errors=True)
+    if not SHOW_CM:
+        shutil.rmtree(out / "contract-manufacturing-uk", ignore_errors=True)
     if not SHOW_READINESS:
         for name in ("ai-readiness", "privacy"):
             shutil.rmtree(out / name, ignore_errors=True)
