@@ -17,4 +17,4 @@ Finding a partner usually means searching process by process and region by regio
 
 "Buyers shouldn't need to spend hours searching online to find their UK contract manufacturing partner. Contract Manufacturing UK lets them describe the job in their own words and get a shortlist of UK companies that do that work, quickly and free of charge," said Colin Astbury, Director of Grindstone Ltd.
 
-The service is free for buyers. Companies listed on any of our directories are included automatically.
+The service is free for buyers, and listing is free for UK contract manufacturers. Companies listed on any of our directories are included automatically.
